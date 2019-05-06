@@ -505,23 +505,23 @@ function BasePlates()
     if basePlatesPlaced then return false end
     for i=1,3 do
         getObjectFromGUID(IPlate).takeObject({position = {basePos[1]+5*(i-1),basePos[2],basePos[3]}, rotation = {0,180,0}, smooth = false}).setLock(true)
-        table.insert(snapPoints, {position = {basePos[1]+5*(i-1),0,basePos[3]}, rotation = {0,180,0}, rotation_snap = true})
+        table.insert(snapPoints, {position = {basePos[1]+5*(i-1),basePos[2],basePos[3]}, rotation = {0,180,0}, rotation_snap = true})
     end
     for i=1,3 do
         getObjectFromGUID(IPlate).takeObject({position = {basePos[1]+5*(i-1),basePos[2]+0.1,basePos[3]-7}, rotation = {0,180,180}, smooth = false}).setLock(true)
-        table.insert(snapPoints, {position = {basePos[1]+5*(i-1),0,basePos[3]-7}, rotation = {0,180,180}, rotation_snap = true})
+        table.insert(snapPoints, {position = {basePos[1]+5*(i-1),basePos[2],basePos[3]-7}, rotation = {0,180,180}, rotation_snap = true})
     end
     getObjectFromGUID(IDeck).takeObject({position = {basePos[1]+1,basePos[2],basePos[3]+6}, rotation = {0,90,0}, smooth = false}).setLock(true)
-    table.insert(snapPoints, {position = {basePos[1]+1,0,basePos[3]+6}, rotation = {0,90,0}, rotation_snap = true})
+    table.insert(snapPoints, {position = {basePos[1]+1,basePos[2],basePos[3]+6}, rotation = {0,90,0}, rotation_snap = true})
     getObjectFromGUID(IDiscard).takeObject({position = {basePos[1]+9,basePos[2],basePos[3]+6}, rotation = {0,90,0}, smooth = false}).setLock(true)
-    table.insert(snapPoints, {position = {basePos[1]+9,0,basePos[3]+6}, rotation = {0,90,0}, rotation_snap = true})
+    table.insert(snapPoints, {position = {basePos[1]+9,basePos[2],basePos[3]+6}, rotation = {0,90,0}, rotation_snap = true})
     getObjectFromGUID(MDeck).takeObject({position = {basePos[1]-5+LEMod+WFMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, smooth = false}).setLock(true)
-    table.insert(snapPoints, {position = {basePos[1]-5+LEMod+WFMod,0,basePos[3]+5}, rotation = {0,180,0}, rotation_snap = true})
+    table.insert(snapPoints, {position = {basePos[1]-5+LEMod+WFMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, rotation_snap = true})
     getObjectFromGUID(MDiscard).takeObject({position = {basePos[1]-5+LEMod+WFMod,basePos[2],basePos[3]-2}, rotation = {0,180,0}, smooth = false}).setLock(true)
     getObjectFromGUID(BaseRef).takeObject({position = {basePos[1]-6.5+LEMod+WFMod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)
     getObjectFromGUID(Die).takeObject({position = {basePos[1]-4.5+LEMod+WFMod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)
     getObjectFromGUID(LifeToken).takeObject({position = {basePos[1]-6.5+LEMod+WFMod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)
-    table.insert(snapPoints, {position = {basePos[1]-5+LEMod+WFMod,0,basePos[3]-2}, rotation = {0,180,0}, rotation_snap = true})
+    table.insert(snapPoints, {position = {basePos[1]-5+LEMod+WFMod,basePos[2],basePos[3]-2}, rotation = {0,180,0}, rotation_snap = true})
     getObjectFromGUID(MCardsBase).takeObject({position = {basePos[1]-5+LEMod+WFMod,2,basePos[3]+5}, rotation = {0,180,180}, smooth = false})
     getObjectFromGUID(ICardsBase).takeObject({position = {basePos[1]+1,2,basePos[3]+6}, rotation = {0,90,180}, smooth = false})
     getObjectFromGUID(CCardsBase).takeObject({position = {basePos[1]+25,2,basePos[3]+15}, rotation = {0,90,0}, smooth = false})
@@ -538,9 +538,9 @@ end
 function LEPlates()
     if LEPlatesPlaced then return false end
     getObjectFromGUID(LDeck).takeObject({position = {basePos[1]-5+WFMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, smooth = false}).setLock(true)
-    table.insert(snapPoints, {position = {basePos[1]-5+WFMod,0,basePos[3]+5}, rotation = {0,180,0}, rotation_snap = true})
+    table.insert(snapPoints, {position = {basePos[1]-5+WFMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, rotation_snap = true})
     getObjectFromGUID(LDiscard).takeObject({position = {basePos[1]-5+WFMod,basePos[2],basePos[3]-2}, rotation = {0,180,0}, smooth = false}).setLock(true)
-    table.insert(snapPoints, {position = {basePos[1]-5+WFMod,0,basePos[3]-2}, rotation = {0,180,0}, rotation_snap = true})
+    table.insert(snapPoints, {position = {basePos[1]-5+WFMod,basePos[2],basePos[3]-2}, rotation = {0,180,0}, rotation_snap = true})
     getObjectFromGUID(SeasonDie).takeObject({position = {basePos[1]-2.5+LEMod+WFMod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)
     getObjectFromGUID(ExtraPlate).takeObject({position = {basePos[1]-0.5+LEMod+WFMod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)
     getObjectFromGUID(ExtraCard).takeObject({position = {basePos[1]+1.5+LEMod+WFMod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)
@@ -551,16 +551,16 @@ function TEPlates()
     if TEPlatesPlaced then return false end
     for i=1,3 do
         getObjectFromGUID(TPlate).takeObject({position = {basePos[1]-10+LEMod+WFMod-5*(i-1),basePos[2],basePos[3]}, rotation = {0,180,0}, smooth = false}).setLock(true)
-        table.insert(snapPoints, {position = {basePos[1]-10+LEMod+WFMod-5*(i-1),0,basePos[3]}, rotation = {0,180,0}, rotation_snap = true})
+        table.insert(snapPoints, {position = {basePos[1]-10+LEMod+WFMod-5*(i-1),basePos[2],basePos[3]}, rotation = {0,180,0}, rotation_snap = true})
     end
     for i=1,3 do
         getObjectFromGUID(TPlate).takeObject({position = {basePos[1]-10+LEMod+WFMod-5*(i-1),basePos[2],basePos[3]-7}, rotation = {0,180,0}, smooth = false}).setLock(true)
-        table.insert(snapPoints, {position = {basePos[1]-10+LEMod+WFMod-5*(i-1),0,basePos[3]-7}, rotation = {0,180,0}, rotation_snap = true})
+        table.insert(snapPoints, {position = {basePos[1]-10+LEMod+WFMod-5*(i-1),basePos[2],basePos[3]-7}, rotation = {0,180,0}, rotation_snap = true})
     end
     getObjectFromGUID(TDeck).takeObject({position = {basePos[1]-11+LEMod+WFMod,basePos[2],basePos[3]+6}, rotation = {0,90,0}, smooth = false}).setLock(true)
-    table.insert(snapPoints, {position = {basePos[1]-11+LEMod+WFMod,0,basePos[3]+6}, rotation = {0,90,0}, rotation_snap = true})
+    table.insert(snapPoints, {position = {basePos[1]-11+LEMod+WFMod,basePos[2],basePos[3]+6}, rotation = {0,90,0}, rotation_snap = true})
     getObjectFromGUID(TDiscard).takeObject({position = {basePos[1]-19+LEMod+WFMod,basePos[2],basePos[3]+6}, rotation = {0,90,0}, smooth = false}).setLock(true)
-    table.insert(snapPoints, {position = {basePos[1]-19+LEMod+WFMod,0,basePos[3]+6}, rotation = {0,90,0}, rotation_snap = true})
+    table.insert(snapPoints, {position = {basePos[1]-19+LEMod+WFMod,basePos[2],basePos[3]+6}, rotation = {0,90,0}, rotation_snap = true})
     getObjectFromGUID(TERef).takeObject({position = {basePos[1]-4.5+LEMod+WFMod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)
     TEPlatesPlaced = true
     return true
@@ -568,7 +568,7 @@ end
 function TraitsPlates()
     if TraitsPlatesPlaced then return false end
     getObjectFromGUID(TraitsDeck).takeObject({position = {basePos[1]-10+TEMod+LEMod+WFMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, smooth = false}).setLock(true)
-    table.insert(snapPoints, {position = {basePos[1]-10+TEMod+LEMod+WFMod,0,basePos[3]+5}, rotation = {0,180,0}, rotation_snap = true})
+    table.insert(snapPoints, {position = {basePos[1]-10+TEMod+LEMod+WFMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, rotation_snap = true})
     TraitsPlatesPlaced = true
     return true
 end
@@ -656,12 +656,12 @@ function doEverything()
                 tempDeck:spawn({position = {basePos[1]-11+LEMod+WFMod,2,basePos[3]+6}, rotation = {0,90,180}}).setScale({1.82,1,1.82})
             elseif key=="PrecognitionCards" then
                 tempDeck:spawn({position = {basePos[1]-5,2,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
-                table.insert(snapPoints, {position = {basePos[1]-5,0,basePos[3]+5}, rotation = {0,180,180}, rotation_snap = true})
-                table.insert(snapPoints, {position = {basePos[1]-5,0,basePos[3]-2}, rotation = {0,180,180}, rotation_snap = true})
+                table.insert(snapPoints, {position = {basePos[1]-5,basePos[2],basePos[3]+5}, rotation = {0,180,180}, rotation_snap = true})
+                table.insert(snapPoints, {position = {basePos[1]-5,basePos[2],basePos[3]-2}, rotation = {0,180,180}, rotation_snap = true})
             elseif key=="NightCards" then
                 tempDeck:spawn({position = {basePos[1]+15,2,basePos[3]}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
-                table.insert(snapPoints, {position = {basePos[1]+15,0,basePos[3]}, rotation = {0,180,180}, rotation_snap = true})
-                table.insert(snapPoints, {position = {basePos[1]+15,0,basePos[3]-7}, rotation = {0,180,180}, rotation_snap = true})
+                table.insert(snapPoints, {position = {basePos[1]+15,basePos[2],basePos[3]}, rotation = {0,180,180}, rotation_snap = true})
+                table.insert(snapPoints, {position = {basePos[1]+15,basePos[2],basePos[3]-7}, rotation = {0,180,180}, rotation_snap = true})
             elseif key=="TraitCards" then
                 tempDeck:spawn({position = {basePos[1]-10+TEMod+LEMod+WFMod,4,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
             end
@@ -686,12 +686,12 @@ function doEverything()
                 value[1]:spawn({position = {basePos[1]-11+LEMod+WFMod,2,basePos[3]+6}, rotation = {0,90,180}}).setScale({1.82,1,1.82})
             elseif key=="PrecognitionCards" and expansions.LunaticExtra then
                 value[1]:spawn({position = {basePos[1]-5,2,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
-                table.insert(snapPoints, {position = {basePos[1]-5,0,basePos[3]+5}, rotation = {0,180,180}, rotation_snap = true})
-                table.insert(snapPoints, {position = {basePos[1]-5,0,basePos[3]-2}, rotation = {0,180,180}, rotation_snap = true})
+                table.insert(snapPoints, {position = {basePos[1]-5,basePos[2],basePos[3]+5}, rotation = {0,180,180}, rotation_snap = true})
+                table.insert(snapPoints, {position = {basePos[1]-5,basePos[2],basePos[3]-2}, rotation = {0,180,180}, rotation_snap = true})
             elseif key=="NightCards" then
                 value[1]:spawn({position = {basePos[1]+15,2,basePos[3]}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
-                table.insert(snapPoints, {position = {basePos[1]+15,0,basePos[3]}, rotation = {0,180,180}, rotation_snap = true})
-                table.insert(snapPoints, {position = {basePos[1]+15,0,basePos[3]-7}, rotation = {0,180,180}, rotation_snap = true})
+                table.insert(snapPoints, {position = {basePos[1]+15,basePos[2],basePos[3]}, rotation = {0,180,180}, rotation_snap = true})
+                table.insert(snapPoints, {position = {basePos[1]+15,basePos[2],basePos[3]-7}, rotation = {0,180,180}, rotation_snap = true})
             elseif key=="TraitCards" then
                 value[1]:spawn({position = {basePos[1]-10+TEMod+LEMod+WFMod,4,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
             end
