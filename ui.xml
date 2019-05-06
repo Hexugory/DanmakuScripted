@@ -1,0 +1,101 @@
+<Defaults>
+    <Panel class="expansionPanel"  color="#ebebeb" outline="#000000" outlineSize="1 -1"/>
+    <ToggleButton class="expansionButton" onValueChanged="toggleExpansion" padding="0 0 145 0" textColor="#000000" fontStyle="Bold" fontSize="18" colors="#FFFFFF|#1c97ff|#1c97ff|#FFFFFF"/>
+    <Image class="expansionImage" width="144" height="144" rectAlignment="UpperCenter" offsetXY="0 -3"/>
+</Defaults>
+
+<Button id="openButton"
+    visibility="Admin"
+    width="90"
+    height="30"
+    rectAlignment="UpperCenter"
+    offsetXY="0 -80"
+    colors="#656464|#bab9b9|#bab9b9|#FFFFFF"
+    textColor="#FFFFFF"
+    text="Open"
+    alignment="MiddleCenter"
+    fontSize="20"
+    onClick="openPanel"
+    returnToOriginalPositionWhenReleased="true"
+    active="false">
+</Button>
+
+<!-- Map selection menu -->
+<Panel id="expansionSelection" class="expansionPanel"
+    visibility="Admin"
+    width="680"
+    height="520"
+    rectAlignment="UpperCenter"
+    offsetXY="0 -250"
+    allowDragging="true"
+    showAnimation="FadeIn"
+    showAnimationDelay="2"
+    returnToOriginalPositionWhenReleased="false">
+    <VerticalScrollView
+        rectAlignment="MiddleCenter"
+        offsetXY="0 -00"
+        scrollSensitivity="40"
+        padding="0 0 50 0"
+        scrollbarColors="#656464|#bab9b9|#bab9b9|#FFFFFF"
+        width="680"
+        height="460"
+        color="#ebebeb">
+        <!--Panel height="1000" rectAlignment="UpperCenter"-->
+        <GridLayout padding="0 0 8 3" spacing="8 8"  height="800" color="#ebebeb"
+            cellsize="150 190" childAlignment="UpperCenter">
+                <ToggleButton class="expansionButton" id="LunaticExtra" text="Lunatic Extra">
+                    <Image class="expansionImage" image="LunaticExtra"></Image></ToggleButton>
+                <ToggleButton class="expansionButton" id="ShitTier" text="Shit Tier">
+                    <Image class="expansionImage" image="ShitTier"></Image></ToggleButton>
+                <ToggleButton class="expansionButton" id="GarbageTier" text="Garbage Tier">
+                    <Image class="expansionImage" image="GarbageTier"></Image></ToggleButton>
+                <ToggleButton class="expansionButton" id="TerminalExpansion" text="Terminal Expansion">
+                    <Image class="expansionImage" image="TerminalExpansion"></Image></ToggleButton>
+                <ToggleButton class="expansionButton" id="FoxBox" text="The Fox Box">
+                    <Image class="expansionImage" image="FoxBox"></Image></ToggleButton>
+                    <ToggleButton class="expansionButton" id="YuriParadise" text="Yuri Paradise">
+                    <Image class="expansionImage" image="YuriParadise"></Image></ToggleButton>
+                <ToggleButton class="expansionButton" id="EToFS" text="Empty Throne of Four Seasons">
+                    <Image class="expansionImage" image="EToFS"></Image></ToggleButton>
+                <ToggleButton class="expansionButton" id="ZhelotRoles" text="Zhelot Roles">
+                    <Image class="expansionImage" image="ZhelotRoles"></Image></ToggleButton>
+                <ToggleButton class="expansionButton" id="WillofFate" text="Will of Fate">
+                    <Image class="expansionImage" image="WillofFate"></Image></ToggleButton>
+                <ToggleButton class="expansionButton" id="DBSCharacters" text="Dragon Ball Super Characters">
+                    <Image class="expansionImage" image="DBSCharacters"></Image></ToggleButton>
+                <ToggleButton class="expansionButton" id="GoldenAdditions" text="Golden Additions">
+                    <Image class="expansionImage" image="GoldenAdditions"></Image></ToggleButton>
+                <ToggleButton class="expansionButton" id="DumbassCards" text="Dumbass Cards">
+                    <Image class="expansionImage" image="DumbassCards"></Image></ToggleButton>
+                <ToggleButton class="expansionButton" id="MUSCLE" text="MUSCLE">
+                    <Image class="expansionImage" image="MUSCLE"></Image></ToggleButton>
+                <ToggleButton class="expansionButton" id="Traits" text="Traits">
+                    <Image class="expansionImage" image="Traits"></Image></ToggleButton>
+        </GridLayout>
+    <!--/Panel-->
+    </VerticalScrollView>
+    <Text text="Choose Expansions" alignment="UpperLeft" fontSize="24" offsetXY="5 0"
+        fontStyle="Bold" color="#000000"></Text>
+    <Button id="doneButton"
+        width="60"
+        height="30"
+        rectAlignment="LowerCenter"
+        colors="#656464|#bab9b9|#bab9b9|#FFFFFF"
+        textColor="#FFFFFF"
+        text="Done"
+        alignment="MiddleCenter"
+        fontSize="20"
+        onClick="loadExpansions">
+    </Button>
+    <Button id="closeButton"
+        width="30"
+        height="30"
+        rectAlignment="UpperRight"
+        colors="#656464|#bab9b9|#bab9b9|#FFFFFF"
+        textColor="#FFFFFF"
+        text="X"
+        alignment="MiddleCenter"
+        fontSize="24"
+        onClick="closePanel">
+    </Button>
+</Panel>
