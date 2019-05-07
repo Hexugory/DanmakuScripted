@@ -69,6 +69,8 @@
                     <Image class="expansionImage" image="MUSCLE"></Image></ToggleButton>
                 <ToggleButton class="expansionButton" id="Traits" text="Traits">
                     <Image class="expansionImage" image="Traits"></Image></ToggleButton>
+                <ToggleButton class="expansionButton" id="Wild" text="Wild">
+                    <Image class="expansionImage" image="Wild"></Image></ToggleButton>
                 <ToggleButton class="expansionButton" id="DumbassCards" text="Dumbass Cards">
                     <Image class="expansionImage" image="DumbassCards"></Image></ToggleButton>
                 <ToggleButton class="expansionButton" id="AdvancedShitposting" text="Advanced Shitposting">
