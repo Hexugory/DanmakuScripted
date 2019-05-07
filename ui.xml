@@ -65,12 +65,14 @@
                     <Image class="expansionImage" image="DBSCharacters"></Image></ToggleButton>
                 <ToggleButton class="expansionButton" id="GoldenAdditions" text="Golden Additions">
                     <Image class="expansionImage" image="GoldenAdditions"></Image></ToggleButton>
-                <ToggleButton class="expansionButton" id="DumbassCards" text="Dumbass Cards">
-                    <Image class="expansionImage" image="DumbassCards"></Image></ToggleButton>
                 <ToggleButton class="expansionButton" id="MUSCLE" text="MUSCLE">
                     <Image class="expansionImage" image="MUSCLE"></Image></ToggleButton>
                 <ToggleButton class="expansionButton" id="Traits" text="Traits">
                     <Image class="expansionImage" image="Traits"></Image></ToggleButton>
+                <ToggleButton class="expansionButton" id="DumbassCards" text="Dumbass Cards">
+                    <Image class="expansionImage" image="DumbassCards"></Image></ToggleButton>
+                <ToggleButton class="expansionButton" id="AdvancedShitposting" text="Advanced Shitposting">
+                    <Image class="expansionImage" image="Advanced Shitposting"></Image></ToggleButton>
         </GridLayout>
     <!--/Panel-->
     </VerticalScrollView>
