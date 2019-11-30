@@ -408,8 +408,8 @@ function tablelength(T)
     return count
 end
 
-expansions = {LunaticExtra = false, ShitTier = false, GarbageTier = false, TerminalExpansion = false, FoxBox = false, YuriParadise = false, EToFS = false, ZhelotRoles = false, WillofFate = false, DBSCharacters = false, GoldenAdditions = false, DumbassCards = false, MUSCLE = false, Traits = false, AdvancedShitposting = false, Wild = false}
-expansions2 = {LunaticExtra = false, ShitTier = false, GarbageTier = false, TerminalExpansion = false, FoxBox = false, YuriParadise = false, EToFS = false, ZhelotRoles = false, WillofFate = false, DBSCharacters = false, GoldenAdditions = false, DumbassCards = false, MUSCLE = false, Traits = false, AdvancedShitposting = false, Wild = false}
+expansions = {LunaticExtra = false, ShitTier = false, GarbageTier = false, TerminalExpansion = false, FoxBox = false, YuriParadise = false, EToFS = false, ZhelotRoles = false, WillofFate = false, DBSCharacters = false, GoldenAdditions = false, DumbassCards = false, MUSCLE = false, Traits = false, AdvancedShitposting = false, Wild = false, BullshitTier = false}
+expansions2 = {LunaticExtra = false, ShitTier = false, GarbageTier = false, TerminalExpansion = false, FoxBox = false, YuriParadise = false, EToFS = false, ZhelotRoles = false, WillofFate = false, DBSCharacters = false, GoldenAdditions = false, DumbassCards = false, MUSCLE = false, Traits = false, AdvancedShitposting = false, Wild = false, BullshitTier = false}
 DeckerCards = {
     MainCards = {},
     LunaticCards = {},
@@ -713,8 +713,10 @@ function doEverything()
         end
     end
     for key,value in pairs(DeckerCards.CharacterCards) do
-        local tempDeck = Decker.Deck(value, {sideways=true})
-        if #value>1 then tempDeck:spawn({position = {basePos[1]+25,2,basePos[3]+15-6*CDecks}, rotation = {0,90,0}}).setScale({2.61,1,2.61}) end
+        if #value>1 then 
+            local tempDeck = Decker.Deck(value, {sideways=true})
+            tempDeck:spawn({position = {basePos[1]+25,2,basePos[3]+15-6*CDecks}, rotation = {0,90,0}}).setScale({2.61,1,2.61})
+        end
         if #value==1 then value[1]:spawn({position = {basePos[1]+25,2,basePos[3]+15-6*CDecks}, rotation = {0,90,0}}).setScale({2.61,1,2.61}) end
         CDecks = CDecks+1
     end

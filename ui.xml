@@ -41,7 +41,7 @@
         height="460"
         color="#ebebeb">
         <!--Panel height="1000" rectAlignment="UpperCenter"-->
-        <GridLayout padding="0 0 8 3" spacing="8 8"  height="800" color="#ebebeb"
+        <GridLayout padding="0 0 8 3" spacing="8 8"  height="1000" color="#ebebeb"
             cellsize="150 190" childAlignment="UpperCenter">
                 <ToggleButton class="expansionButton" id="LunaticExtra" text="Lunatic Extra">
                     <Image class="expansionImage" image="LunaticExtra"></Image></ToggleButton>
@@ -75,6 +75,8 @@
                     <Image class="expansionImage" image="DumbassCards"></Image></ToggleButton>
                 <ToggleButton class="expansionButton" id="AdvancedShitposting" text="Advanced Shitposting">
                     <Image class="expansionImage" image="Advanced Shitposting"></Image></ToggleButton>
+                <ToggleButton class="expansionButton" id="BullshitTier" text="Bullshit Tier (BuST)">
+                    <Image class="expansionImage" image="BullshitTier"></Image></ToggleButton>
         </GridLayout>
     <!--/Panel-->
     </VerticalScrollView>
