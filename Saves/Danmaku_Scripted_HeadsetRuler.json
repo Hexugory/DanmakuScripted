@@ -3,7 +3,7 @@
   "GameMode": "Danmaku!!",
   "Gravity": 0.5,
   "PlayArea": 0.238889068,
-  "Date": "5/7/2019 2:07:21 PM",
+  "Date": "5/8/2019 4:24:09 PM",
   "Table": "Table_None",
   "Sky": "Sky_Museum",
   "Note": "",
@@ -153,9 +153,9 @@
           "rotX": 0.0,
           "rotY": 270.012451,
           "rotZ": 0.0,
-          "scaleX": 28.117384,
+          "scaleX": 28.11723,
           "scaleY": 7.0,
-          "scaleZ": 3.94796181
+          "scaleZ": 3.947944
         }
       },
       {
@@ -167,9 +167,9 @@
           "rotX": 0.0,
           "rotY": 269.67923,
           "rotZ": 0.0,
-          "scaleX": 28.0123062,
+          "scaleX": 28.01287,
           "scaleY": 7.0,
-          "scaleZ": 4.33877325
+          "scaleZ": 4.33883
         }
       },
       {
@@ -181,7 +181,7 @@
           "rotX": 0.0,
           "rotY": 179.881836,
           "rotZ": 0.0,
-          "scaleX": 28.0530071,
+          "scaleX": 28.052866,
           "scaleY": 7.0,
           "scaleZ": 3.490178
         }
@@ -195,9 +195,9 @@
           "rotX": 0.0,
           "rotY": 179.881836,
           "rotZ": 0.0,
-          "scaleX": 28.25926,
+          "scaleX": 28.2591228,
           "scaleY": 7.0,
-          "scaleZ": 3.976682
+          "scaleZ": 3.97667
         }
       },
       {
@@ -209,9 +209,9 @@
           "rotX": 0.0,
           "rotY": 89.75119,
           "rotZ": 0.0,
-          "scaleX": 28.0395927,
+          "scaleX": 28.0394554,
           "scaleY": 7.0,
-          "scaleZ": 4.190678
+          "scaleZ": 4.19065237
         }
       },
       {
@@ -223,9 +223,9 @@
           "rotX": 0.0,
           "rotY": 89.75119,
           "rotZ": 0.0,
-          "scaleX": 27.9893284,
+          "scaleX": 27.9890881,
           "scaleY": 7.0,
-          "scaleZ": 5.31553936
+          "scaleZ": 5.31548166
         }
       }
     ]
@@ -1890,7 +1890,7 @@
         "posX": 36.0007973,
         "posY": 1.42130888,
         "posZ": -33.99932,
-        "rotX": 0.0168339852,
+        "rotX": 0.0168339927,
         "rotY": 180.027191,
         "rotZ": 0.07988504,
         "scaleX": 3.91263676,
@@ -1901,7 +1901,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.1179992,
+        "r": 0.117999174,
         "g": 0.53,
         "b": 1.0
       },
@@ -1938,7 +1938,7 @@
         "posX": 35.99982,
         "posY": 1.43132257,
         "posZ": 0.00252245367,
-        "rotX": 0.0168863963,
+        "rotX": 0.0168864,
         "rotY": 179.98941,
         "rotZ": 0.07987363,
         "scaleX": 3.91263676,
@@ -1949,7 +1949,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.1289992,
+        "r": 0.128999174,
         "g": 0.694,
         "b": 0.606999934
       },
@@ -1997,9 +1997,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999227,
+        "r": 0.1919992,
         "g": 0.701,
-        "b": 0.167999208
+        "b": 0.167999178
       },
       "Locked": true,
       "Grid": true,
@@ -2047,7 +2047,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999216
+        "b": 0.171999186
       },
       "Locked": true,
       "Grid": true,
@@ -2082,7 +2082,7 @@
         "posX": -36.0000458,
         "posY": 1.54170918,
         "posZ": 34.00002,
-        "rotX": 0.0169078652,
+        "rotX": 0.0169078689,
         "rotY": 179.9743,
         "rotZ": 0.07986915,
         "scaleX": 3.91263676,
@@ -2094,8 +2094,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.9559999,
-        "g": 0.391999125,
-        "b": 0.112999149
+        "g": 0.3919991,
+        "b": 0.112999119
       },
       "Locked": true,
       "Grid": true,
@@ -2130,7 +2130,7 @@
         "posX": -36.0000534,
         "posY": 1.53228617,
         "posZ": 2.00000787,
-        "rotX": 0.0168883577,
+        "rotX": 0.0168883614,
         "rotY": 179.9876,
         "rotZ": 0.07987314,
         "scaleX": 3.91263676,
@@ -2141,9 +2141,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.442999154,
-        "g": 0.230999142,
-        "b": 0.0899993256
+        "r": 0.442999125,
+        "g": 0.230999112,
+        "b": 0.0899992958
       },
       "Locked": true,
       "Grid": true,
@@ -2226,7 +2226,7 @@
         "posX": -20.0000477,
         "posY": 1.49879086,
         "posZ": -36.0,
-        "rotX": 0.0168417152,
+        "rotX": 0.0168417189,
         "rotY": 180.021439,
         "rotZ": 0.07988311,
         "scaleX": 2.7356956,
@@ -2322,7 +2322,7 @@
         "posX": -12.0000887,
         "posY": 1.48763788,
         "posZ": -36.0000343,
-        "rotX": 0.0168288536,
+        "rotX": 0.01682886,
         "rotY": 180.030655,
         "rotZ": 0.0798868239,
         "scaleX": 2.7356956,
@@ -2370,7 +2370,7 @@
         "posX": 10.001152,
         "posY": 1.456966,
         "posZ": -35.9998436,
-        "rotX": 0.0169060323,
+        "rotX": 0.0169060361,
         "rotY": 179.972153,
         "rotZ": 0.0798679739,
         "scaleX": 2.73636365,
@@ -2382,7 +2382,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.96,
-        "g": 0.4389992,
+        "g": 0.438999176,
         "b": 0.807
       },
       "Locked": true,
@@ -2418,7 +2418,7 @@
         "posX": 14.00093,
         "posY": 1.45138991,
         "posZ": -35.9997978,
-        "rotX": 0.0168783981,
+        "rotX": 0.0168784019,
         "rotY": 179.994858,
         "rotZ": 0.0798749849,
         "scaleX": 2.73636365,
@@ -2430,7 +2430,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.96,
-        "g": 0.4389992,
+        "g": 0.438999176,
         "b": 0.807
       },
       "Locked": true,
@@ -2466,7 +2466,7 @@
         "posX": 18.0001316,
         "posY": 1.44581449,
         "posZ": -36.0002441,
-        "rotX": 0.0169112645,
+        "rotX": 0.01691127,
         "rotY": 179.967621,
         "rotZ": 0.07986727,
         "scaleX": 2.73636365,
@@ -2478,7 +2478,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.96,
-        "g": 0.4389992,
+        "g": 0.438999176,
         "b": 0.807
       },
       "Locked": true,
@@ -2516,7 +2516,7 @@
         "posZ": -36.00117,
         "rotX": 0.0169442929,
         "rotY": 179.9473,
-        "rotZ": 0.0798609555,
+        "rotZ": 0.07986097,
         "scaleX": 2.73636365,
         "scaleY": 1.0,
         "scaleZ": 2.73636365
@@ -2526,7 +2526,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.96,
-        "g": 0.4389992,
+        "g": 0.438999176,
         "b": 0.807
       },
       "Locked": true,
@@ -2575,7 +2575,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999216
+        "b": 0.171999186
       },
       "Locked": true,
       "Grid": true,
@@ -2623,7 +2623,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999216
+        "b": 0.171999186
       },
       "Locked": true,
       "Grid": true,
@@ -2659,7 +2659,7 @@
         "posY": 1.51162672,
         "posZ": 36.0001221,
         "rotX": 359.983154,
-        "rotY": 0.0284404438,
+        "rotY": 0.0284404475,
         "rotZ": 359.9201,
         "scaleX": 2.73636365,
         "scaleY": 1.0,
@@ -2671,7 +2671,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999216
+        "b": 0.171999186
       },
       "Locked": true,
       "Grid": true,
@@ -2719,7 +2719,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999216
+        "b": 0.171999186
       },
       "Locked": true,
       "Grid": true,
@@ -2767,7 +2767,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999216
+        "b": 0.171999186
       },
       "Locked": true,
       "Grid": true,
@@ -2804,7 +2804,7 @@
         "posZ": 27.9993687,
         "rotX": 359.920135,
         "rotY": 269.959381,
-        "rotZ": 0.0169290677,
+        "rotZ": 0.0169290751,
         "scaleX": 2.73636365,
         "scaleY": 1.0,
         "scaleZ": 2.73636365
@@ -2814,8 +2814,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.9559999,
-        "g": 0.3919991,
-        "b": 0.112999119
+        "g": 0.391999066,
+        "b": 0.112999074
       },
       "Locked": true,
       "Grid": true,
@@ -2862,8 +2862,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.9559999,
-        "g": 0.3919991,
-        "b": 0.112999119
+        "g": 0.391999066,
+        "b": 0.112999074
       },
       "Locked": true,
       "Grid": true,
@@ -2910,8 +2910,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.9559999,
-        "g": 0.3919991,
-        "b": 0.112999119
+        "g": 0.391999066,
+        "b": 0.112999074
       },
       "Locked": true,
       "Grid": true,
@@ -2958,8 +2958,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.9559999,
-        "g": 0.3919991,
-        "b": 0.112999119
+        "g": 0.391999066,
+        "b": 0.112999074
       },
       "Locked": true,
       "Grid": true,
@@ -3006,8 +3006,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.9559999,
-        "g": 0.3919991,
-        "b": 0.112999119
+        "g": 0.391999066,
+        "b": 0.112999074
       },
       "Locked": true,
       "Grid": true,
@@ -3053,9 +3053,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.442999154,
-        "g": 0.230999142,
-        "b": 0.0899993256
+        "r": 0.442999125,
+        "g": 0.230999112,
+        "b": 0.0899992958
       },
       "Locked": true,
       "Grid": true,
@@ -3101,9 +3101,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.442999154,
-        "g": 0.230999142,
-        "b": 0.0899993256
+        "r": 0.442999125,
+        "g": 0.230999112,
+        "b": 0.0899992958
       },
       "Locked": true,
       "Grid": true,
@@ -3149,9 +3149,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.442999154,
-        "g": 0.230999142,
-        "b": 0.0899993256
+        "r": 0.442999125,
+        "g": 0.230999112,
+        "b": 0.0899992958
       },
       "Locked": true,
       "Grid": true,
@@ -3197,9 +3197,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.442999154,
-        "g": 0.230999142,
-        "b": 0.0899993256
+        "r": 0.442999125,
+        "g": 0.230999112,
+        "b": 0.0899992958
       },
       "Locked": true,
       "Grid": true,
@@ -3245,9 +3245,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.442999154,
-        "g": 0.230999142,
-        "b": 0.0899993256
+        "r": 0.442999125,
+        "g": 0.230999112,
+        "b": 0.0899992958
       },
       "Locked": true,
       "Grid": true,
@@ -3283,7 +3283,7 @@
         "posY": 1.61423063,
         "posZ": 11.9970341,
         "rotX": 359.7564,
-        "rotY": 0.00193662173,
+        "rotY": 0.00193662255,
         "rotZ": 359.689484,
         "scaleX": 1.0,
         "scaleY": 1.0,
@@ -3293,9 +3293,9 @@
       "Description": "Use these to track how many Danmaku you've used each round!",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191998482,
+        "r": 0.191998422,
         "g": 0.701,
-        "b": 0.167998463
+        "b": 0.1679984
       },
       "Locked": true,
       "Grid": true,
@@ -3390,9 +3390,9 @@
         "posX": 1.17115843,
         "posY": 1.61412787,
         "posZ": 12.0308313,
-        "rotX": 0.0225023758,
+        "rotX": 0.0225023627,
         "rotY": 270.002136,
-        "rotZ": 0.117601357,
+        "rotZ": 0.117601275,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -3401,7 +3401,7 @@
       "Description": "Use these to track how many Spellcards you've used each round!",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117998414,
+        "r": 0.117998354,
         "g": 0.53,
         "b": 1.0
       },
@@ -3572,7 +3572,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.96,
-        "g": 0.4389992,
+        "g": 0.438999176,
         "b": 0.807
       },
       "Locked": true,
@@ -3619,7 +3619,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.1179992,
+        "r": 0.117999174,
         "g": 0.53,
         "b": 1.0
       },
@@ -3667,7 +3667,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.1179992,
+        "r": 0.117999174,
         "g": 0.53,
         "b": 1.0
       },
@@ -3715,7 +3715,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.1179992,
+        "r": 0.117999174,
         "g": 0.53,
         "b": 1.0
       },
@@ -3763,7 +3763,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.1179992,
+        "r": 0.117999174,
         "g": 0.53,
         "b": 1.0
       },
@@ -3811,7 +3811,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.1179992,
+        "r": 0.117999174,
         "g": 0.53,
         "b": 1.0
       },
@@ -3859,7 +3859,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.1289992,
+        "r": 0.128999174,
         "g": 0.694,
         "b": 0.606999934
       },
@@ -3907,7 +3907,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.1289992,
+        "r": 0.128999174,
         "g": 0.694,
         "b": 0.606999934
       },
@@ -3944,7 +3944,7 @@
         "posX": 35.99737,
         "posY": 1.43426752,
         "posZ": 9.992004,
-        "rotX": 0.07988449,
+        "rotX": 0.07988447,
         "rotY": 90.02896,
         "rotZ": 359.983154,
         "scaleX": 2.73636365,
@@ -3955,7 +3955,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.1289992,
+        "r": 0.128999174,
         "g": 0.694,
         "b": 0.606999934
       },
@@ -4003,7 +4003,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.1289992,
+        "r": 0.128999174,
         "g": 0.694,
         "b": 0.606999934
       },
@@ -4051,7 +4051,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.1289992,
+        "r": 0.128999174,
         "g": 0.694,
         "b": 0.606999934
       },
@@ -4099,9 +4099,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999227,
+        "r": 0.1919992,
         "g": 0.701,
-        "b": 0.167999208
+        "b": 0.167999178
       },
       "Locked": true,
       "Grid": true,
@@ -4147,9 +4147,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999227,
+        "r": 0.1919992,
         "g": 0.701,
-        "b": 0.167999208
+        "b": 0.167999178
       },
       "Locked": true,
       "Grid": true,
@@ -4195,9 +4195,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999227,
+        "r": 0.1919992,
         "g": 0.701,
-        "b": 0.167999208
+        "b": 0.167999178
       },
       "Locked": true,
       "Grid": true,
@@ -4243,9 +4243,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999227,
+        "r": 0.1919992,
         "g": 0.701,
-        "b": 0.167999208
+        "b": 0.167999178
       },
       "Locked": true,
       "Grid": true,
@@ -4291,9 +4291,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999227,
+        "r": 0.1919992,
         "g": 0.701,
-        "b": 0.167999208
+        "b": 0.167999178
       },
       "Locked": true,
       "Grid": true,
@@ -4328,7 +4328,7 @@
         "posX": 5.999956,
         "posY": 1.462544,
         "posZ": -36.0001068,
-        "rotX": 0.0169065818,
+        "rotX": 0.01690659,
         "rotY": 179.970657,
         "rotZ": 0.079868,
         "scaleX": 2.73636365,
@@ -4340,7 +4340,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.96,
-        "g": 0.4389992,
+        "g": 0.438999176,
         "b": 0.807
       },
       "Locked": true,
@@ -4376,9 +4376,9 @@
         "posX": -27.9995251,
         "posY": 1.50994289,
         "posZ": -35.9998169,
-        "rotX": 0.0168295018,
+        "rotX": 0.0168295037,
         "rotY": 180.030045,
-        "rotZ": 0.07988654,
+        "rotZ": 0.07988652,
         "scaleX": 2.7356956,
         "scaleY": 1.0,
         "scaleZ": 2.7356956
@@ -4436,8 +4436,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.09999875,
-        "b": 0.09399872
+        "g": 0.0999987051,
+        "b": 0.09399868
       },
       "Locked": true,
       "Grid": true,
@@ -4600,9 +4600,9 @@
         "posX": 100.0,
         "posY": 100.0,
         "posZ": 100.0,
-        "rotX": 2.71338085E-05,
+        "rotX": 2.7133814E-05,
         "rotY": 269.310425,
-        "rotZ": 1.61974629E-06,
+        "rotZ": 1.61974708E-06,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -4952,7 +4952,7 @@
         "posX": 100.0,
         "posY": 100.0,
         "posZ": 100.0,
-        "rotX": 3.47304376E-05,
+        "rotX": 3.473045E-05,
         "rotY": 269.310425,
         "rotZ": 1.42631225E-05,
         "scaleX": 0.975,
@@ -17498,9 +17498,9 @@
         "posX": 100.0,
         "posY": 100.0,
         "posZ": 100.0,
-        "rotX": 5.80526546E-07,
+        "rotX": 5.8052666E-07,
         "rotY": 179.984039,
-        "rotZ": 1.39062231E-05,
+        "rotZ": 1.39062267E-05,
         "scaleX": 0.975,
         "scaleY": 0.975,
         "scaleZ": 0.975
@@ -20062,7 +20062,7 @@
         "posX": 100.0,
         "posY": 100.0,
         "posZ": 100.0,
-        "rotX": 0.0168878529,
+        "rotX": 0.0168878566,
         "rotY": 179.999359,
         "rotZ": 0.08,
         "scaleX": 1.0,
@@ -20187,335 +20187,6 @@
     {
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -0.9999386,
-        "posY": 1.52377534,
-        "posZ": -31.0000114,
-        "rotX": 0.0168777,
-        "rotY": 179.995941,
-        "rotZ": 0.07987659,
-        "scaleX": 1.05552506,
-        "scaleY": 1.0,
-        "scaleZ": 1.05552506
-      },
-      "Nickname": "Life",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 0.96,
-        "g": 0.438999861,
-        "b": 0.807
-      },
-      "Locked": true,
-      "Grid": true,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": false,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/958597478463059274/DE73B64E1B5C6F272EA3BEE5EF458E73E48FF03D/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomToken": {
-          "Thickness": 0.1,
-          "MergeDistancePixels": 5.0,
-          "Stackable": false
-        }
-      },
-      "XmlUI": "",
-      "LuaScript": "MIN_VALUE = -99\r\nMAX_VALUE = 999\r\n\r\nfunction onload(saved_data)\r\n    light_mode = false\r\n    tooltip_show = true\r\n    val = 0\r\n\r\n    if saved_data ~= \"\" then\r\n        local loaded_data = JSON.decode(saved_data)\r\n        light_mode = loaded_data[1]\r\n        val = loaded_data[2]\r\n        tooltip_show = loaded_data[3]\r\n    end\r\n\r\n    createAll()\r\nend\r\n\r\nfunction updateSave()\r\n    local data_to_save = {light_mode, val, tooltip_show}\r\n    saved_data = JSON.encode(data_to_save)\r\n    self.script_state = saved_data\r\nend\r\n\r\nfunction createAll()\r\n    s_color = {0.5, 0.5, 0.5, 95}\r\n\r\n    if light_mode then\r\n        f_color = {1,1,1,95}\r\n    else\r\n        f_color = {0,0,0,100}\r\n    end\r\n\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.createButton({\r\n      label=tostring(val),\r\n      click_function=\"add_subtract\",\r\n      tooltip=ttText,\r\n      function_owner=self,\r\n      position={0,0.05,-0.2},\r\n      height=600,\r\n      width=1000,\r\n      alignment = 3,\r\n      scale={x=1.5, y=1.5, z=1.5},\r\n      font_size=600,\r\n      font_color=f_color,\r\n      color={0,0,0,0}\r\n      })\r\n\r\n    self.createInput({\r\n        value = self.getName(), \r\n        input_function = \"editName\", \r\n        tooltip=ttText,\r\n        label = \"Counter\",\r\n        function_owner = self, \r\n        alignment = 3,\r\n        position = {0,0.05,1.7}, \r\n        width = 1200, \r\n        height = 1000, \r\n        font_size = 200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color= f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n\r\n    if tooltip_show then\r\n        tooltipShowText = \"[ Hide value in tooltip ]\"\r\n    else\r\n        tooltipShowText = \"[ Show value in tooltip ]\"\r\n    end\r\n    self.createButton({\r\n        label=tooltipShowText,\r\n        tooltip=tooltipShowText,\r\n        click_function=\"swap_tooltip\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.2},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    if light_mode then\r\n        lightButtonText = \"[ Set dark text ]\"\r\n    else\r\n        lightButtonText = \"[ Set light text ]\"\r\n    end\r\n    self.createButton({\r\n        label=lightButtonText,\r\n        tooltip=lightButtonText,\r\n        click_function=\"swap_fcolor\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.6},\r\n        rotation={180,180,0},\r\n        height=150,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n\r\n    self.createButton({\r\n        label=\"[ Reset ]\",\r\n        tooltip=\"[ Reset ]\",\r\n        click_function=\"reset_val\",\r\n        function_owner=self,\r\n        position={0,-0.05,1.4},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=250,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    self.createInput({\r\n        value = \"#\",\r\n        label = \"...\",\r\n        input_function = \"keepSample\", \r\n        function_owner = self, \r\n        alignment = 3,\r\n        position={0,-0.05,-0.8},\r\n        rotation={180,180,0},\r\n        width = 600, \r\n        height = 800, \r\n        font_size = 1200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color=f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n    setTooltips()\r\nend\r\n\r\nfunction removeAll()\r\n    self.removeInput(0)\r\n    self.removeInput(1)\r\n    self.removeButton(0)\r\n    self.removeButton(1)\r\n    self.removeButton(2)\r\n    self.removeButton(3)\r\nend\r\n\r\nfunction reloadAll()\r\n    removeAll()\r\n    createAll()\r\n    setTooltips()\r\n    updateSave()\r\nend\r\n\r\nfunction swap_fcolor(_obj, _color, alt_click)\r\n    light_mode = not light_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_align(_obj, _color, alt_click)\r\n    center_mode = not center_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_tooltip(_obj, _color, alt_click)\r\n    tooltip_show = not tooltip_show\r\n    reloadAll()\r\n    setTooltips()\r\nend\r\n\r\nfunction editName(_obj, _string, value) \r\n    self.setName(value)\r\n    setTooltips()\r\nend\r\n\r\nfunction add_subtract(_obj, _color, alt_click)\r\n    mod = alt_click and 1 or -1\r\n    new_value = math.min(math.max(val + mod, MIN_VALUE), MAX_VALUE)\r\n    if val ~= new_value then\r\n        val = new_value\r\n        updateVal()\r\n        updateSave()\r\n    end\r\nend\r\n\r\nfunction updateVal()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editButton({\r\n        index = 0,\r\n        label = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction reset_val()\r\n    val = 0\r\n    updateVal()\r\n    updateSave()\r\nend\r\n\r\nfunction setTooltips()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editInput({\r\n        index = 0,\r\n        value = self.getName(),\r\n        tooltip = ttText\r\n        })\r\n    self.editButton({\r\n        index = 0,\r\n        value = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction null()\r\nend\r\n\r\nfunction keepSample(_obj, _string, value) \r\n    reloadAll()\r\nend",
-      "LuaScriptState": "[false,4,false]",
-      "GUID": "5ee705"
-    },
-    {
-      "Name": "Custom_Token",
-      "Transform": {
-        "posX": 31.0001087,
-        "posY": 1.47798562,
-        "posZ": -35.0000725,
-        "rotX": 0.07987683,
-        "rotY": 89.99998,
-        "rotZ": 359.983124,
-        "scaleX": 1.05552506,
-        "scaleY": 1.0,
-        "scaleZ": 1.05552506
-      },
-      "Nickname": "Life",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 0.627,
-        "g": 0.124999858,
-        "b": 0.941
-      },
-      "Locked": true,
-      "Grid": true,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": false,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/958597478463059274/DE73B64E1B5C6F272EA3BEE5EF458E73E48FF03D/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomToken": {
-          "Thickness": 0.1,
-          "MergeDistancePixels": 5.0,
-          "Stackable": false
-        }
-      },
-      "XmlUI": "",
-      "LuaScript": "MIN_VALUE = -99\r\nMAX_VALUE = 999\r\n\r\nfunction onload(saved_data)\r\n    light_mode = false\r\n    tooltip_show = true\r\n    val = 0\r\n\r\n    if saved_data ~= \"\" then\r\n        local loaded_data = JSON.decode(saved_data)\r\n        light_mode = loaded_data[1]\r\n        val = loaded_data[2]\r\n        tooltip_show = loaded_data[3]\r\n    end\r\n\r\n    createAll()\r\nend\r\n\r\nfunction updateSave()\r\n    local data_to_save = {light_mode, val, tooltip_show}\r\n    saved_data = JSON.encode(data_to_save)\r\n    self.script_state = saved_data\r\nend\r\n\r\nfunction createAll()\r\n    s_color = {0.5, 0.5, 0.5, 95}\r\n\r\n    if light_mode then\r\n        f_color = {1,1,1,95}\r\n    else\r\n        f_color = {0,0,0,100}\r\n    end\r\n\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.createButton({\r\n      label=tostring(val),\r\n      click_function=\"add_subtract\",\r\n      tooltip=ttText,\r\n      function_owner=self,\r\n      position={0,0.05,-0.2},\r\n      height=600,\r\n      width=1000,\r\n      alignment = 3,\r\n      scale={x=1.5, y=1.5, z=1.5},\r\n      font_size=600,\r\n      font_color=f_color,\r\n      color={0,0,0,0}\r\n      })\r\n\r\n    self.createInput({\r\n        value = self.getName(), \r\n        input_function = \"editName\", \r\n        tooltip=ttText,\r\n        label = \"Counter\",\r\n        function_owner = self, \r\n        alignment = 3,\r\n        position = {0,0.05,1.7}, \r\n        width = 1200, \r\n        height = 1000, \r\n        font_size = 200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color= f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n\r\n    if tooltip_show then\r\n        tooltipShowText = \"[ Hide value in tooltip ]\"\r\n    else\r\n        tooltipShowText = \"[ Show value in tooltip ]\"\r\n    end\r\n    self.createButton({\r\n        label=tooltipShowText,\r\n        tooltip=tooltipShowText,\r\n        click_function=\"swap_tooltip\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.2},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    if light_mode then\r\n        lightButtonText = \"[ Set dark text ]\"\r\n    else\r\n        lightButtonText = \"[ Set light text ]\"\r\n    end\r\n    self.createButton({\r\n        label=lightButtonText,\r\n        tooltip=lightButtonText,\r\n        click_function=\"swap_fcolor\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.6},\r\n        rotation={180,180,0},\r\n        height=150,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n\r\n    self.createButton({\r\n        label=\"[ Reset ]\",\r\n        tooltip=\"[ Reset ]\",\r\n        click_function=\"reset_val\",\r\n        function_owner=self,\r\n        position={0,-0.05,1.4},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=250,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    self.createInput({\r\n        value = \"#\",\r\n        label = \"...\",\r\n        input_function = \"keepSample\", \r\n        function_owner = self, \r\n        alignment = 3,\r\n        position={0,-0.05,-0.8},\r\n        rotation={180,180,0},\r\n        width = 600, \r\n        height = 800, \r\n        font_size = 1200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color=f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n    setTooltips()\r\nend\r\n\r\nfunction removeAll()\r\n    self.removeInput(0)\r\n    self.removeInput(1)\r\n    self.removeButton(0)\r\n    self.removeButton(1)\r\n    self.removeButton(2)\r\n    self.removeButton(3)\r\nend\r\n\r\nfunction reloadAll()\r\n    removeAll()\r\n    createAll()\r\n    setTooltips()\r\n    updateSave()\r\nend\r\n\r\nfunction swap_fcolor(_obj, _color, alt_click)\r\n    light_mode = not light_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_align(_obj, _color, alt_click)\r\n    center_mode = not center_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_tooltip(_obj, _color, alt_click)\r\n    tooltip_show = not tooltip_show\r\n    reloadAll()\r\n    setTooltips()\r\nend\r\n\r\nfunction editName(_obj, _string, value) \r\n    self.setName(value)\r\n    setTooltips()\r\nend\r\n\r\nfunction add_subtract(_obj, _color, alt_click)\r\n    mod = alt_click and 1 or -1\r\n    new_value = math.min(math.max(val + mod, MIN_VALUE), MAX_VALUE)\r\n    if val ~= new_value then\r\n        val = new_value\r\n        updateVal()\r\n        updateSave()\r\n    end\r\nend\r\n\r\nfunction updateVal()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editButton({\r\n        index = 0,\r\n        label = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction reset_val()\r\n    val = 0\r\n    updateVal()\r\n    updateSave()\r\nend\r\n\r\nfunction setTooltips()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editInput({\r\n        index = 0,\r\n        value = self.getName(),\r\n        tooltip = ttText\r\n        })\r\n    self.editButton({\r\n        index = 0,\r\n        value = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction null()\r\nend\r\n\r\nfunction keepSample(_obj, _string, value) \r\n    reloadAll()\r\nend",
-      "LuaScriptState": "[true,4,false]",
-      "GUID": "d8be0d"
-    },
-    {
-      "Name": "Custom_Token",
-      "Transform": {
-        "posX": 31.00011,
-        "posY": 1.48799741,
-        "posZ": -1.00001645,
-        "rotX": 0.07987705,
-        "rotY": 89.99994,
-        "rotZ": 359.983124,
-        "scaleX": 1.05552506,
-        "scaleY": 1.0,
-        "scaleZ": 1.05552506
-      },
-      "Nickname": "Life",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 0.117999859,
-        "g": 0.53,
-        "b": 1.0
-      },
-      "Locked": true,
-      "Grid": true,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": false,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/958597478463059274/DE73B64E1B5C6F272EA3BEE5EF458E73E48FF03D/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomToken": {
-          "Thickness": 0.1,
-          "MergeDistancePixels": 5.0,
-          "Stackable": false
-        }
-      },
-      "XmlUI": "",
-      "LuaScript": "MIN_VALUE = -99\r\nMAX_VALUE = 999\r\n\r\nfunction onload(saved_data)\r\n    light_mode = false\r\n    tooltip_show = true\r\n    val = 0\r\n\r\n    if saved_data ~= \"\" then\r\n        local loaded_data = JSON.decode(saved_data)\r\n        light_mode = loaded_data[1]\r\n        val = loaded_data[2]\r\n        tooltip_show = loaded_data[3]\r\n    end\r\n\r\n    createAll()\r\nend\r\n\r\nfunction updateSave()\r\n    local data_to_save = {light_mode, val, tooltip_show}\r\n    saved_data = JSON.encode(data_to_save)\r\n    self.script_state = saved_data\r\nend\r\n\r\nfunction createAll()\r\n    s_color = {0.5, 0.5, 0.5, 95}\r\n\r\n    if light_mode then\r\n        f_color = {1,1,1,95}\r\n    else\r\n        f_color = {0,0,0,100}\r\n    end\r\n\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.createButton({\r\n      label=tostring(val),\r\n      click_function=\"add_subtract\",\r\n      tooltip=ttText,\r\n      function_owner=self,\r\n      position={0,0.05,-0.2},\r\n      height=600,\r\n      width=1000,\r\n      alignment = 3,\r\n      scale={x=1.5, y=1.5, z=1.5},\r\n      font_size=600,\r\n      font_color=f_color,\r\n      color={0,0,0,0}\r\n      })\r\n\r\n    self.createInput({\r\n        value = self.getName(), \r\n        input_function = \"editName\", \r\n        tooltip=ttText,\r\n        label = \"Counter\",\r\n        function_owner = self, \r\n        alignment = 3,\r\n        position = {0,0.05,1.7}, \r\n        width = 1200, \r\n        height = 1000, \r\n        font_size = 200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color= f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n\r\n    if tooltip_show then\r\n        tooltipShowText = \"[ Hide value in tooltip ]\"\r\n    else\r\n        tooltipShowText = \"[ Show value in tooltip ]\"\r\n    end\r\n    self.createButton({\r\n        label=tooltipShowText,\r\n        tooltip=tooltipShowText,\r\n        click_function=\"swap_tooltip\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.2},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    if light_mode then\r\n        lightButtonText = \"[ Set dark text ]\"\r\n    else\r\n        lightButtonText = \"[ Set light text ]\"\r\n    end\r\n    self.createButton({\r\n        label=lightButtonText,\r\n        tooltip=lightButtonText,\r\n        click_function=\"swap_fcolor\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.6},\r\n        rotation={180,180,0},\r\n        height=150,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n\r\n    self.createButton({\r\n        label=\"[ Reset ]\",\r\n        tooltip=\"[ Reset ]\",\r\n        click_function=\"reset_val\",\r\n        function_owner=self,\r\n        position={0,-0.05,1.4},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=250,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    self.createInput({\r\n        value = \"#\",\r\n        label = \"...\",\r\n        input_function = \"keepSample\", \r\n        function_owner = self, \r\n        alignment = 3,\r\n        position={0,-0.05,-0.8},\r\n        rotation={180,180,0},\r\n        width = 600, \r\n        height = 800, \r\n        font_size = 1200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color=f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n    setTooltips()\r\nend\r\n\r\nfunction removeAll()\r\n    self.removeInput(0)\r\n    self.removeInput(1)\r\n    self.removeButton(0)\r\n    self.removeButton(1)\r\n    self.removeButton(2)\r\n    self.removeButton(3)\r\nend\r\n\r\nfunction reloadAll()\r\n    removeAll()\r\n    createAll()\r\n    setTooltips()\r\n    updateSave()\r\nend\r\n\r\nfunction swap_fcolor(_obj, _color, alt_click)\r\n    light_mode = not light_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_align(_obj, _color, alt_click)\r\n    center_mode = not center_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_tooltip(_obj, _color, alt_click)\r\n    tooltip_show = not tooltip_show\r\n    reloadAll()\r\n    setTooltips()\r\nend\r\n\r\nfunction editName(_obj, _string, value) \r\n    self.setName(value)\r\n    setTooltips()\r\nend\r\n\r\nfunction add_subtract(_obj, _color, alt_click)\r\n    mod = alt_click and 1 or -1\r\n    new_value = math.min(math.max(val + mod, MIN_VALUE), MAX_VALUE)\r\n    if val ~= new_value then\r\n        val = new_value\r\n        updateVal()\r\n        updateSave()\r\n    end\r\nend\r\n\r\nfunction updateVal()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editButton({\r\n        index = 0,\r\n        label = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction reset_val()\r\n    val = 0\r\n    updateVal()\r\n    updateSave()\r\nend\r\n\r\nfunction setTooltips()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editInput({\r\n        index = 0,\r\n        value = self.getName(),\r\n        tooltip = ttText\r\n        })\r\n    self.editButton({\r\n        index = 0,\r\n        value = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction null()\r\nend\r\n\r\nfunction keepSample(_obj, _string, value) \r\n    reloadAll()\r\nend",
-      "LuaScriptState": "[true,4,false]",
-      "GUID": "18420c"
-    },
-    {
-      "Name": "Custom_Token",
-      "Transform": {
-        "posX": 35.0002441,
-        "posY": 1.49184394,
-        "posZ": 30.9999542,
-        "rotX": 359.983124,
-        "rotY": 7.323325E-05,
-        "rotZ": 359.920135,
-        "scaleX": 1.05552506,
-        "scaleY": 1.0,
-        "scaleZ": 1.05552506
-      },
-      "Nickname": "Life",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 0.128999829,
-        "g": 0.694,
-        "b": 0.606999934
-      },
-      "Locked": true,
-      "Grid": true,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": false,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/958597478463059274/DE73B64E1B5C6F272EA3BEE5EF458E73E48FF03D/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomToken": {
-          "Thickness": 0.1,
-          "MergeDistancePixels": 5.0,
-          "Stackable": false
-        }
-      },
-      "XmlUI": "",
-      "LuaScript": "MIN_VALUE = -99\r\nMAX_VALUE = 999\r\n\r\nfunction onload(saved_data)\r\n    light_mode = false\r\n    tooltip_show = true\r\n    val = 0\r\n\r\n    if saved_data ~= \"\" then\r\n        local loaded_data = JSON.decode(saved_data)\r\n        light_mode = loaded_data[1]\r\n        val = loaded_data[2]\r\n        tooltip_show = loaded_data[3]\r\n    end\r\n\r\n    createAll()\r\nend\r\n\r\nfunction updateSave()\r\n    local data_to_save = {light_mode, val, tooltip_show}\r\n    saved_data = JSON.encode(data_to_save)\r\n    self.script_state = saved_data\r\nend\r\n\r\nfunction createAll()\r\n    s_color = {0.5, 0.5, 0.5, 95}\r\n\r\n    if light_mode then\r\n        f_color = {1,1,1,95}\r\n    else\r\n        f_color = {0,0,0,100}\r\n    end\r\n\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.createButton({\r\n      label=tostring(val),\r\n      click_function=\"add_subtract\",\r\n      tooltip=ttText,\r\n      function_owner=self,\r\n      position={0,0.05,-0.2},\r\n      height=600,\r\n      width=1000,\r\n      alignment = 3,\r\n      scale={x=1.5, y=1.5, z=1.5},\r\n      font_size=600,\r\n      font_color=f_color,\r\n      color={0,0,0,0}\r\n      })\r\n\r\n    self.createInput({\r\n        value = self.getName(), \r\n        input_function = \"editName\", \r\n        tooltip=ttText,\r\n        label = \"Counter\",\r\n        function_owner = self, \r\n        alignment = 3,\r\n        position = {0,0.05,1.7}, \r\n        width = 1200, \r\n        height = 1000, \r\n        font_size = 200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color= f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n\r\n    if tooltip_show then\r\n        tooltipShowText = \"[ Hide value in tooltip ]\"\r\n    else\r\n        tooltipShowText = \"[ Show value in tooltip ]\"\r\n    end\r\n    self.createButton({\r\n        label=tooltipShowText,\r\n        tooltip=tooltipShowText,\r\n        click_function=\"swap_tooltip\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.2},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    if light_mode then\r\n        lightButtonText = \"[ Set dark text ]\"\r\n    else\r\n        lightButtonText = \"[ Set light text ]\"\r\n    end\r\n    self.createButton({\r\n        label=lightButtonText,\r\n        tooltip=lightButtonText,\r\n        click_function=\"swap_fcolor\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.6},\r\n        rotation={180,180,0},\r\n        height=150,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n\r\n    self.createButton({\r\n        label=\"[ Reset ]\",\r\n        tooltip=\"[ Reset ]\",\r\n        click_function=\"reset_val\",\r\n        function_owner=self,\r\n        position={0,-0.05,1.4},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=250,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    self.createInput({\r\n        value = \"#\",\r\n        label = \"...\",\r\n        input_function = \"keepSample\", \r\n        function_owner = self, \r\n        alignment = 3,\r\n        position={0,-0.05,-0.8},\r\n        rotation={180,180,0},\r\n        width = 600, \r\n        height = 800, \r\n        font_size = 1200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color=f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n    setTooltips()\r\nend\r\n\r\nfunction removeAll()\r\n    self.removeInput(0)\r\n    self.removeInput(1)\r\n    self.removeButton(0)\r\n    self.removeButton(1)\r\n    self.removeButton(2)\r\n    self.removeButton(3)\r\nend\r\n\r\nfunction reloadAll()\r\n    removeAll()\r\n    createAll()\r\n    setTooltips()\r\n    updateSave()\r\nend\r\n\r\nfunction swap_fcolor(_obj, _color, alt_click)\r\n    light_mode = not light_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_align(_obj, _color, alt_click)\r\n    center_mode = not center_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_tooltip(_obj, _color, alt_click)\r\n    tooltip_show = not tooltip_show\r\n    reloadAll()\r\n    setTooltips()\r\nend\r\n\r\nfunction editName(_obj, _string, value) \r\n    self.setName(value)\r\n    setTooltips()\r\nend\r\n\r\nfunction add_subtract(_obj, _color, alt_click)\r\n    mod = alt_click and 1 or -1\r\n    new_value = math.min(math.max(val + mod, MIN_VALUE), MAX_VALUE)\r\n    if val ~= new_value then\r\n        val = new_value\r\n        updateVal()\r\n        updateSave()\r\n    end\r\nend\r\n\r\nfunction updateVal()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editButton({\r\n        index = 0,\r\n        label = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction reset_val()\r\n    val = 0\r\n    updateVal()\r\n    updateSave()\r\nend\r\n\r\nfunction setTooltips()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editInput({\r\n        index = 0,\r\n        value = self.getName(),\r\n        tooltip = ttText\r\n        })\r\n    self.editButton({\r\n        index = 0,\r\n        value = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction null()\r\nend\r\n\r\nfunction keepSample(_obj, _string, value) \r\n    reloadAll()\r\nend",
-      "LuaScriptState": "[true,4,false]",
-      "GUID": "b7d90f"
-    },
-    {
-      "Name": "Custom_Token",
-      "Transform": {
-        "posX": 1.000056,
-        "posY": 1.53924358,
-        "posZ": 30.99999,
-        "rotX": 359.983154,
-        "rotY": 0.014351733,
-        "rotZ": 359.9201,
-        "scaleX": 1.05552506,
-        "scaleY": 1.0,
-        "scaleZ": 1.05552506
-      },
-      "Nickname": "Life",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 0.191999853,
-        "g": 0.701,
-        "b": 0.167999834
-      },
-      "Locked": true,
-      "Grid": true,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": false,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/958597478463059274/DE73B64E1B5C6F272EA3BEE5EF458E73E48FF03D/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomToken": {
-          "Thickness": 0.1,
-          "MergeDistancePixels": 5.0,
-          "Stackable": false
-        }
-      },
-      "XmlUI": "",
-      "LuaScript": "MIN_VALUE = -99\r\nMAX_VALUE = 999\r\n\r\nfunction onload(saved_data)\r\n    light_mode = false\r\n    tooltip_show = true\r\n    val = 0\r\n\r\n    if saved_data ~= \"\" then\r\n        local loaded_data = JSON.decode(saved_data)\r\n        light_mode = loaded_data[1]\r\n        val = loaded_data[2]\r\n        tooltip_show = loaded_data[3]\r\n    end\r\n\r\n    createAll()\r\nend\r\n\r\nfunction updateSave()\r\n    local data_to_save = {light_mode, val, tooltip_show}\r\n    saved_data = JSON.encode(data_to_save)\r\n    self.script_state = saved_data\r\nend\r\n\r\nfunction createAll()\r\n    s_color = {0.5, 0.5, 0.5, 95}\r\n\r\n    if light_mode then\r\n        f_color = {1,1,1,95}\r\n    else\r\n        f_color = {0,0,0,100}\r\n    end\r\n\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.createButton({\r\n      label=tostring(val),\r\n      click_function=\"add_subtract\",\r\n      tooltip=ttText,\r\n      function_owner=self,\r\n      position={0,0.05,-0.2},\r\n      height=600,\r\n      width=1000,\r\n      alignment = 3,\r\n      scale={x=1.5, y=1.5, z=1.5},\r\n      font_size=600,\r\n      font_color=f_color,\r\n      color={0,0,0,0}\r\n      })\r\n\r\n    self.createInput({\r\n        value = self.getName(), \r\n        input_function = \"editName\", \r\n        tooltip=ttText,\r\n        label = \"Counter\",\r\n        function_owner = self, \r\n        alignment = 3,\r\n        position = {0,0.05,1.7}, \r\n        width = 1200, \r\n        height = 1000, \r\n        font_size = 200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color= f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n\r\n    if tooltip_show then\r\n        tooltipShowText = \"[ Hide value in tooltip ]\"\r\n    else\r\n        tooltipShowText = \"[ Show value in tooltip ]\"\r\n    end\r\n    self.createButton({\r\n        label=tooltipShowText,\r\n        tooltip=tooltipShowText,\r\n        click_function=\"swap_tooltip\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.2},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    if light_mode then\r\n        lightButtonText = \"[ Set dark text ]\"\r\n    else\r\n        lightButtonText = \"[ Set light text ]\"\r\n    end\r\n    self.createButton({\r\n        label=lightButtonText,\r\n        tooltip=lightButtonText,\r\n        click_function=\"swap_fcolor\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.6},\r\n        rotation={180,180,0},\r\n        height=150,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n\r\n    self.createButton({\r\n        label=\"[ Reset ]\",\r\n        tooltip=\"[ Reset ]\",\r\n        click_function=\"reset_val\",\r\n        function_owner=self,\r\n        position={0,-0.05,1.4},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=250,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    self.createInput({\r\n        value = \"#\",\r\n        label = \"...\",\r\n        input_function = \"keepSample\", \r\n        function_owner = self, \r\n        alignment = 3,\r\n        position={0,-0.05,-0.8},\r\n        rotation={180,180,0},\r\n        width = 600, \r\n        height = 800, \r\n        font_size = 1200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color=f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n    setTooltips()\r\nend\r\n\r\nfunction removeAll()\r\n    self.removeInput(0)\r\n    self.removeInput(1)\r\n    self.removeButton(0)\r\n    self.removeButton(1)\r\n    self.removeButton(2)\r\n    self.removeButton(3)\r\nend\r\n\r\nfunction reloadAll()\r\n    removeAll()\r\n    createAll()\r\n    setTooltips()\r\n    updateSave()\r\nend\r\n\r\nfunction swap_fcolor(_obj, _color, alt_click)\r\n    light_mode = not light_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_align(_obj, _color, alt_click)\r\n    center_mode = not center_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_tooltip(_obj, _color, alt_click)\r\n    tooltip_show = not tooltip_show\r\n    reloadAll()\r\n    setTooltips()\r\nend\r\n\r\nfunction editName(_obj, _string, value) \r\n    self.setName(value)\r\n    setTooltips()\r\nend\r\n\r\nfunction add_subtract(_obj, _color, alt_click)\r\n    mod = alt_click and 1 or -1\r\n    new_value = math.min(math.max(val + mod, MIN_VALUE), MAX_VALUE)\r\n    if val ~= new_value then\r\n        val = new_value\r\n        updateVal()\r\n        updateSave()\r\n    end\r\nend\r\n\r\nfunction updateVal()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editButton({\r\n        index = 0,\r\n        label = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction reset_val()\r\n    val = 0\r\n    updateVal()\r\n    updateSave()\r\nend\r\n\r\nfunction setTooltips()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editInput({\r\n        index = 0,\r\n        value = self.getName(),\r\n        tooltip = ttText\r\n        })\r\n    self.editButton({\r\n        index = 0,\r\n        value = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction null()\r\nend\r\n\r\nfunction keepSample(_obj, _string, value) \r\n    reloadAll()\r\nend",
-      "LuaScriptState": "[false,4,false]",
-      "GUID": "7dda50"
-    },
-    {
-      "Name": "Custom_Token",
-      "Transform": {
-        "posX": -31.0030289,
-        "posY": 1.585037,
-        "posZ": 35.0000648,
-        "rotX": 359.920135,
-        "rotY": 270.000122,
-        "rotZ": 0.0168693047,
-        "scaleX": 1.05552506,
-        "scaleY": 1.0,
-        "scaleZ": 1.05552506
-      },
-      "Nickname": "Life",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 0.905,
-        "g": 0.898,
-        "b": 0.171999842
-      },
-      "Locked": true,
-      "Grid": true,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": false,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/958597478463059274/DE73B64E1B5C6F272EA3BEE5EF458E73E48FF03D/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomToken": {
-          "Thickness": 0.1,
-          "MergeDistancePixels": 5.0,
-          "Stackable": false
-        }
-      },
-      "XmlUI": "",
-      "LuaScript": "MIN_VALUE = -99\r\nMAX_VALUE = 999\r\n\r\nfunction onload(saved_data)\r\n    light_mode = false\r\n    tooltip_show = true\r\n    val = 0\r\n\r\n    if saved_data ~= \"\" then\r\n        local loaded_data = JSON.decode(saved_data)\r\n        light_mode = loaded_data[1]\r\n        val = loaded_data[2]\r\n        tooltip_show = loaded_data[3]\r\n    end\r\n\r\n    createAll()\r\nend\r\n\r\nfunction updateSave()\r\n    local data_to_save = {light_mode, val, tooltip_show}\r\n    saved_data = JSON.encode(data_to_save)\r\n    self.script_state = saved_data\r\nend\r\n\r\nfunction createAll()\r\n    s_color = {0.5, 0.5, 0.5, 95}\r\n\r\n    if light_mode then\r\n        f_color = {1,1,1,95}\r\n    else\r\n        f_color = {0,0,0,100}\r\n    end\r\n\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.createButton({\r\n      label=tostring(val),\r\n      click_function=\"add_subtract\",\r\n      tooltip=ttText,\r\n      function_owner=self,\r\n      position={0,0.05,-0.2},\r\n      height=600,\r\n      width=1000,\r\n      alignment = 3,\r\n      scale={x=1.5, y=1.5, z=1.5},\r\n      font_size=600,\r\n      font_color=f_color,\r\n      color={0,0,0,0}\r\n      })\r\n\r\n    self.createInput({\r\n        value = self.getName(), \r\n        input_function = \"editName\", \r\n        tooltip=ttText,\r\n        label = \"Counter\",\r\n        function_owner = self, \r\n        alignment = 3,\r\n        position = {0,0.05,1.7}, \r\n        width = 1200, \r\n        height = 1000, \r\n        font_size = 200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color= f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n\r\n    if tooltip_show then\r\n        tooltipShowText = \"[ Hide value in tooltip ]\"\r\n    else\r\n        tooltipShowText = \"[ Show value in tooltip ]\"\r\n    end\r\n    self.createButton({\r\n        label=tooltipShowText,\r\n        tooltip=tooltipShowText,\r\n        click_function=\"swap_tooltip\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.2},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    if light_mode then\r\n        lightButtonText = \"[ Set dark text ]\"\r\n    else\r\n        lightButtonText = \"[ Set light text ]\"\r\n    end\r\n    self.createButton({\r\n        label=lightButtonText,\r\n        tooltip=lightButtonText,\r\n        click_function=\"swap_fcolor\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.6},\r\n        rotation={180,180,0},\r\n        height=150,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n\r\n    self.createButton({\r\n        label=\"[ Reset ]\",\r\n        tooltip=\"[ Reset ]\",\r\n        click_function=\"reset_val\",\r\n        function_owner=self,\r\n        position={0,-0.05,1.4},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=250,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    self.createInput({\r\n        value = \"#\",\r\n        label = \"...\",\r\n        input_function = \"keepSample\", \r\n        function_owner = self, \r\n        alignment = 3,\r\n        position={0,-0.05,-0.8},\r\n        rotation={180,180,0},\r\n        width = 600, \r\n        height = 800, \r\n        font_size = 1200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color=f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n    setTooltips()\r\nend\r\n\r\nfunction removeAll()\r\n    self.removeInput(0)\r\n    self.removeInput(1)\r\n    self.removeButton(0)\r\n    self.removeButton(1)\r\n    self.removeButton(2)\r\n    self.removeButton(3)\r\nend\r\n\r\nfunction reloadAll()\r\n    removeAll()\r\n    createAll()\r\n    setTooltips()\r\n    updateSave()\r\nend\r\n\r\nfunction swap_fcolor(_obj, _color, alt_click)\r\n    light_mode = not light_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_align(_obj, _color, alt_click)\r\n    center_mode = not center_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_tooltip(_obj, _color, alt_click)\r\n    tooltip_show = not tooltip_show\r\n    reloadAll()\r\n    setTooltips()\r\nend\r\n\r\nfunction editName(_obj, _string, value) \r\n    self.setName(value)\r\n    setTooltips()\r\nend\r\n\r\nfunction add_subtract(_obj, _color, alt_click)\r\n    mod = alt_click and 1 or -1\r\n    new_value = math.min(math.max(val + mod, MIN_VALUE), MAX_VALUE)\r\n    if val ~= new_value then\r\n        val = new_value\r\n        updateVal()\r\n        updateSave()\r\n    end\r\nend\r\n\r\nfunction updateVal()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editButton({\r\n        index = 0,\r\n        label = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction reset_val()\r\n    val = 0\r\n    updateVal()\r\n    updateSave()\r\nend\r\n\r\nfunction setTooltips()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editInput({\r\n        index = 0,\r\n        value = self.getName(),\r\n        tooltip = ttText\r\n        })\r\n    self.editButton({\r\n        index = 0,\r\n        value = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction null()\r\nend\r\n\r\nfunction keepSample(_obj, _string, value) \r\n    reloadAll()\r\nend",
-      "LuaScriptState": "[false,4,false]",
-      "GUID": "1b274e"
-    },
-    {
-      "Name": "Custom_Token",
-      "Transform": {
-        "posX": -30.9998245,
-        "posY": 1.5756098,
-        "posZ": 2.99997067,
-        "rotX": 359.920135,
-        "rotY": 269.999817,
-        "rotZ": 0.0168710612,
-        "scaleX": 1.05552506,
-        "scaleY": 1.0,
-        "scaleZ": 1.05552506
-      },
-      "Nickname": "Life",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 0.856,
-        "g": 0.09999985,
-        "b": 0.0939998254
-      },
-      "Locked": true,
-      "Grid": true,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": false,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "CustomImage": {
-        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/958597478463059274/DE73B64E1B5C6F272EA3BEE5EF458E73E48FF03D/",
-        "ImageSecondaryURL": "",
-        "ImageScalar": 1.0,
-        "WidthScale": 0.0,
-        "CustomToken": {
-          "Thickness": 0.1,
-          "MergeDistancePixels": 5.0,
-          "Stackable": false
-        }
-      },
-      "XmlUI": "",
-      "LuaScript": "MIN_VALUE = -99\r\nMAX_VALUE = 999\r\n\r\nfunction onload(saved_data)\r\n    light_mode = false\r\n    tooltip_show = true\r\n    val = 0\r\n\r\n    if saved_data ~= \"\" then\r\n        local loaded_data = JSON.decode(saved_data)\r\n        light_mode = loaded_data[1]\r\n        val = loaded_data[2]\r\n        tooltip_show = loaded_data[3]\r\n    end\r\n\r\n    createAll()\r\nend\r\n\r\nfunction updateSave()\r\n    local data_to_save = {light_mode, val, tooltip_show}\r\n    saved_data = JSON.encode(data_to_save)\r\n    self.script_state = saved_data\r\nend\r\n\r\nfunction createAll()\r\n    s_color = {0.5, 0.5, 0.5, 95}\r\n\r\n    if light_mode then\r\n        f_color = {1,1,1,95}\r\n    else\r\n        f_color = {0,0,0,100}\r\n    end\r\n\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.createButton({\r\n      label=tostring(val),\r\n      click_function=\"add_subtract\",\r\n      tooltip=ttText,\r\n      function_owner=self,\r\n      position={0,0.05,-0.2},\r\n      height=600,\r\n      width=1000,\r\n      alignment = 3,\r\n      scale={x=1.5, y=1.5, z=1.5},\r\n      font_size=600,\r\n      font_color=f_color,\r\n      color={0,0,0,0}\r\n      })\r\n\r\n    self.createInput({\r\n        value = self.getName(), \r\n        input_function = \"editName\", \r\n        tooltip=ttText,\r\n        label = \"Counter\",\r\n        function_owner = self, \r\n        alignment = 3,\r\n        position = {0,0.05,1.7}, \r\n        width = 1200, \r\n        height = 1000, \r\n        font_size = 200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color= f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n\r\n    if tooltip_show then\r\n        tooltipShowText = \"[ Hide value in tooltip ]\"\r\n    else\r\n        tooltipShowText = \"[ Show value in tooltip ]\"\r\n    end\r\n    self.createButton({\r\n        label=tooltipShowText,\r\n        tooltip=tooltipShowText,\r\n        click_function=\"swap_tooltip\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.2},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    if light_mode then\r\n        lightButtonText = \"[ Set dark text ]\"\r\n    else\r\n        lightButtonText = \"[ Set light text ]\"\r\n    end\r\n    self.createButton({\r\n        label=lightButtonText,\r\n        tooltip=lightButtonText,\r\n        click_function=\"swap_fcolor\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.6},\r\n        rotation={180,180,0},\r\n        height=150,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n\r\n    self.createButton({\r\n        label=\"[ Reset ]\",\r\n        tooltip=\"[ Reset ]\",\r\n        click_function=\"reset_val\",\r\n        function_owner=self,\r\n        position={0,-0.05,1.4},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=250,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    self.createInput({\r\n        value = \"#\",\r\n        label = \"...\",\r\n        input_function = \"keepSample\", \r\n        function_owner = self, \r\n        alignment = 3,\r\n        position={0,-0.05,-0.8},\r\n        rotation={180,180,0},\r\n        width = 600, \r\n        height = 800, \r\n        font_size = 1200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color=f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n    setTooltips()\r\nend\r\n\r\nfunction removeAll()\r\n    self.removeInput(0)\r\n    self.removeInput(1)\r\n    self.removeButton(0)\r\n    self.removeButton(1)\r\n    self.removeButton(2)\r\n    self.removeButton(3)\r\nend\r\n\r\nfunction reloadAll()\r\n    removeAll()\r\n    createAll()\r\n    setTooltips()\r\n    updateSave()\r\nend\r\n\r\nfunction swap_fcolor(_obj, _color, alt_click)\r\n    light_mode = not light_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_align(_obj, _color, alt_click)\r\n    center_mode = not center_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_tooltip(_obj, _color, alt_click)\r\n    tooltip_show = not tooltip_show\r\n    reloadAll()\r\n    setTooltips()\r\nend\r\n\r\nfunction editName(_obj, _string, value) \r\n    self.setName(value)\r\n    setTooltips()\r\nend\r\n\r\nfunction add_subtract(_obj, _color, alt_click)\r\n    mod = alt_click and 1 or -1\r\n    new_value = math.min(math.max(val + mod, MIN_VALUE), MAX_VALUE)\r\n    if val ~= new_value then\r\n        val = new_value\r\n        updateVal()\r\n        updateSave()\r\n    end\r\nend\r\n\r\nfunction updateVal()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editButton({\r\n        index = 0,\r\n        label = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction reset_val()\r\n    val = 0\r\n    updateVal()\r\n    updateSave()\r\nend\r\n\r\nfunction setTooltips()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editInput({\r\n        index = 0,\r\n        value = self.getName(),\r\n        tooltip = ttText\r\n        })\r\n    self.editButton({\r\n        index = 0,\r\n        value = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction null()\r\nend\r\n\r\nfunction keepSample(_obj, _string, value) \r\n    reloadAll()\r\nend",
-      "LuaScriptState": "[true,4,false]",
-      "GUID": "04eb0c"
-    },
-    {
-      "Name": "Custom_Token",
-      "Transform": {
         "posX": -34.99512,
         "posY": 1.571168,
         "posZ": -30.999794,
@@ -20556,15 +20227,15 @@
         }
       },
       "XmlUI": "",
-      "LuaScript": "MIN_VALUE = -99\r\nMAX_VALUE = 999\r\n\r\nfunction onload(saved_data)\r\n    light_mode = false\r\n    tooltip_show = true\r\n    val = 0\r\n\r\n    if saved_data ~= \"\" then\r\n        local loaded_data = JSON.decode(saved_data)\r\n        light_mode = loaded_data[1]\r\n        val = loaded_data[2]\r\n        tooltip_show = loaded_data[3]\r\n    end\r\n\r\n    createAll()\r\nend\r\n\r\nfunction updateSave()\r\n    local data_to_save = {light_mode, val, tooltip_show}\r\n    saved_data = JSON.encode(data_to_save)\r\n    self.script_state = saved_data\r\nend\r\n\r\nfunction createAll()\r\n    s_color = {0.5, 0.5, 0.5, 95}\r\n\r\n    if light_mode then\r\n        f_color = {1,1,1,95}\r\n    else\r\n        f_color = {0,0,0,100}\r\n    end\r\n\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.createButton({\r\n      label=tostring(val),\r\n      click_function=\"add_subtract\",\r\n      tooltip=ttText,\r\n      function_owner=self,\r\n      position={0,0.05,-0.2},\r\n      height=600,\r\n      width=1000,\r\n      alignment = 3,\r\n      scale={x=1.5, y=1.5, z=1.5},\r\n      font_size=600,\r\n      font_color=f_color,\r\n      color={0,0,0,0}\r\n      })\r\n\r\n    self.createInput({\r\n        value = self.getName(), \r\n        input_function = \"editName\", \r\n        tooltip=ttText,\r\n        label = \"Counter\",\r\n        function_owner = self, \r\n        alignment = 3,\r\n        position = {0,0.05,1.7}, \r\n        width = 1200, \r\n        height = 1000, \r\n        font_size = 200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color= f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n\r\n    if tooltip_show then\r\n        tooltipShowText = \"[ Hide value in tooltip ]\"\r\n    else\r\n        tooltipShowText = \"[ Show value in tooltip ]\"\r\n    end\r\n    self.createButton({\r\n        label=tooltipShowText,\r\n        tooltip=tooltipShowText,\r\n        click_function=\"swap_tooltip\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.2},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    if light_mode then\r\n        lightButtonText = \"[ Set dark text ]\"\r\n    else\r\n        lightButtonText = \"[ Set light text ]\"\r\n    end\r\n    self.createButton({\r\n        label=lightButtonText,\r\n        tooltip=lightButtonText,\r\n        click_function=\"swap_fcolor\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.6},\r\n        rotation={180,180,0},\r\n        height=150,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n\r\n    self.createButton({\r\n        label=\"[ Reset ]\",\r\n        tooltip=\"[ Reset ]\",\r\n        click_function=\"reset_val\",\r\n        function_owner=self,\r\n        position={0,-0.05,1.4},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=250,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    self.createInput({\r\n        value = \"#\",\r\n        label = \"...\",\r\n        input_function = \"keepSample\", \r\n        function_owner = self, \r\n        alignment = 3,\r\n        position={0,-0.05,-0.8},\r\n        rotation={180,180,0},\r\n        width = 600, \r\n        height = 800, \r\n        font_size = 1200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color=f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n    setTooltips()\r\nend\r\n\r\nfunction removeAll()\r\n    self.removeInput(0)\r\n    self.removeInput(1)\r\n    self.removeButton(0)\r\n    self.removeButton(1)\r\n    self.removeButton(2)\r\n    self.removeButton(3)\r\nend\r\n\r\nfunction reloadAll()\r\n    removeAll()\r\n    createAll()\r\n    setTooltips()\r\n    updateSave()\r\nend\r\n\r\nfunction swap_fcolor(_obj, _color, alt_click)\r\n    light_mode = not light_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_align(_obj, _color, alt_click)\r\n    center_mode = not center_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_tooltip(_obj, _color, alt_click)\r\n    tooltip_show = not tooltip_show\r\n    reloadAll()\r\n    setTooltips()\r\nend\r\n\r\nfunction editName(_obj, _string, value) \r\n    self.setName(value)\r\n    setTooltips()\r\nend\r\n\r\nfunction add_subtract(_obj, _color, alt_click)\r\n    mod = alt_click and 1 or -1\r\n    new_value = math.min(math.max(val + mod, MIN_VALUE), MAX_VALUE)\r\n    if val ~= new_value then\r\n        val = new_value\r\n        updateVal()\r\n        updateSave()\r\n    end\r\nend\r\n\r\nfunction updateVal()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editButton({\r\n        index = 0,\r\n        label = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction reset_val()\r\n    val = 0\r\n    updateVal()\r\n    updateSave()\r\nend\r\n\r\nfunction setTooltips()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editInput({\r\n        index = 0,\r\n        value = self.getName(),\r\n        tooltip = ttText\r\n        })\r\n    self.editButton({\r\n        index = 0,\r\n        value = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction null()\r\nend\r\n\r\nfunction keepSample(_obj, _string, value) \r\n    reloadAll()\r\nend",
+      "LuaScript": "MIN_VALUE = -99\r\nMAX_VALUE = 999\r\n\r\nfunction onload(saved_data)\r\n    light_mode = false\r\n    tooltip_show = true\r\n    val = 0\r\n\r\n    if saved_data ~= \"\" then\r\n        local loaded_data = JSON.decode(saved_data)\r\n        light_mode = loaded_data[1]\r\n        val = loaded_data[2]\r\n        tooltip_show = loaded_data[3]\r\n    end\r\n\r\n    createAll()\r\nend\r\n\r\nfunction updateSave()\r\n    local data_to_save = {light_mode, val, tooltip_show}\r\n    saved_data = JSON.encode(data_to_save)\r\n    self.script_state = saved_data\r\nend\r\n\r\nfunction createAll()\r\n    s_color = {0.5, 0.5, 0.5, 95}\r\n\r\n    if light_mode then\r\n        f_color = {1,1,1,95}\r\n    else\r\n        f_color = {0,0,0,100}\r\n    end\r\n\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.createButton({\r\n      label=tostring(val),\r\n      click_function=\"add_subtract\",\r\n      tooltip=ttText,\r\n      function_owner=self,\r\n      position={0,0.05,-0.2},\r\n      height=600,\r\n      width=1000,\r\n      alignment = 3,\r\n      scale={x=1.5, y=1.5, z=1.5},\r\n      font_size=600,\r\n      font_color=f_color,\r\n      color={0,0,0,0}\r\n      })\r\n\r\n    self.createInput({\r\n        value = self.getName(), \r\n        input_function = \"editName\", \r\n        tooltip=ttText,\r\n        label = \"Counter\",\r\n        function_owner = self, \r\n        alignment = 3,\r\n        position = {0,0.05,1.7}, \r\n        width = 1200, \r\n        height = 1000, \r\n        font_size = 200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color= f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n\r\n    if tooltip_show then\r\n        tooltipShowText = \"[ Hide value in tooltip ]\"\r\n    else\r\n        tooltipShowText = \"[ Show value in tooltip ]\"\r\n    end\r\n    self.createButton({\r\n        label=tooltipShowText,\r\n        tooltip=tooltipShowText,\r\n        click_function=\"swap_tooltip\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.2},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    if light_mode then\r\n        lightButtonText = \"[ Set dark text ]\"\r\n    else\r\n        lightButtonText = \"[ Set light text ]\"\r\n    end\r\n    self.createButton({\r\n        label=lightButtonText,\r\n        tooltip=lightButtonText,\r\n        click_function=\"swap_fcolor\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.6},\r\n        rotation={180,180,0},\r\n        height=150,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n\r\n    self.createButton({\r\n        label=\"[ Reset ]\",\r\n        tooltip=\"[ Reset ]\",\r\n        click_function=\"reset_val\",\r\n        function_owner=self,\r\n        position={0,-0.05,1.4},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=250,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    self.createInput({\r\n        value = \"#\",\r\n        label = \"...\",\r\n        input_function = \"keepSample\", \r\n        function_owner = self, \r\n        alignment = 3,\r\n        position={0,-0.05,-0.8},\r\n        rotation={180,180,0},\r\n        width = 600, \r\n        height = 800, \r\n        font_size = 1200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color=f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n    setTooltips()\r\nend\r\n\r\nfunction removeAll()\r\n    self.removeInput(0)\r\n    self.removeInput(1)\r\n    self.removeButton(0)\r\n    self.removeButton(1)\r\n    self.removeButton(2)\r\n    self.removeButton(3)\r\nend\r\n\r\nfunction reloadAll()\r\n    removeAll()\r\n    createAll()\r\n    setTooltips()\r\n    updateSave()\r\nend\r\n\r\nfunction swap_fcolor(_obj, _color, alt_click)\r\n    light_mode = not light_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_align(_obj, _color, alt_click)\r\n    center_mode = not center_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_tooltip(_obj, _color, alt_click)\r\n    tooltip_show = not tooltip_show\r\n    reloadAll()\r\n    setTooltips()\r\nend\r\n\r\nfunction editName(_obj, _string, value) \r\n    self.setName(value)\r\n    setTooltips()\r\nend\r\n\r\nfunction add_subtract(_obj, _color, alt_click)\r\n    mod = alt_click and -1 or 1\r\n    new_value = math.min(math.max(val + mod, MIN_VALUE), MAX_VALUE)\r\n    if val ~= new_value then\r\n        val = new_value\r\n        updateVal()\r\n        updateSave()\r\n    end\r\nend\r\n\r\nfunction updateVal()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editButton({\r\n        index = 0,\r\n        label = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction reset_val()\r\n    val = 0\r\n    updateVal()\r\n    updateSave()\r\nend\r\n\r\nfunction setTooltips()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editInput({\r\n        index = 0,\r\n        value = self.getName(),\r\n        tooltip = ttText\r\n        })\r\n    self.editButton({\r\n        index = 0,\r\n        value = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction null()\r\nend\r\n\r\nfunction keepSample(_obj, _string, value) \r\n    reloadAll()\r\nend",
       "LuaScriptState": "[false,4,false]",
       "GUID": "4cd300"
     },
     {
       "Name": "3DText",
       "Transform": {
-        "posX": -0.05931093,
-        "posY": 1.48799777,
+        "posX": -0.05931094,
+        "posY": 1.487998,
         "posZ": 21.8520012,
         "rotX": 90.0,
         "rotY": 0.142981067,
@@ -20698,9 +20369,9 @@
     {
       "Name": "3DText",
       "Transform": {
-        "posX": 7.96599245,
+        "posX": 7.965994,
         "posY": 1.47404623,
-        "posZ": 12.4952784,
+        "posZ": 12.49528,
         "rotX": 90.0,
         "rotY": 0.142981067,
         "rotZ": 0.0,
@@ -20743,12 +20414,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -31.0000381,
-        "posY": 1.52443218,
+        "posX": -31.000042,
+        "posY": 1.52443206,
         "posZ": -0.999992847,
         "rotX": 359.920135,
-        "rotY": 269.999847,
-        "rotZ": 0.0168719925,
+        "rotY": 269.999756,
+        "rotZ": 0.0168726053,
         "scaleX": 1.88669944,
         "scaleY": 1.0,
         "scaleZ": 1.88669944
@@ -20791,12 +20462,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -28.0000134,
+        "posX": -28.0000172,
         "posY": 1.52054429,
-        "posZ": -7.9520396E-07,
+        "posZ": -1.35347182E-06,
         "rotX": 359.9201,
-        "rotY": 269.999878,
-        "rotZ": 0.01687816,
+        "rotY": 269.999817,
+        "rotZ": 0.0168766957,
         "scaleX": 0.933085263,
         "scaleY": 1.0,
         "scaleZ": 0.933085263
@@ -20839,12 +20510,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -28.0000343,
-        "posY": 1.52996743,
+        "posX": -28.0000362,
+        "posY": 1.52996731,
         "posZ": 32.0000076,
-        "rotX": 359.9201,
-        "rotY": 269.9997,
-        "rotZ": 0.0168782715,
+        "rotX": 359.920135,
+        "rotY": 269.999634,
+        "rotZ": 0.016876705,
         "scaleX": 0.933085263,
         "scaleY": 1.0,
         "scaleZ": 0.933085263
@@ -20887,12 +20558,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -31.0009117,
-        "posY": 1.53385615,
-        "posZ": 31.000124,
+        "posX": -31.0000362,
+        "posY": 1.53385484,
+        "posZ": 31.0000114,
         "rotX": 359.920135,
-        "rotY": 270.0001,
-        "rotZ": 0.0168702733,
+        "rotY": 270.0,
+        "rotZ": 0.0168766528,
         "scaleX": 1.88669944,
         "scaleY": 1.0,
         "scaleZ": 1.88669944
@@ -20935,12 +20606,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -32.00007,
+        "posX": -32.0000725,
         "posY": 1.51787591,
-        "posZ": -27.9999371,
-        "rotX": 0.0169349387,
-        "rotY": 179.9519,
-        "rotZ": 0.07986332,
+        "posZ": -27.999939,
+        "rotX": 0.016934555,
+        "rotY": 179.952,
+        "rotZ": 0.07986256,
         "scaleX": 0.933085263,
         "scaleY": 1.0,
         "scaleZ": 0.933085263
@@ -20983,12 +20654,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -30.9978447,
-        "posY": 1.51559544,
-        "posZ": -31.0002384,
-        "rotX": 0.0169251561,
-        "rotY": 179.960281,
-        "rotZ": 0.07986638,
+        "posX": -30.9978485,
+        "posY": 1.51559532,
+        "posZ": -31.0002441,
+        "rotX": 0.01692491,
+        "rotY": 179.96022,
+        "rotZ": 0.0798677057,
         "scaleX": 1.88669944,
         "scaleY": 1.0,
         "scaleZ": 1.88669944
@@ -21031,12 +20702,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": 2.00019836,
+        "posX": 2.00019884,
         "posY": 1.47047579,
-        "posZ": -28.0000515,
-        "rotX": 0.0168697517,
-        "rotY": 179.999969,
-        "rotZ": 0.07987633,
+        "posZ": -28.0000534,
+        "rotX": 0.01686825,
+        "rotY": 179.999908,
+        "rotZ": 0.0798782259,
         "scaleX": 0.933085263,
         "scaleY": 1.0,
         "scaleZ": 0.933085263
@@ -21079,12 +20750,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": 3.000294,
-        "posY": 1.46819806,
-        "posZ": -31.0000782,
-        "rotX": 0.0168694444,
-        "rotY": 180.000092,
-        "rotZ": 0.07987825,
+        "posX": 3.00029469,
+        "posY": 1.4681983,
+        "posZ": -31.000082,
+        "rotX": 0.0168710947,
+        "rotY": 180.000076,
+        "rotZ": 0.0798782259,
         "scaleX": 1.88669944,
         "scaleY": 1.0,
         "scaleZ": 1.88669944
@@ -21127,11 +20798,11 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": 27.999939,
+        "posX": 27.99994,
         "posY": 1.43305171,
-        "posZ": -31.99994,
-        "rotX": 0.07988418,
-        "rotY": 90.01609,
+        "posZ": -31.9999447,
+        "rotX": 0.07988688,
+        "rotY": 90.01604,
         "rotZ": 359.983154,
         "scaleX": 0.933085263,
         "scaleY": 1.0,
@@ -21175,11 +20846,11 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": 31.00275,
-        "posY": 1.42915976,
-        "posZ": -30.99995,
-        "rotX": 0.07988152,
-        "rotY": 90.01004,
+        "posX": 31.0027523,
+        "posY": 1.42915964,
+        "posZ": -30.9999542,
+        "rotX": 0.0798810944,
+        "rotY": 90.010025,
         "rotZ": 359.983154,
         "scaleX": 1.88669944,
         "scaleY": 1.0,
@@ -21223,11 +20894,11 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": 27.9999428,
+        "posX": 27.9999447,
         "posY": 1.44306338,
-        "posZ": 2.00006628,
-        "rotX": 0.0798198059,
-        "rotY": 89.798584,
+        "posZ": 1.99994886,
+        "rotX": 0.07981989,
+        "rotY": 89.8002548,
         "rotZ": 359.982849,
         "scaleX": 0.933085263,
         "scaleY": 1.0,
@@ -21271,11 +20942,11 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": 31.0032959,
-        "posY": 1.4391706,
-        "posZ": 2.99991965,
-        "rotX": 0.07981596,
-        "rotY": 89.79503,
+        "posX": 31.0033035,
+        "posY": 1.439171,
+        "posZ": 2.99981475,
+        "rotX": 0.07981741,
+        "rotY": 89.79343,
         "rotZ": 359.982849,
         "scaleX": 1.88669944,
         "scaleY": 1.0,
@@ -21319,12 +20990,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": 32.0000458,
+        "posX": 32.00005,
         "posY": 1.445143,
-        "posZ": 28.00001,
+        "posZ": 28.0000114,
         "rotX": 359.9833,
-        "rotY": 0.115986191,
-        "rotZ": 359.920074,
+        "rotY": 0.115944289,
+        "rotZ": 359.9201,
         "scaleX": 0.933085263,
         "scaleY": 1.0,
         "scaleZ": 0.933085263
@@ -21367,11 +21038,11 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": 30.9998741,
-        "posY": 1.4474206,
-        "posZ": 31.0000381,
+        "posX": 30.9998779,
+        "posY": 1.44742048,
+        "posZ": 31.0000458,
         "rotX": 359.983276,
-        "rotY": 0.115863651,
+        "rotY": 0.115901224,
         "rotZ": 359.920074,
         "scaleX": 1.88669944,
         "scaleY": 1.0,
@@ -21415,11 +21086,11 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -1.99996734,
-        "posY": 1.49254239,
-        "posZ": 28.0000019,
+        "posX": -1.99996769,
+        "posY": 1.49254251,
+        "posZ": 28.0000057,
         "rotX": 359.983124,
-        "rotY": 359.989441,
+        "rotY": 359.98938,
         "rotZ": 359.920135,
         "scaleX": 0.933085263,
         "scaleY": 1.0,
@@ -21463,11 +21134,11 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -3.00008941,
-        "posY": 1.49481976,
-        "posZ": 30.99921,
+        "posX": -3.00009036,
+        "posY": 1.49481964,
+        "posZ": 30.9992275,
         "rotX": 359.9831,
-        "rotY": 359.974365,
+        "rotY": 359.974335,
         "rotZ": 359.920135,
         "scaleX": 1.88669944,
         "scaleY": 1.0,
@@ -21595,6 +21266,335 @@
         }
       ],
       "GUID": "e0ca16"
+    },
+    {
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": -1.00005579,
+        "posY": 1.5237751,
+        "posZ": -31.0,
+        "rotX": 0.016870616,
+        "rotY": 180.00174,
+        "rotZ": 0.0798777938,
+        "scaleX": 1.05552506,
+        "scaleY": 1.0,
+        "scaleZ": 1.05552506
+      },
+      "Nickname": "Life",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.96,
+        "g": 0.438999981,
+        "b": 0.807
+      },
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": false,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/958597478463059274/DE73B64E1B5C6F272EA3BEE5EF458E73E48FF03D/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.1,
+          "MergeDistancePixels": 5.0,
+          "Stackable": false
+        }
+      },
+      "XmlUI": "",
+      "LuaScript": "MIN_VALUE = -99\r\nMAX_VALUE = 999\r\n\r\nfunction onload(saved_data)\r\n    light_mode = false\r\n    tooltip_show = true\r\n    val = 0\r\n\r\n    if saved_data ~= \"\" then\r\n        local loaded_data = JSON.decode(saved_data)\r\n        light_mode = loaded_data[1]\r\n        val = loaded_data[2]\r\n        tooltip_show = loaded_data[3]\r\n    end\r\n\r\n    createAll()\r\nend\r\n\r\nfunction updateSave()\r\n    local data_to_save = {light_mode, val, tooltip_show}\r\n    saved_data = JSON.encode(data_to_save)\r\n    self.script_state = saved_data\r\nend\r\n\r\nfunction createAll()\r\n    s_color = {0.5, 0.5, 0.5, 95}\r\n\r\n    if light_mode then\r\n        f_color = {1,1,1,95}\r\n    else\r\n        f_color = {0,0,0,100}\r\n    end\r\n\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.createButton({\r\n      label=tostring(val),\r\n      click_function=\"add_subtract\",\r\n      tooltip=ttText,\r\n      function_owner=self,\r\n      position={0,0.05,-0.2},\r\n      height=600,\r\n      width=1000,\r\n      alignment = 3,\r\n      scale={x=1.5, y=1.5, z=1.5},\r\n      font_size=600,\r\n      font_color=f_color,\r\n      color={0,0,0,0}\r\n      })\r\n\r\n    self.createInput({\r\n        value = self.getName(), \r\n        input_function = \"editName\", \r\n        tooltip=ttText,\r\n        label = \"Counter\",\r\n        function_owner = self, \r\n        alignment = 3,\r\n        position = {0,0.05,1.7}, \r\n        width = 1200, \r\n        height = 1000, \r\n        font_size = 200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color= f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n\r\n    if tooltip_show then\r\n        tooltipShowText = \"[ Hide value in tooltip ]\"\r\n    else\r\n        tooltipShowText = \"[ Show value in tooltip ]\"\r\n    end\r\n    self.createButton({\r\n        label=tooltipShowText,\r\n        tooltip=tooltipShowText,\r\n        click_function=\"swap_tooltip\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.2},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    if light_mode then\r\n        lightButtonText = \"[ Set dark text ]\"\r\n    else\r\n        lightButtonText = \"[ Set light text ]\"\r\n    end\r\n    self.createButton({\r\n        label=lightButtonText,\r\n        tooltip=lightButtonText,\r\n        click_function=\"swap_fcolor\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.6},\r\n        rotation={180,180,0},\r\n        height=150,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n\r\n    self.createButton({\r\n        label=\"[ Reset ]\",\r\n        tooltip=\"[ Reset ]\",\r\n        click_function=\"reset_val\",\r\n        function_owner=self,\r\n        position={0,-0.05,1.4},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=250,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    self.createInput({\r\n        value = \"#\",\r\n        label = \"...\",\r\n        input_function = \"keepSample\", \r\n        function_owner = self, \r\n        alignment = 3,\r\n        position={0,-0.05,-0.8},\r\n        rotation={180,180,0},\r\n        width = 600, \r\n        height = 800, \r\n        font_size = 1200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color=f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n    setTooltips()\r\nend\r\n\r\nfunction removeAll()\r\n    self.removeInput(0)\r\n    self.removeInput(1)\r\n    self.removeButton(0)\r\n    self.removeButton(1)\r\n    self.removeButton(2)\r\n    self.removeButton(3)\r\nend\r\n\r\nfunction reloadAll()\r\n    removeAll()\r\n    createAll()\r\n    setTooltips()\r\n    updateSave()\r\nend\r\n\r\nfunction swap_fcolor(_obj, _color, alt_click)\r\n    light_mode = not light_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_align(_obj, _color, alt_click)\r\n    center_mode = not center_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_tooltip(_obj, _color, alt_click)\r\n    tooltip_show = not tooltip_show\r\n    reloadAll()\r\n    setTooltips()\r\nend\r\n\r\nfunction editName(_obj, _string, value) \r\n    self.setName(value)\r\n    setTooltips()\r\nend\r\n\r\nfunction add_subtract(_obj, _color, alt_click)\r\n    mod = alt_click and -1 or 1\r\n    new_value = math.min(math.max(val + mod, MIN_VALUE), MAX_VALUE)\r\n    if val ~= new_value then\r\n        val = new_value\r\n        updateVal()\r\n        updateSave()\r\n    end\r\nend\r\n\r\nfunction updateVal()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editButton({\r\n        index = 0,\r\n        label = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction reset_val()\r\n    val = 0\r\n    updateVal()\r\n    updateSave()\r\nend\r\n\r\nfunction setTooltips()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editInput({\r\n        index = 0,\r\n        value = self.getName(),\r\n        tooltip = ttText\r\n        })\r\n    self.editButton({\r\n        index = 0,\r\n        value = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction null()\r\nend\r\n\r\nfunction keepSample(_obj, _string, value) \r\n    reloadAll()\r\nend",
+      "LuaScriptState": "[false,4,false]",
+      "GUID": "de2e9e"
+    },
+    {
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": 30.9999447,
+        "posY": 1.47798574,
+        "posZ": -35.0000153,
+        "rotX": 0.07987861,
+        "rotY": 90.0000839,
+        "rotZ": 359.983124,
+        "scaleX": 1.05552506,
+        "scaleY": 1.0,
+        "scaleZ": 1.05552506
+      },
+      "Nickname": "Life",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 0.627,
+        "g": 0.124999978,
+        "b": 0.941
+      },
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": false,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/958597478463059274/DE73B64E1B5C6F272EA3BEE5EF458E73E48FF03D/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.1,
+          "MergeDistancePixels": 5.0,
+          "Stackable": false
+        }
+      },
+      "XmlUI": "",
+      "LuaScript": "MIN_VALUE = -99\r\nMAX_VALUE = 999\r\n\r\nfunction onload(saved_data)\r\n    light_mode = false\r\n    tooltip_show = true\r\n    val = 0\r\n\r\n    if saved_data ~= \"\" then\r\n        local loaded_data = JSON.decode(saved_data)\r\n        light_mode = loaded_data[1]\r\n        val = loaded_data[2]\r\n        tooltip_show = loaded_data[3]\r\n    end\r\n\r\n    createAll()\r\nend\r\n\r\nfunction updateSave()\r\n    local data_to_save = {light_mode, val, tooltip_show}\r\n    saved_data = JSON.encode(data_to_save)\r\n    self.script_state = saved_data\r\nend\r\n\r\nfunction createAll()\r\n    s_color = {0.5, 0.5, 0.5, 95}\r\n\r\n    if light_mode then\r\n        f_color = {1,1,1,95}\r\n    else\r\n        f_color = {0,0,0,100}\r\n    end\r\n\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.createButton({\r\n      label=tostring(val),\r\n      click_function=\"add_subtract\",\r\n      tooltip=ttText,\r\n      function_owner=self,\r\n      position={0,0.05,-0.2},\r\n      height=600,\r\n      width=1000,\r\n      alignment = 3,\r\n      scale={x=1.5, y=1.5, z=1.5},\r\n      font_size=600,\r\n      font_color=f_color,\r\n      color={0,0,0,0}\r\n      })\r\n\r\n    self.createInput({\r\n        value = self.getName(), \r\n        input_function = \"editName\", \r\n        tooltip=ttText,\r\n        label = \"Counter\",\r\n        function_owner = self, \r\n        alignment = 3,\r\n        position = {0,0.05,1.7}, \r\n        width = 1200, \r\n        height = 1000, \r\n        font_size = 200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color= f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n\r\n    if tooltip_show then\r\n        tooltipShowText = \"[ Hide value in tooltip ]\"\r\n    else\r\n        tooltipShowText = \"[ Show value in tooltip ]\"\r\n    end\r\n    self.createButton({\r\n        label=tooltipShowText,\r\n        tooltip=tooltipShowText,\r\n        click_function=\"swap_tooltip\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.2},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    if light_mode then\r\n        lightButtonText = \"[ Set dark text ]\"\r\n    else\r\n        lightButtonText = \"[ Set light text ]\"\r\n    end\r\n    self.createButton({\r\n        label=lightButtonText,\r\n        tooltip=lightButtonText,\r\n        click_function=\"swap_fcolor\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.6},\r\n        rotation={180,180,0},\r\n        height=150,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n\r\n    self.createButton({\r\n        label=\"[ Reset ]\",\r\n        tooltip=\"[ Reset ]\",\r\n        click_function=\"reset_val\",\r\n        function_owner=self,\r\n        position={0,-0.05,1.4},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=250,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    self.createInput({\r\n        value = \"#\",\r\n        label = \"...\",\r\n        input_function = \"keepSample\", \r\n        function_owner = self, \r\n        alignment = 3,\r\n        position={0,-0.05,-0.8},\r\n        rotation={180,180,0},\r\n        width = 600, \r\n        height = 800, \r\n        font_size = 1200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color=f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n    setTooltips()\r\nend\r\n\r\nfunction removeAll()\r\n    self.removeInput(0)\r\n    self.removeInput(1)\r\n    self.removeButton(0)\r\n    self.removeButton(1)\r\n    self.removeButton(2)\r\n    self.removeButton(3)\r\nend\r\n\r\nfunction reloadAll()\r\n    removeAll()\r\n    createAll()\r\n    setTooltips()\r\n    updateSave()\r\nend\r\n\r\nfunction swap_fcolor(_obj, _color, alt_click)\r\n    light_mode = not light_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_align(_obj, _color, alt_click)\r\n    center_mode = not center_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_tooltip(_obj, _color, alt_click)\r\n    tooltip_show = not tooltip_show\r\n    reloadAll()\r\n    setTooltips()\r\nend\r\n\r\nfunction editName(_obj, _string, value) \r\n    self.setName(value)\r\n    setTooltips()\r\nend\r\n\r\nfunction add_subtract(_obj, _color, alt_click)\r\n    mod = alt_click and -1 or 1\r\n    new_value = math.min(math.max(val + mod, MIN_VALUE), MAX_VALUE)\r\n    if val ~= new_value then\r\n        val = new_value\r\n        updateVal()\r\n        updateSave()\r\n    end\r\nend\r\n\r\nfunction updateVal()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editButton({\r\n        index = 0,\r\n        label = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction reset_val()\r\n    val = 0\r\n    updateVal()\r\n    updateSave()\r\nend\r\n\r\nfunction setTooltips()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editInput({\r\n        index = 0,\r\n        value = self.getName(),\r\n        tooltip = ttText\r\n        })\r\n    self.editButton({\r\n        index = 0,\r\n        value = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction null()\r\nend\r\n\r\nfunction keepSample(_obj, _string, value) \r\n    reloadAll()\r\nend",
+      "LuaScriptState": "[false,4,false]",
+      "GUID": "044077"
+    },
+    {
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": 30.9996986,
+        "posY": 1.48799908,
+        "posZ": -0.9961167,
+        "rotX": 0.0798805058,
+        "rotY": 90.0032,
+        "rotZ": 359.983124,
+        "scaleX": 1.05552506,
+        "scaleY": 1.0,
+        "scaleZ": 1.05552506
+      },
+      "Nickname": "Life",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": false,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/958597478463059274/DE73B64E1B5C6F272EA3BEE5EF458E73E48FF03D/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.1,
+          "MergeDistancePixels": 5.0,
+          "Stackable": false
+        }
+      },
+      "XmlUI": "",
+      "LuaScript": "MIN_VALUE = -99\r\nMAX_VALUE = 999\r\n\r\nfunction onload(saved_data)\r\n    light_mode = false\r\n    tooltip_show = true\r\n    val = 0\r\n\r\n    if saved_data ~= \"\" then\r\n        local loaded_data = JSON.decode(saved_data)\r\n        light_mode = loaded_data[1]\r\n        val = loaded_data[2]\r\n        tooltip_show = loaded_data[3]\r\n    end\r\n\r\n    createAll()\r\nend\r\n\r\nfunction updateSave()\r\n    local data_to_save = {light_mode, val, tooltip_show}\r\n    saved_data = JSON.encode(data_to_save)\r\n    self.script_state = saved_data\r\nend\r\n\r\nfunction createAll()\r\n    s_color = {0.5, 0.5, 0.5, 95}\r\n\r\n    if light_mode then\r\n        f_color = {1,1,1,95}\r\n    else\r\n        f_color = {0,0,0,100}\r\n    end\r\n\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.createButton({\r\n      label=tostring(val),\r\n      click_function=\"add_subtract\",\r\n      tooltip=ttText,\r\n      function_owner=self,\r\n      position={0,0.05,-0.2},\r\n      height=600,\r\n      width=1000,\r\n      alignment = 3,\r\n      scale={x=1.5, y=1.5, z=1.5},\r\n      font_size=600,\r\n      font_color=f_color,\r\n      color={0,0,0,0}\r\n      })\r\n\r\n    self.createInput({\r\n        value = self.getName(), \r\n        input_function = \"editName\", \r\n        tooltip=ttText,\r\n        label = \"Counter\",\r\n        function_owner = self, \r\n        alignment = 3,\r\n        position = {0,0.05,1.7}, \r\n        width = 1200, \r\n        height = 1000, \r\n        font_size = 200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color= f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n\r\n    if tooltip_show then\r\n        tooltipShowText = \"[ Hide value in tooltip ]\"\r\n    else\r\n        tooltipShowText = \"[ Show value in tooltip ]\"\r\n    end\r\n    self.createButton({\r\n        label=tooltipShowText,\r\n        tooltip=tooltipShowText,\r\n        click_function=\"swap_tooltip\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.2},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    if light_mode then\r\n        lightButtonText = \"[ Set dark text ]\"\r\n    else\r\n        lightButtonText = \"[ Set light text ]\"\r\n    end\r\n    self.createButton({\r\n        label=lightButtonText,\r\n        tooltip=lightButtonText,\r\n        click_function=\"swap_fcolor\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.6},\r\n        rotation={180,180,0},\r\n        height=150,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n\r\n    self.createButton({\r\n        label=\"[ Reset ]\",\r\n        tooltip=\"[ Reset ]\",\r\n        click_function=\"reset_val\",\r\n        function_owner=self,\r\n        position={0,-0.05,1.4},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=250,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    self.createInput({\r\n        value = \"#\",\r\n        label = \"...\",\r\n        input_function = \"keepSample\", \r\n        function_owner = self, \r\n        alignment = 3,\r\n        position={0,-0.05,-0.8},\r\n        rotation={180,180,0},\r\n        width = 600, \r\n        height = 800, \r\n        font_size = 1200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color=f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n    setTooltips()\r\nend\r\n\r\nfunction removeAll()\r\n    self.removeInput(0)\r\n    self.removeInput(1)\r\n    self.removeButton(0)\r\n    self.removeButton(1)\r\n    self.removeButton(2)\r\n    self.removeButton(3)\r\nend\r\n\r\nfunction reloadAll()\r\n    removeAll()\r\n    createAll()\r\n    setTooltips()\r\n    updateSave()\r\nend\r\n\r\nfunction swap_fcolor(_obj, _color, alt_click)\r\n    light_mode = not light_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_align(_obj, _color, alt_click)\r\n    center_mode = not center_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_tooltip(_obj, _color, alt_click)\r\n    tooltip_show = not tooltip_show\r\n    reloadAll()\r\n    setTooltips()\r\nend\r\n\r\nfunction editName(_obj, _string, value) \r\n    self.setName(value)\r\n    setTooltips()\r\nend\r\n\r\nfunction add_subtract(_obj, _color, alt_click)\r\n    mod = alt_click and -1 or 1\r\n    new_value = math.min(math.max(val + mod, MIN_VALUE), MAX_VALUE)\r\n    if val ~= new_value then\r\n        val = new_value\r\n        updateVal()\r\n        updateSave()\r\n    end\r\nend\r\n\r\nfunction updateVal()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editButton({\r\n        index = 0,\r\n        label = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction reset_val()\r\n    val = 0\r\n    updateVal()\r\n    updateSave()\r\nend\r\n\r\nfunction setTooltips()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editInput({\r\n        index = 0,\r\n        value = self.getName(),\r\n        tooltip = ttText\r\n        })\r\n    self.editButton({\r\n        index = 0,\r\n        value = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction null()\r\nend\r\n\r\nfunction keepSample(_obj, _string, value) \r\n    reloadAll()\r\nend",
+      "LuaScriptState": "[false,4,false]",
+      "GUID": "6a946f"
+    },
+    {
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": 35.00013,
+        "posY": 1.4918443,
+        "posZ": 30.9999828,
+        "rotX": 359.983124,
+        "rotY": -2.23890438E-05,
+        "rotZ": 359.920135,
+        "scaleX": 1.05552506,
+        "scaleY": 1.0,
+        "scaleZ": 1.05552506
+      },
+      "Nickname": "Life",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": false,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/958597478463059274/DE73B64E1B5C6F272EA3BEE5EF458E73E48FF03D/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.1,
+          "MergeDistancePixels": 5.0,
+          "Stackable": false
+        }
+      },
+      "XmlUI": "",
+      "LuaScript": "MIN_VALUE = -99\r\nMAX_VALUE = 999\r\n\r\nfunction onload(saved_data)\r\n    light_mode = false\r\n    tooltip_show = true\r\n    val = 0\r\n\r\n    if saved_data ~= \"\" then\r\n        local loaded_data = JSON.decode(saved_data)\r\n        light_mode = loaded_data[1]\r\n        val = loaded_data[2]\r\n        tooltip_show = loaded_data[3]\r\n    end\r\n\r\n    createAll()\r\nend\r\n\r\nfunction updateSave()\r\n    local data_to_save = {light_mode, val, tooltip_show}\r\n    saved_data = JSON.encode(data_to_save)\r\n    self.script_state = saved_data\r\nend\r\n\r\nfunction createAll()\r\n    s_color = {0.5, 0.5, 0.5, 95}\r\n\r\n    if light_mode then\r\n        f_color = {1,1,1,95}\r\n    else\r\n        f_color = {0,0,0,100}\r\n    end\r\n\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.createButton({\r\n      label=tostring(val),\r\n      click_function=\"add_subtract\",\r\n      tooltip=ttText,\r\n      function_owner=self,\r\n      position={0,0.05,-0.2},\r\n      height=600,\r\n      width=1000,\r\n      alignment = 3,\r\n      scale={x=1.5, y=1.5, z=1.5},\r\n      font_size=600,\r\n      font_color=f_color,\r\n      color={0,0,0,0}\r\n      })\r\n\r\n    self.createInput({\r\n        value = self.getName(), \r\n        input_function = \"editName\", \r\n        tooltip=ttText,\r\n        label = \"Counter\",\r\n        function_owner = self, \r\n        alignment = 3,\r\n        position = {0,0.05,1.7}, \r\n        width = 1200, \r\n        height = 1000, \r\n        font_size = 200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color= f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n\r\n    if tooltip_show then\r\n        tooltipShowText = \"[ Hide value in tooltip ]\"\r\n    else\r\n        tooltipShowText = \"[ Show value in tooltip ]\"\r\n    end\r\n    self.createButton({\r\n        label=tooltipShowText,\r\n        tooltip=tooltipShowText,\r\n        click_function=\"swap_tooltip\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.2},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    if light_mode then\r\n        lightButtonText = \"[ Set dark text ]\"\r\n    else\r\n        lightButtonText = \"[ Set light text ]\"\r\n    end\r\n    self.createButton({\r\n        label=lightButtonText,\r\n        tooltip=lightButtonText,\r\n        click_function=\"swap_fcolor\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.6},\r\n        rotation={180,180,0},\r\n        height=150,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n\r\n    self.createButton({\r\n        label=\"[ Reset ]\",\r\n        tooltip=\"[ Reset ]\",\r\n        click_function=\"reset_val\",\r\n        function_owner=self,\r\n        position={0,-0.05,1.4},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=250,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    self.createInput({\r\n        value = \"#\",\r\n        label = \"...\",\r\n        input_function = \"keepSample\", \r\n        function_owner = self, \r\n        alignment = 3,\r\n        position={0,-0.05,-0.8},\r\n        rotation={180,180,0},\r\n        width = 600, \r\n        height = 800, \r\n        font_size = 1200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color=f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n    setTooltips()\r\nend\r\n\r\nfunction removeAll()\r\n    self.removeInput(0)\r\n    self.removeInput(1)\r\n    self.removeButton(0)\r\n    self.removeButton(1)\r\n    self.removeButton(2)\r\n    self.removeButton(3)\r\nend\r\n\r\nfunction reloadAll()\r\n    removeAll()\r\n    createAll()\r\n    setTooltips()\r\n    updateSave()\r\nend\r\n\r\nfunction swap_fcolor(_obj, _color, alt_click)\r\n    light_mode = not light_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_align(_obj, _color, alt_click)\r\n    center_mode = not center_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_tooltip(_obj, _color, alt_click)\r\n    tooltip_show = not tooltip_show\r\n    reloadAll()\r\n    setTooltips()\r\nend\r\n\r\nfunction editName(_obj, _string, value) \r\n    self.setName(value)\r\n    setTooltips()\r\nend\r\n\r\nfunction add_subtract(_obj, _color, alt_click)\r\n    mod = alt_click and -1 or 1\r\n    new_value = math.min(math.max(val + mod, MIN_VALUE), MAX_VALUE)\r\n    if val ~= new_value then\r\n        val = new_value\r\n        updateVal()\r\n        updateSave()\r\n    end\r\nend\r\n\r\nfunction updateVal()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editButton({\r\n        index = 0,\r\n        label = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction reset_val()\r\n    val = 0\r\n    updateVal()\r\n    updateSave()\r\nend\r\n\r\nfunction setTooltips()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editInput({\r\n        index = 0,\r\n        value = self.getName(),\r\n        tooltip = ttText\r\n        })\r\n    self.editButton({\r\n        index = 0,\r\n        value = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction null()\r\nend\r\n\r\nfunction keepSample(_obj, _string, value) \r\n    reloadAll()\r\nend",
+      "LuaScriptState": "[false,4,false]",
+      "GUID": "57b2a9"
+    },
+    {
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": 1.00003576,
+        "posY": 1.53924346,
+        "posZ": 30.99979,
+        "rotX": 359.982971,
+        "rotY": 359.888031,
+        "rotZ": 359.920166,
+        "scaleX": 1.05552506,
+        "scaleY": 1.0,
+        "scaleZ": 1.05552506
+      },
+      "Nickname": "Life",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": false,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/958597478463059274/DE73B64E1B5C6F272EA3BEE5EF458E73E48FF03D/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.1,
+          "MergeDistancePixels": 5.0,
+          "Stackable": false
+        }
+      },
+      "XmlUI": "",
+      "LuaScript": "MIN_VALUE = -99\r\nMAX_VALUE = 999\r\n\r\nfunction onload(saved_data)\r\n    light_mode = false\r\n    tooltip_show = true\r\n    val = 0\r\n\r\n    if saved_data ~= \"\" then\r\n        local loaded_data = JSON.decode(saved_data)\r\n        light_mode = loaded_data[1]\r\n        val = loaded_data[2]\r\n        tooltip_show = loaded_data[3]\r\n    end\r\n\r\n    createAll()\r\nend\r\n\r\nfunction updateSave()\r\n    local data_to_save = {light_mode, val, tooltip_show}\r\n    saved_data = JSON.encode(data_to_save)\r\n    self.script_state = saved_data\r\nend\r\n\r\nfunction createAll()\r\n    s_color = {0.5, 0.5, 0.5, 95}\r\n\r\n    if light_mode then\r\n        f_color = {1,1,1,95}\r\n    else\r\n        f_color = {0,0,0,100}\r\n    end\r\n\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.createButton({\r\n      label=tostring(val),\r\n      click_function=\"add_subtract\",\r\n      tooltip=ttText,\r\n      function_owner=self,\r\n      position={0,0.05,-0.2},\r\n      height=600,\r\n      width=1000,\r\n      alignment = 3,\r\n      scale={x=1.5, y=1.5, z=1.5},\r\n      font_size=600,\r\n      font_color=f_color,\r\n      color={0,0,0,0}\r\n      })\r\n\r\n    self.createInput({\r\n        value = self.getName(), \r\n        input_function = \"editName\", \r\n        tooltip=ttText,\r\n        label = \"Counter\",\r\n        function_owner = self, \r\n        alignment = 3,\r\n        position = {0,0.05,1.7}, \r\n        width = 1200, \r\n        height = 1000, \r\n        font_size = 200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color= f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n\r\n    if tooltip_show then\r\n        tooltipShowText = \"[ Hide value in tooltip ]\"\r\n    else\r\n        tooltipShowText = \"[ Show value in tooltip ]\"\r\n    end\r\n    self.createButton({\r\n        label=tooltipShowText,\r\n        tooltip=tooltipShowText,\r\n        click_function=\"swap_tooltip\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.2},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    if light_mode then\r\n        lightButtonText = \"[ Set dark text ]\"\r\n    else\r\n        lightButtonText = \"[ Set light text ]\"\r\n    end\r\n    self.createButton({\r\n        label=lightButtonText,\r\n        tooltip=lightButtonText,\r\n        click_function=\"swap_fcolor\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.6},\r\n        rotation={180,180,0},\r\n        height=150,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n\r\n    self.createButton({\r\n        label=\"[ Reset ]\",\r\n        tooltip=\"[ Reset ]\",\r\n        click_function=\"reset_val\",\r\n        function_owner=self,\r\n        position={0,-0.05,1.4},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=250,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    self.createInput({\r\n        value = \"#\",\r\n        label = \"...\",\r\n        input_function = \"keepSample\", \r\n        function_owner = self, \r\n        alignment = 3,\r\n        position={0,-0.05,-0.8},\r\n        rotation={180,180,0},\r\n        width = 600, \r\n        height = 800, \r\n        font_size = 1200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color=f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n    setTooltips()\r\nend\r\n\r\nfunction removeAll()\r\n    self.removeInput(0)\r\n    self.removeInput(1)\r\n    self.removeButton(0)\r\n    self.removeButton(1)\r\n    self.removeButton(2)\r\n    self.removeButton(3)\r\nend\r\n\r\nfunction reloadAll()\r\n    removeAll()\r\n    createAll()\r\n    setTooltips()\r\n    updateSave()\r\nend\r\n\r\nfunction swap_fcolor(_obj, _color, alt_click)\r\n    light_mode = not light_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_align(_obj, _color, alt_click)\r\n    center_mode = not center_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_tooltip(_obj, _color, alt_click)\r\n    tooltip_show = not tooltip_show\r\n    reloadAll()\r\n    setTooltips()\r\nend\r\n\r\nfunction editName(_obj, _string, value) \r\n    self.setName(value)\r\n    setTooltips()\r\nend\r\n\r\nfunction add_subtract(_obj, _color, alt_click)\r\n    mod = alt_click and -1 or 1\r\n    new_value = math.min(math.max(val + mod, MIN_VALUE), MAX_VALUE)\r\n    if val ~= new_value then\r\n        val = new_value\r\n        updateVal()\r\n        updateSave()\r\n    end\r\nend\r\n\r\nfunction updateVal()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editButton({\r\n        index = 0,\r\n        label = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction reset_val()\r\n    val = 0\r\n    updateVal()\r\n    updateSave()\r\nend\r\n\r\nfunction setTooltips()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editInput({\r\n        index = 0,\r\n        value = self.getName(),\r\n        tooltip = ttText\r\n        })\r\n    self.editButton({\r\n        index = 0,\r\n        value = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction null()\r\nend\r\n\r\nfunction keepSample(_obj, _string, value) \r\n    reloadAll()\r\nend",
+      "LuaScriptState": "[false,4,false]",
+      "GUID": "bcf195"
+    },
+    {
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": -30.9969234,
+        "posY": 1.58502853,
+        "posZ": 34.99936,
+        "rotX": 359.9202,
+        "rotY": 269.795532,
+        "rotZ": 0.0171542224,
+        "scaleX": 1.05552506,
+        "scaleY": 1.0,
+        "scaleZ": 1.05552506
+      },
+      "Nickname": "Life",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": false,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/958597478463059274/DE73B64E1B5C6F272EA3BEE5EF458E73E48FF03D/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.1,
+          "MergeDistancePixels": 5.0,
+          "Stackable": false
+        }
+      },
+      "XmlUI": "",
+      "LuaScript": "MIN_VALUE = -99\r\nMAX_VALUE = 999\r\n\r\nfunction onload(saved_data)\r\n    light_mode = false\r\n    tooltip_show = true\r\n    val = 0\r\n\r\n    if saved_data ~= \"\" then\r\n        local loaded_data = JSON.decode(saved_data)\r\n        light_mode = loaded_data[1]\r\n        val = loaded_data[2]\r\n        tooltip_show = loaded_data[3]\r\n    end\r\n\r\n    createAll()\r\nend\r\n\r\nfunction updateSave()\r\n    local data_to_save = {light_mode, val, tooltip_show}\r\n    saved_data = JSON.encode(data_to_save)\r\n    self.script_state = saved_data\r\nend\r\n\r\nfunction createAll()\r\n    s_color = {0.5, 0.5, 0.5, 95}\r\n\r\n    if light_mode then\r\n        f_color = {1,1,1,95}\r\n    else\r\n        f_color = {0,0,0,100}\r\n    end\r\n\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.createButton({\r\n      label=tostring(val),\r\n      click_function=\"add_subtract\",\r\n      tooltip=ttText,\r\n      function_owner=self,\r\n      position={0,0.05,-0.2},\r\n      height=600,\r\n      width=1000,\r\n      alignment = 3,\r\n      scale={x=1.5, y=1.5, z=1.5},\r\n      font_size=600,\r\n      font_color=f_color,\r\n      color={0,0,0,0}\r\n      })\r\n\r\n    self.createInput({\r\n        value = self.getName(), \r\n        input_function = \"editName\", \r\n        tooltip=ttText,\r\n        label = \"Counter\",\r\n        function_owner = self, \r\n        alignment = 3,\r\n        position = {0,0.05,1.7}, \r\n        width = 1200, \r\n        height = 1000, \r\n        font_size = 200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color= f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n\r\n    if tooltip_show then\r\n        tooltipShowText = \"[ Hide value in tooltip ]\"\r\n    else\r\n        tooltipShowText = \"[ Show value in tooltip ]\"\r\n    end\r\n    self.createButton({\r\n        label=tooltipShowText,\r\n        tooltip=tooltipShowText,\r\n        click_function=\"swap_tooltip\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.2},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    if light_mode then\r\n        lightButtonText = \"[ Set dark text ]\"\r\n    else\r\n        lightButtonText = \"[ Set light text ]\"\r\n    end\r\n    self.createButton({\r\n        label=lightButtonText,\r\n        tooltip=lightButtonText,\r\n        click_function=\"swap_fcolor\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.6},\r\n        rotation={180,180,0},\r\n        height=150,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n\r\n    self.createButton({\r\n        label=\"[ Reset ]\",\r\n        tooltip=\"[ Reset ]\",\r\n        click_function=\"reset_val\",\r\n        function_owner=self,\r\n        position={0,-0.05,1.4},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=250,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    self.createInput({\r\n        value = \"#\",\r\n        label = \"...\",\r\n        input_function = \"keepSample\", \r\n        function_owner = self, \r\n        alignment = 3,\r\n        position={0,-0.05,-0.8},\r\n        rotation={180,180,0},\r\n        width = 600, \r\n        height = 800, \r\n        font_size = 1200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color=f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n    setTooltips()\r\nend\r\n\r\nfunction removeAll()\r\n    self.removeInput(0)\r\n    self.removeInput(1)\r\n    self.removeButton(0)\r\n    self.removeButton(1)\r\n    self.removeButton(2)\r\n    self.removeButton(3)\r\nend\r\n\r\nfunction reloadAll()\r\n    removeAll()\r\n    createAll()\r\n    setTooltips()\r\n    updateSave()\r\nend\r\n\r\nfunction swap_fcolor(_obj, _color, alt_click)\r\n    light_mode = not light_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_align(_obj, _color, alt_click)\r\n    center_mode = not center_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_tooltip(_obj, _color, alt_click)\r\n    tooltip_show = not tooltip_show\r\n    reloadAll()\r\n    setTooltips()\r\nend\r\n\r\nfunction editName(_obj, _string, value) \r\n    self.setName(value)\r\n    setTooltips()\r\nend\r\n\r\nfunction add_subtract(_obj, _color, alt_click)\r\n    mod = alt_click and -1 or 1\r\n    new_value = math.min(math.max(val + mod, MIN_VALUE), MAX_VALUE)\r\n    if val ~= new_value then\r\n        val = new_value\r\n        updateVal()\r\n        updateSave()\r\n    end\r\nend\r\n\r\nfunction updateVal()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editButton({\r\n        index = 0,\r\n        label = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction reset_val()\r\n    val = 0\r\n    updateVal()\r\n    updateSave()\r\nend\r\n\r\nfunction setTooltips()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editInput({\r\n        index = 0,\r\n        value = self.getName(),\r\n        tooltip = ttText\r\n        })\r\n    self.editButton({\r\n        index = 0,\r\n        value = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction null()\r\nend\r\n\r\nfunction keepSample(_obj, _string, value) \r\n    reloadAll()\r\nend",
+      "LuaScriptState": "[false,4,false]",
+      "GUID": "a0b203"
+    },
+    {
+      "Name": "Custom_Token",
+      "Transform": {
+        "posX": -30.99982,
+        "posY": 1.5756098,
+        "posZ": 2.99995565,
+        "rotX": 359.920166,
+        "rotY": 269.871033,
+        "rotZ": 0.01705204,
+        "scaleX": 1.05552506,
+        "scaleY": 1.0,
+        "scaleZ": 1.05552506
+      },
+      "Nickname": "Life",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Locked": false,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": false,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomImage": {
+        "ImageURL": "http://cloud-3.steamusercontent.com/ugc/958597478463059274/DE73B64E1B5C6F272EA3BEE5EF458E73E48FF03D/",
+        "ImageSecondaryURL": "",
+        "ImageScalar": 1.0,
+        "WidthScale": 0.0,
+        "CustomToken": {
+          "Thickness": 0.1,
+          "MergeDistancePixels": 5.0,
+          "Stackable": false
+        }
+      },
+      "XmlUI": "",
+      "LuaScript": "MIN_VALUE = -99\r\nMAX_VALUE = 999\r\n\r\nfunction onload(saved_data)\r\n    light_mode = false\r\n    tooltip_show = true\r\n    val = 0\r\n\r\n    if saved_data ~= \"\" then\r\n        local loaded_data = JSON.decode(saved_data)\r\n        light_mode = loaded_data[1]\r\n        val = loaded_data[2]\r\n        tooltip_show = loaded_data[3]\r\n    end\r\n\r\n    createAll()\r\nend\r\n\r\nfunction updateSave()\r\n    local data_to_save = {light_mode, val, tooltip_show}\r\n    saved_data = JSON.encode(data_to_save)\r\n    self.script_state = saved_data\r\nend\r\n\r\nfunction createAll()\r\n    s_color = {0.5, 0.5, 0.5, 95}\r\n\r\n    if light_mode then\r\n        f_color = {1,1,1,95}\r\n    else\r\n        f_color = {0,0,0,100}\r\n    end\r\n\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.createButton({\r\n      label=tostring(val),\r\n      click_function=\"add_subtract\",\r\n      tooltip=ttText,\r\n      function_owner=self,\r\n      position={0,0.05,-0.2},\r\n      height=600,\r\n      width=1000,\r\n      alignment = 3,\r\n      scale={x=1.5, y=1.5, z=1.5},\r\n      font_size=600,\r\n      font_color=f_color,\r\n      color={0,0,0,0}\r\n      })\r\n\r\n    self.createInput({\r\n        value = self.getName(), \r\n        input_function = \"editName\", \r\n        tooltip=ttText,\r\n        label = \"Counter\",\r\n        function_owner = self, \r\n        alignment = 3,\r\n        position = {0,0.05,1.7}, \r\n        width = 1200, \r\n        height = 1000, \r\n        font_size = 200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color= f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n\r\n    if tooltip_show then\r\n        tooltipShowText = \"[ Hide value in tooltip ]\"\r\n    else\r\n        tooltipShowText = \"[ Show value in tooltip ]\"\r\n    end\r\n    self.createButton({\r\n        label=tooltipShowText,\r\n        tooltip=tooltipShowText,\r\n        click_function=\"swap_tooltip\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.2},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    if light_mode then\r\n        lightButtonText = \"[ Set dark text ]\"\r\n    else\r\n        lightButtonText = \"[ Set light text ]\"\r\n    end\r\n    self.createButton({\r\n        label=lightButtonText,\r\n        tooltip=lightButtonText,\r\n        click_function=\"swap_fcolor\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.6},\r\n        rotation={180,180,0},\r\n        height=150,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n\r\n    self.createButton({\r\n        label=\"[ Reset ]\",\r\n        tooltip=\"[ Reset ]\",\r\n        click_function=\"reset_val\",\r\n        function_owner=self,\r\n        position={0,-0.05,1.4},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=250,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    self.createInput({\r\n        value = \"#\",\r\n        label = \"...\",\r\n        input_function = \"keepSample\", \r\n        function_owner = self, \r\n        alignment = 3,\r\n        position={0,-0.05,-0.8},\r\n        rotation={180,180,0},\r\n        width = 600, \r\n        height = 800, \r\n        font_size = 1200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color=f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n    setTooltips()\r\nend\r\n\r\nfunction removeAll()\r\n    self.removeInput(0)\r\n    self.removeInput(1)\r\n    self.removeButton(0)\r\n    self.removeButton(1)\r\n    self.removeButton(2)\r\n    self.removeButton(3)\r\nend\r\n\r\nfunction reloadAll()\r\n    removeAll()\r\n    createAll()\r\n    setTooltips()\r\n    updateSave()\r\nend\r\n\r\nfunction swap_fcolor(_obj, _color, alt_click)\r\n    light_mode = not light_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_align(_obj, _color, alt_click)\r\n    center_mode = not center_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_tooltip(_obj, _color, alt_click)\r\n    tooltip_show = not tooltip_show\r\n    reloadAll()\r\n    setTooltips()\r\nend\r\n\r\nfunction editName(_obj, _string, value) \r\n    self.setName(value)\r\n    setTooltips()\r\nend\r\n\r\nfunction add_subtract(_obj, _color, alt_click)\r\n    mod = alt_click and -1 or 1\r\n    new_value = math.min(math.max(val + mod, MIN_VALUE), MAX_VALUE)\r\n    if val ~= new_value then\r\n        val = new_value\r\n        updateVal()\r\n        updateSave()\r\n    end\r\nend\r\n\r\nfunction updateVal()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editButton({\r\n        index = 0,\r\n        label = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction reset_val()\r\n    val = 0\r\n    updateVal()\r\n    updateSave()\r\nend\r\n\r\nfunction setTooltips()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editInput({\r\n        index = 0,\r\n        value = self.getName(),\r\n        tooltip = ttText\r\n        })\r\n    self.editButton({\r\n        index = 0,\r\n        value = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction null()\r\nend\r\n\r\nfunction keepSample(_obj, _string, value) \r\n    reloadAll()\r\nend",
+      "LuaScriptState": "[false,4,false]",
+      "GUID": "20dc53"
     }
   ],
   "DecalPallet": [],
