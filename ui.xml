@@ -77,6 +77,8 @@
                     <Image class="expansionImage" image="Advanced Shitposting"></Image></ToggleButton>
                 <ToggleButton class="expansionButton" id="BullshitTier" text="Bullshit Tier (BuST)">
                     <Image class="expansionImage" image="BullshitTier"></Image></ToggleButton>
+                <ToggleButton class="expansionButton" id="VastGensokyo" text="Vast Gensokyo">
+                    <Image class="expansionImage" image="VastGensokyo"></Image></ToggleButton>
         </GridLayout>
     <!--/Panel-->
     </VerticalScrollView>

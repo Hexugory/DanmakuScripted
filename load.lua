@@ -410,8 +410,8 @@ function tablelength(T)
     return count
 end
 
-expansions = {LunaticExtra = false, ShitTier = false, GarbageTier = false, TerminalExpansion = false, FoxBox = false, YuriParadise = false, EToFS = false, ZhelotRoles = false, WillofFate = false, DBSCharacters = false, GoldenAdditions = false, DumbassCards = false, MUSCLE = false, Traits = false, AdvancedShitposting = false, Wild = false, BullshitTier = false}
-expansions2 = {LunaticExtra = false, ShitTier = false, GarbageTier = false, TerminalExpansion = false, FoxBox = false, YuriParadise = false, EToFS = false, ZhelotRoles = false, WillofFate = false, DBSCharacters = false, GoldenAdditions = false, DumbassCards = false, MUSCLE = false, Traits = false, AdvancedShitposting = false, Wild = false, BullshitTier = false}
+expansions = {LunaticExtra = false, ShitTier = false, GarbageTier = false, TerminalExpansion = false, FoxBox = false, YuriParadise = false, EToFS = false, ZhelotRoles = false, WillofFate = false, DBSCharacters = false, GoldenAdditions = false, DumbassCards = false, MUSCLE = false, Traits = false, AdvancedShitposting = false, Wild = false, BullshitTier = false, VastGensokyo = false}
+expansions2 = {LunaticExtra = false, ShitTier = false, GarbageTier = false, TerminalExpansion = false, FoxBox = false, YuriParadise = false, EToFS = false, ZhelotRoles = false, WillofFate = false, DBSCharacters = false, GoldenAdditions = false, DumbassCards = false, MUSCLE = false, Traits = false, AdvancedShitposting = false, Wild = false, BullshitTier = false, VastGensokyo = false}
 DeckerCards = {
     MainCards = {},
     LunaticCards = {},
