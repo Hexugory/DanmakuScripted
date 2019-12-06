@@ -1,3 +1,5 @@
+--%include <vscode/console>
+
 --Decker
 do
     Decker = {}
@@ -748,4 +750,28 @@ end
 function openPanel(player, _, id)
     UI.setAttribute("expansionSelection", "active", true)
     UI.setAttribute("openButton", "active", false)
+end
+
+--# Turn Phase Tracker
+
+function StringToBool(s) if s == "False" or s == "false" then return false else return true end end
+
+function onPlayerTurnStart(_, _)
+    UI.setAttribute("phaseTrackerButtonStart" , "isOn", true)
+end
+
+function phaseTrackerPhaseChange(Playerr, isOn, id)
+    on = StringToBool(isOn)
+    --print(Playerr.color)
+    --# Makes sure only active player can change phase
+    if Playerr.color ~= Turns.turn_color and Playerr.color ~= "Black" then UI.setAttribute(id, "isOn", not on) return else UI.setAttribute(id, "isOn", on) end
+    --print(id)
+    --print(isOn)
+    --print(on)
+    --# Goes to next turn 
+    -- if id=="phaseTrackerButtonEnd" and on then
+    --     print(Turns.getNextTurnColor())
+    --     Turns.turn_color = Turns.getNextTurnColor()
+    --     UI.setAttribute(id, "isOn", false)
+    -- end
 end

@@ -105,3 +105,39 @@
         onClick="closePanel">
     </Button>
 </Panel>
+
+<!-- phase tracker -->
+<Defaults>
+    <Image class="phaseTrackerButton" image="phaseTrackerIconPlaceholder" width="90%" height="90%"/>
+    <ToggleButton class="phaseTrackerButton" onValueChanged="phaseTrackerPhaseChange" colors="Black|Blue|Black|Red" iconColor="Red"/>
+</Defaults>
+<Panel id="phaseTracker"
+    width="300"
+    height="200"
+    rectAlignment="UpperLeft"
+    offsetXY="100 -50"
+    allowDragging="true"
+    returnToOriginalPositionWhenReleased="false">
+    <ToggleGroup id="phaseTrackerButtons" toggleBackgroundColor="#FFFFFF">
+        <GridLayout padding="5 5 5 5" spacing="0" childAlignment="UpperLeft" constraintCount="3" constraint="FixedColumnCount">
+            <ToggleButton class="phaseTrackerButton" id="phaseTrackerButtonStart" tooltip="Start">
+                <Image class="phaseTrackerButton" image="phaseStart"/>
+            </ToggleButton>
+            <ToggleButton class="phaseTrackerButton" id="phaseTrackerButtonIncident" tooltip="Incident">
+                <Image class="phaseTrackerButton" image="phaseIncident"/>
+            </ToggleButton>
+            <ToggleButton class="phaseTrackerButton" id="phaseTrackerButtonDraw" tooltip="Draw">
+                <Image class="phaseTrackerButton" image="phaseDraw"/>
+            </ToggleButton>
+            <ToggleButton class="phaseTrackerButton" id="phaseTrackerButtonMain" tooltip="Main">
+                <Image class="phaseTrackerButton" image="phaseMain"/>
+            </ToggleButton>
+            <ToggleButton class="phaseTrackerButton" id="phaseTrackerButtonDiscard" tooltip="Discard">
+                <Image class="phaseTrackerButton" image="phaseDiscard"/>
+            </ToggleButton>
+            <ToggleButton class="phaseTrackerButton" id="phaseTrackerButtonEnd" tooltip="End">
+                <Image class="phaseTrackerButton" image="phaseEnd"/>
+            </ToggleButton>
+        </GridLayout>
+    </ToggleGroup>
+</Panel>
