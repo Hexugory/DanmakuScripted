@@ -3,7 +3,7 @@
   "GameMode": "Danmaku!!",
   "Gravity": 0.5,
   "PlayArea": 0.238889068,
-  "Date": "12/1/2019 11:25:16 PM",
+  "Date": "1/8/2020 5:58:05 PM",
   "Table": "Table_None",
   "Sky": "Sky_Museum",
   "Note": "",
@@ -91,7 +91,7 @@
       "URL": "https://cdn.discordapp.com/attachments/530296766440931330/656919492701454386/Icon.png"
     }
   ],
-  "LuaScript": "--%include <vscode/console>\r\n\r\n--Decker\r\ndo\r\n    Decker = {}\r\n\r\n    -- provide unique ID starting from 20 for present decks\r\n    local nextID\r\n    do\r\n        local _nextID = 20\r\n        nextID = function()\r\n            _nextID = _nextID + 1\r\n            return tostring(_nextID)\r\n        end\r\n    end\r\n\r\n    -- Asset signature (equality comparison)\r\n    local function assetSignature(assetData)\r\n        return table.concat({\r\n            assetData.FaceURL,\r\n            assetData.BackURL,\r\n            assetData.NumWidth,\r\n            assetData.NumHeight,\r\n            assetData.BackIsHidden and 'hb' or '',\r\n            assetData.UniqueBack and 'ub' or ''\r\n        })\r\n    end\r\n    -- Asset ID storage to avoid new ones for identical assets\r\n    local idLookup = {}\r\n    local function assetID(assetData)\r\n        local sig = assetSignature(assetData)\r\n        local key = idLookup[sig]\r\n        if not key then\r\n            key = nextID()\r\n            idLookup[sig] = key\r\n        end\r\n        return key\r\n    end\r\n\r\n    local assetMeta = {\r\n        deck = function(self, cardNum, options)\r\n            return Decker.AssetDeck(self, cardNum, options)\r\n        end\r\n    }\r\n    assetMeta = {__index = assetMeta}\r\n\r\n    -- Create a new CustomDeck asset\r\n    function Decker.Asset(face, back, options)\r\n        local asset = {}\r\n        options = options or {}\r\n        asset.data = {\r\n            FaceURL = face or error('Decker.Asset: faceImg link required'),\r\n            BackURL = back or error('Decker.Asset: backImg link required'),\r\n            NumWidth = options.width or 1,\r\n            NumHeight = options.height or 1,\r\n            BackIsHidden = options.hiddenBack or false,\r\n            UniqueBack = options.uniqueBack or false\r\n        }\r\n        -- Reuse ID if asset existing\r\n        asset.id = assetID(asset.data)\r\n        return setmetatable(asset, assetMeta)\r\n    end\r\n    -- Pull a Decker.Asset from card JSONs CustomDeck entry\r\n    local function assetFromData(assetData)\r\n        return setmetatable({data = assetData, id = assetID(assetData)}, assetMeta)\r\n    end\r\n\r\n    -- Create a base for JSON objects\r\n    function Decker.BaseObject()\r\n        return {\r\n            Name = 'Base',\r\n            Transform = {\r\n                posX = 0, posY = 5, posZ = 0,\r\n                rotX = 0, rotY = 0, rotZ = 0,\r\n                scaleX = 1, scaleY = 1, scaleZ = 1\r\n            },\r\n            Nickname = '',\r\n            Description = '',\r\n            ColorDiffuse = { r = 1, g = 1, b = 1 },\r\n            Locked = false,\r\n            Grid = true,\r\n            Snap = true,\r\n            Autoraise = true,\r\n            Sticky = true,\r\n            Tooltip = true,\r\n            GridProjection = false,\r\n            Hands = false,\r\n            XmlUI = '',\r\n            LuaScript = '',\r\n            LuaScriptState = '',\r\n            GUID = 'deadbf'\r\n        }\r\n    end\r\n    -- Typical paramters map with defaults\r\n    local commonMap = {\r\n        name   = {field = 'Nickname',    default = ''},\r\n        desc   = {field = 'Description', default = ''},\r\n        script = {field = 'LuaScript',   default = ''},\r\n        xmlui  = {field = 'XmlUI',       default = ''},\r\n        scriptState = {field = 'LuaScriptState', default = ''},\r\n        locked  = {field = 'Locked',  default = false},\r\n        tooltip = {field = 'Tooltip', default = true},\r\n        guid    = {field = 'GUID',    default = 'deadbf'},\r\n    }\r\n    -- Apply some basic parameters on base JSON object\r\n    function Decker.SetCommonOptions(obj, options)\r\n        options = options or {}\r\n        for k,v in pairs(commonMap) do\r\n            -- can't use and/or logic cause of boolean fields\r\n            if options[k] ~= nil then\r\n                obj[v.field] = options[k]\r\n            else\r\n                obj[v.field] = v.default\r\n            end\r\n        end\r\n        -- passthrough unrecognized keys\r\n        for k,v in pairs(options) do\r\n            if not commonMap[k] then\r\n                obj[k] = v\r\n            end\r\n        end\r\n    end\r\n    -- default spawnObjectJSON params since it doesn't like blank fields\r\n    local function defaultParams(params, json)\r\n        params = params or {}\r\n        params.json = json\r\n        params.position = params.position or {0, 5, 0}\r\n        params.rotation = params.rotation or {0, 0, 0}\r\n        params.scale = params.scale or {1, 1, 1}\r\n        if params.sound == nil then\r\n            params.sound = true\r\n        end\r\n        return params\r\n    end\r\n\r\n    -- For copy method\r\n    local deepcopy\r\n    deepcopy = function(t)\r\n        local copy = {}\r\n        for k,v in pairs(t) do\r\n           if type(v) == 'table' then\r\n               copy[k] = deepcopy(v)\r\n           else\r\n               copy[k] = v\r\n           end\r\n        end\r\n        return copy\r\n    end\r\n    -- meta for all Decker derived objects\r\n    local commonMeta = {\r\n        -- return object JSON string, used cached if present\r\n        _cache = function(self)\r\n            if not self.json then\r\n                self.json = JSON.encode(self.data)\r\n            end\r\n            return self.json\r\n        end,\r\n        -- invalidate JSON string cache\r\n        _recache = function(self)\r\n            self.json = nil\r\n            return self\r\n        end,\r\n        spawn = function(self, params)\r\n            params = defaultParams(params, self:_cache())\r\n            return spawnObjectJSON(params)\r\n        end,\r\n        copy = function(self)\r\n            return setmetatable(deepcopy(self), getmetatable(self))\r\n        end,\r\n        setCommon = function(self, options)\r\n            Decker.SetCommonOptions(self.data, options)\r\n            return self\r\n        end,\r\n    }\r\n    -- apply common part on a specific metatable\r\n    local function customMeta(mt)\r\n        for k,v in pairs(commonMeta) do\r\n            mt[k] = v\r\n        end\r\n        mt.__index = mt\r\n        return mt\r\n    end\r\n\r\n    -- DeckerCard metatable\r\n    local cardMeta = {\r\n        setAsset = function(self, asset)\r\n            local cardIndex = self.data.CardID:sub(-2, -1)\r\n            self.data.CardID = asset.id .. cardIndex\r\n            self.data.CustomDeck = {[asset.id] = asset.data}\r\n            return self:_recache()\r\n        end,\r\n        getAsset = function(self)\r\n            local deckID = next(self.data.CustomDeck)\r\n            return assetFromData(self.data.CustomDeck[deckID])\r\n        end,\r\n        -- reset deck ID to a consistent value script-wise\r\n        _recheckDeckID = function(self)\r\n            local oldID = next(self.data.CustomDeck)\r\n            local correctID = assetID(self.data.CustomDeck[oldID])\r\n            if oldID ~= correctID then\r\n                local cardIndex = self.data.CardID:sub(-2, -1)\r\n                self.data.CardID = correctID .. cardIndex\r\n                self.data.CustomDeck[correctID] = self.data.CustomDeck[oldID]\r\n                self.data.CustomDeck[oldID] = nil\r\n            end\r\n            return self\r\n        end\r\n    }\r\n    cardMeta = customMeta(cardMeta)\r\n    -- Create a DeckerCard from an asset\r\n    function Decker.Card(asset, row, col, options)\r\n        row, col = row or 1, col or 1\r\n        options = options or {}\r\n        local card = Decker.BaseObject()\r\n        card.Name = 'Card'\r\n        card.Hands = true\r\n        -- optional custom fields\r\n        Decker.SetCommonOptions(card, options)\r\n        if options.sideways ~= nil then\r\n            card.SidewaysCard = options.sideways\r\n            -- FIXME passthrough set that field, find some more elegant solution\r\n            card.sideways = nil\r\n        end\r\n        -- CardID string is parent deck ID concat with its 0-based index (always two digits)\r\n        local num = (row-1)*asset.data.NumWidth + col - 1\r\n        num = string.format('%02d', num)\r\n        card.CardID = asset.id .. num\r\n        -- just the parent asset reference needed\r\n        card.CustomDeck = {[asset.id] = asset.data}\r\n\r\n        local obj = setmetatable({data = card}, cardMeta)\r\n        obj:_cache()\r\n        return obj\r\n    end\r\n\r\n\r\n    -- DeckerDeck meta\r\n    local deckMeta = {\r\n        count = function(self)\r\n            return #self.data.DeckIDs\r\n        end,\r\n        -- Transform index into positive\r\n        index = function(self, ind)\r\n            if ind < 0 then\r\n                return self:count() + ind + 1\r\n            else\r\n                return ind\r\n            end\r\n        end,\r\n        swap = function(self, i1, i2)\r\n            local ri1, ri2 = self:index(i1), self:index(i2)\r\n            assert(ri1 > 0 and ri1 <= self:count(), 'DeckObj.rearrange: index ' .. i1 .. ' out of bounds')\r\n            assert(ri2 > 0 and ri2 <= self:count(), 'DeckObj.rearrange: index ' .. i2 .. ' out of bounds')\r\n            self.data.DeckIDs[ri1], self.data.DeckIDs[ri2] = self.data.DeckIDs[ri2], self.data.DeckIDs[ri1]\r\n            local co = self.data.ContainedObjects\r\n            co[ri1], co[ri2] = co[ri2], co[ri1]\r\n            return self:_recache()\r\n        end,\r\n        -- rebuild self.data.CustomDeck based on contained cards\r\n        _rescanDeckIDs = function(self, id)\r\n            local cardIDs = {}\r\n            for k,card in ipairs(self.data.ContainedObjects) do\r\n                local cardID = next(card.CustomDeck)\r\n                if not cardIDs[cardID] then\r\n                    cardIDs[cardID] = card.CustomDeck[cardID]\r\n                end\r\n            end\r\n            -- eeh, GC gotta earn its keep as well\r\n            -- FIXME if someone does shitton of removals, may cause performance issues?\r\n            self.data.CustomDeck = cardIDs\r\n        end,\r\n        remove = function(self, ind, skipRescan)\r\n            local rind = self:index(ind)\r\n            assert(rind > 0 and rind <= self:count(), 'DeckObj.remove: index ' .. ind .. ' out of bounds')\r\n            local card = self.data.ContainedObjects[rind]\r\n            table.remove(self.data.DeckIDs, rind)\r\n            table.remove(self.data.ContainedObjects, rind)\r\n            if not skipRescan then\r\n                self:_rescanDeckIDs(next(card.CustomDeck))\r\n            end\r\n            return self:_recache()\r\n        end,\r\n        removeMany = function(self, ...)\r\n            local indices = {...}\r\n            table.sort(indices, function(e1,e2) return self:index(e1) > self:index(e2) end)\r\n            for _,ind in ipairs(indices) do\r\n                self:remove(ind, true)\r\n            end\r\n            self:_rescanDeckIDs()\r\n            return self:_recache()\r\n        end,\r\n        insert = function(self, card, ind)\r\n            ind = ind or (self:count() + 1)\r\n            local rind = self:index(ind)\r\n            assert(rind > 0 and rind <= (self:count()+1), 'DeckObj.insert: index ' .. ind .. ' out of bounds')\r\n            table.insert(self.data.DeckIDs, rind, card.data.CardID)\r\n            table.insert(self.data.ContainedObjects, rind, card.data)\r\n            local id = next(card.data.CustomDeck)\r\n            if not self.data.CustomDeck[id] then\r\n                self.data.CustomDeck[id] = card.data.CustomDeck[id]\r\n            end\r\n            return self:_recache()\r\n        end,\r\n        reverse = function(self)\r\n            local s,e = 1, self:count()\r\n            while s < e do\r\n                self:swap(s, e)\r\n                s = s+1\r\n                e = e-1\r\n            end\r\n            return self:_recache()\r\n        end,\r\n        cardAt = function(self, ind)\r\n            local rind = self:index(ind)\r\n            assert(rind > 0 and rind <= (self:count()+1), 'DeckObj.insert: index ' .. ind .. ' out of bounds')\r\n            local card = setmetatable({data = deepcopy(self.data.ContainedObjects[rind])}, cardMeta)\r\n            card:_cache()\r\n            return card\r\n        end,\r\n        switchAssets = function(self, replaceTable)\r\n            -- destructure replace table into\r\n            -- [ID_to_replace] -> [ID_to_replace_with]\r\n            -- [new_asset_ID] -> [new_asset_data]\r\n            local idReplace = {}\r\n            local assets = {}\r\n            for oldAsset, newAsset in pairs(replaceTable) do\r\n                assets[newAsset.id] = newAsset.data\r\n                idReplace[oldAsset.id] = newAsset.id\r\n            end\r\n            -- update deckIDs\r\n            for k,cardID in ipairs(self.data.DeckIDs) do\r\n                local deckID, cardInd = cardID:sub(1, -3), cardID:sub(-2, -1)\r\n                if idReplace[deckID] then\r\n                    self.data.DeckIDs[k] = idReplace[deckID] .. cardInd\r\n                end\r\n            end\r\n            -- update CustomDeck data - nil replaced\r\n            for replacedID in pairs(idReplace) do\r\n                if self.data.CustomDeck[replacedID] then\r\n                    self.data.CustomDeck[replacedID] = nil\r\n                end\r\n            end\r\n            -- update CustomDeck data - add replacing\r\n            for _,replacingID in pairs(idReplace) do\r\n                self.data.CustomDeck[replacingID] = assets[replacingID]\r\n            end\r\n            -- update card data\r\n            for k,cardData in ipairs(self.data.ContainedObjects) do\r\n                local deckID = next(cardData.CustomDeck)\r\n                if idReplace[deckID] then\r\n                    cardData.CustomDeck[deckID] = nil\r\n                    cardData.CustomDeck[idReplace[deckID]] = assets[idReplace[deckID]]\r\n                end\r\n            end\r\n            return self:_recache()\r\n        end,\r\n        getAssets = function(self)\r\n            local assets = {}\r\n            for id,assetData in pairs(self.data.CustomDeck) do\r\n                assets[#assets+1] = assetFromData(assetData)\r\n            end\r\n            return assets\r\n        end\r\n    }\r\n    deckMeta = customMeta(deckMeta)\r\n    -- Create DeckerDeck object from DeckerCards\r\n    function Decker.Deck(cards, options)\r\n        options = options or {}\r\n        assert(#cards > 1, 'Trying to create a Decker.deck with less than 2 cards')\r\n        local deck = Decker.BaseObject()\r\n        deck.Name = 'Deck'\r\n        Decker.SetCommonOptions(deck, options)\r\n        deck.DeckIDs = {}\r\n        deck.CustomDeck = {}\r\n        deck.ContainedObjects = {}\r\n        deck.SidewaysCard = options.sideways or false\r\n        for _,card in ipairs(cards) do\r\n            deck.DeckIDs[#deck.DeckIDs+1] = card.data.CardID\r\n            local id = next(card.data.CustomDeck)\r\n            if not deck.CustomDeck[id] then\r\n                deck.CustomDeck[id] = card.data.CustomDeck[id]\r\n            end\r\n            deck.ContainedObjects[#deck.ContainedObjects+1] = card.data\r\n        end\r\n\r\n        local obj = setmetatable({data = deck}, deckMeta)\r\n        obj:_cache()\r\n        return obj\r\n    end\r\n    -- Create DeckerDeck from an asset using X cards on its sheet\r\n    function Decker.AssetDeck(asset, cardNum, options)\r\n        cardNum = cardNum or asset.data.NumWidth * asset.data.NumHeight\r\n        local row, col, width = 1, 1, asset.data.NumWidth\r\n        local cards = {}\r\n        for k=1,cardNum do\r\n            cards[#cards+1] = Decker.Card(asset, row, col, {sideways=options.sideways})\r\n            col = col+1\r\n            if col > width then\r\n                row, col = row+1, 1\r\n            end\r\n        end\r\n        return Decker.Deck(cards, options)\r\n    end\r\nend\r\n--End Decker\r\n\r\nfunction tablelength(T)\r\n    local count = 0\r\n    for _ in pairs(T) do count = count + 1 end\r\n    return count\r\nend\r\n\r\nexpansions = {LunaticExtra = false, ShitTier = false, GarbageTier = false, TerminalExpansion = false, FoxBox = false, YuriParadise = false, EToFS = false, ZhelotRoles = false, WillofFate = false, DBSCharacters = false, GoldenAdditions = false, DumbassCards = false, MUSCLE = false, Traits = false, AdvancedShitposting = false, Wild = false, BullshitTier = false, VastGensokyo = false}\r\nexpansions2 = {LunaticExtra = false, ShitTier = false, GarbageTier = false, TerminalExpansion = false, FoxBox = false, YuriParadise = false, EToFS = false, ZhelotRoles = false, WillofFate = false, DBSCharacters = false, GoldenAdditions = false, DumbassCards = false, MUSCLE = false, Traits = false, AdvancedShitposting = false, Wild = false, BullshitTier = false, VastGensokyo = false}\r\nDeckerCards = {\r\n    MainCards = {},\r\n    LunaticCards = {},\r\n    IncidentCards = {},\r\n    CharacterCards = {},\r\n    HeroineCards = {},\r\n    PartnerCards = {},\r\n    StageCards = {},\r\n    ExCards = {},\r\n    RevealCards = {},\r\n    TerminalCards = {},\r\n    PrecognitionCards = {},\r\n    NightCards = {},\r\n    TraitCards = {},\r\n    WildCards = {}\r\n}\r\nremeber = 0\r\n\r\nfunction onLoad()\r\n    local scriptObjects = getObjectFromGUID(\"906d21\").getObjects()\r\n    for key,value in pairs(scriptObjects) do _G[value.getName()] = value.getGUID() end\r\nend\r\n\r\nfunction mysplit(inputstr, sep)\r\n    if sep == nil then\r\n            sep = \"%s\"\r\n    end\r\n    local t={} ; i=1\r\n    for str in string.gmatch(inputstr, \"([^\"..sep..\"]+)\") do\r\n            t[i] = str\r\n            i = i + 1\r\n    end\r\n    return t\r\nend\r\n\r\nfunction toggleExpansion(player, isOn, id)\r\n    local bool = false\r\n    if isOn == \"True\" then\r\n        bool = true\r\n    end\r\n    expansions[id] = bool\r\n    expansions2[id] = bool\r\nend\r\n\r\nfunction webRequestCallback(webReturn)\r\n    local currentexpansion = \"\"\r\n    for index,value in ipairs(mysplit(webReturn.url, '/')) do\r\n        firstChar = string.sub(value,1,1)\r\n        if firstChar:gsub(\"^%l\", string.upper)==firstChar and firstChar~='6' then\r\n            currentexpansion = value\r\n        end\r\n    end\r\n    cardResources = JSON.decode(webReturn.text)\r\n    for deckName,deck in pairs(cardResources) do\r\n        if deck.face then\r\n            if deckName==\"HeroineCards\" or deckName==\"PartnerCards\" or deckName==\"ExCards\" or deckName==\"StageCards\" then deck.back = \"https://i.imgur.com/NQSqNLQ.jpg\" end\r\n            local cardAsset = Decker.Asset(deck.face, deck.back, {width = deck.width, height = deck.height, hiddenBack = true})\r\n            if deckName==\"CharacterCards\" then DeckerCards[deckName][currentexpansion] = {} end\r\n            for i=1,deck.cards do\r\n                local yc = 1\r\n                local xc = i\r\n                while xc>deck.width do\r\n                    xc = xc-deck.width\r\n                    yc = yc+1\r\n                end\r\n                if deckName==\"CharacterCards\" then table.insert(DeckerCards[deckName][currentexpansion], Decker.Card(cardAsset, yc, xc, {sideways=true}))\r\n                else table.insert(DeckerCards[deckName], Decker.Card(cardAsset, yc, xc)) end\r\n            end\r\n        end\r\n    end\r\n    expansions2[currentexpansion] = false\r\nend\r\n\r\nfunction waitCondition()\r\n    if remeber == 0 then\r\n        return true\r\n    elseif expansions2[remeber] == false then\r\n        print('Last expansion done.')\r\n        return true\r\n    else\r\n        return false\r\n    end\r\nend\r\n\r\nCDecks = 1\r\n\r\nfunction BasePlates()\r\n    if basePlatesPlaced then return false end\r\n    for i=1,3 do\r\n        getObjectFromGUID(IPlate).takeObject({position = {basePos[1]+5*(i-1),basePos[2],basePos[3]}, rotation = {0,180,0}, smooth = false}).setLock(true)\r\n        table.insert(snapPoints, {position = {basePos[1]+5*(i-1),basePos[2],basePos[3]}, rotation = {0,180,0}, rotation_snap = true})\r\n    end\r\n    for i=1,3 do\r\n        getObjectFromGUID(IPlate).takeObject({position = {basePos[1]+5*(i-1),basePos[2]+0.1,basePos[3]-7}, rotation = {0,180,180}, smooth = false}).setLock(true)\r\n        table.insert(snapPoints, {position = {basePos[1]+5*(i-1),basePos[2],basePos[3]-7}, rotation = {0,180,180}, rotation_snap = true})\r\n    end\r\n    getObjectFromGUID(IDeck).takeObject({position = {basePos[1]+1,basePos[2],basePos[3]+6}, rotation = {0,90,0}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]+1,basePos[2],basePos[3]+6}, rotation = {0,90,0}, rotation_snap = true})\r\n    getObjectFromGUID(IDiscard).takeObject({position = {basePos[1]+9,basePos[2],basePos[3]+6}, rotation = {0,90,0}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]+9,basePos[2],basePos[3]+6}, rotation = {0,90,0}, rotation_snap = true})\r\n    getObjectFromGUID(MDeck).takeObject({position = {basePos[1]-5+LEMod+WFMod+WMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]-5+LEMod+WFMod+WMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, rotation_snap = true})\r\n    getObjectFromGUID(MDiscard).takeObject({position = {basePos[1]-5+LEMod+WFMod+WMod,basePos[2],basePos[3]-2}, rotation = {0,180,0}, smooth = false}).setLock(true)\r\n    getObjectFromGUID(BaseRef).takeObject({position = {basePos[1]-6.5+LEMod+WFMod+WMod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)\r\n    getObjectFromGUID(Die).takeObject({position = {basePos[1]-4.5+LEMod+WFMod+WMod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)\r\n    getObjectFromGUID(LifeToken).takeObject({position = {basePos[1]-6.5+LEMod+WFMod+WMod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]-5+LEMod+WFMod+WMod,basePos[2],basePos[3]-2}, rotation = {0,180,0}, rotation_snap = true})\r\n    getObjectFromGUID(MCardsBase).takeObject({position = {basePos[1]-5+LEMod+WFMod+WMod,2,basePos[3]+5}, rotation = {0,180,180}, smooth = false})\r\n    getObjectFromGUID(ICardsBase).takeObject({position = {basePos[1]+1,2,basePos[3]+6}, rotation = {0,90,180}, smooth = false})\r\n    getObjectFromGUID(CCardsBase).takeObject({position = {basePos[1]+25,2,basePos[3]+15}, rotation = {0,90,0}, smooth = false})\r\n    if expansions.ZhelotRoles~=true then\r\n        getObjectFromGUID(RHeroineBase).takeObject({position = {-35,2,5}, rotation = {0,180,0}, smooth = false})\r\n        getObjectFromGUID(RPartnerBase).takeObject({position = {-35,2,-2}, rotation = {0,180,0}, smooth = false})\r\n        getObjectFromGUID(RStageBase).takeObject({position = {-35,2,-9}, rotation = {0,180,0}, smooth = false})\r\n        getObjectFromGUID(RExBase).takeObject({position = {-30,2,-9}, rotation = {0,180,0}, smooth = false})\r\n        getObjectFromGUID(RRevealBase).takeObject({position = {-25,2,-9}, rotation = {0,180,0}, smooth = false})\r\n    end\r\n    basePlatesPlaced = true\r\n    return true\r\nend\r\nfunction LEPlates()\r\n    if LEPlatesPlaced then return false end\r\n    getObjectFromGUID(LDeck).takeObject({position = {basePos[1]-5+WFMod+WMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]-5+WFMod+WMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, rotation_snap = true})\r\n    getObjectFromGUID(LDiscard).takeObject({position = {basePos[1]-5+WFMod+WMod,basePos[2],basePos[3]-2}, rotation = {0,180,0}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]-5+WFMod+WMod,basePos[2],basePos[3]-2}, rotation = {0,180,0}, rotation_snap = true})\r\n    getObjectFromGUID(SeasonDie).takeObject({position = {basePos[1]-2.5+LEMod+WFMod+WMod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)\r\n    getObjectFromGUID(ExtraPlate).takeObject({position = {basePos[1]-0.5+LEMod+WFMod+WMod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)\r\n    getObjectFromGUID(ExtraCard).takeObject({position = {basePos[1]+1.5+LEMod+WFMod+WMod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)\r\n    LEPlatesPlaced = true\r\n    return true\r\nend    \r\nfunction TEPlates()\r\n    if TEPlatesPlaced then return false end\r\n    for i=1,3 do\r\n        getObjectFromGUID(TPlate).takeObject({position = {basePos[1]-10+LEMod+WFMod+WMod-5*(i-1),basePos[2],basePos[3]}, rotation = {0,180,0}, smooth = false}).setLock(true)\r\n        table.insert(snapPoints, {position = {basePos[1]-10+LEMod+WFMod+WMod-5*(i-1),basePos[2],basePos[3]}, rotation = {0,180,0}, rotation_snap = true})\r\n    end\r\n    for i=1,3 do\r\n        getObjectFromGUID(TPlate).takeObject({position = {basePos[1]-10+LEMod+WFMod+WMod-5*(i-1),basePos[2],basePos[3]-7}, rotation = {0,180,0}, smooth = false}).setLock(true)\r\n        table.insert(snapPoints, {position = {basePos[1]-10+LEMod+WFMod+WMod-5*(i-1),basePos[2],basePos[3]-7}, rotation = {0,180,0}, rotation_snap = true})\r\n    end\r\n    getObjectFromGUID(TDeck).takeObject({position = {basePos[1]-11+LEMod+WFMod+WMod,basePos[2],basePos[3]+6}, rotation = {0,90,0}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]-11+LEMod+WFMod+WMod,basePos[2],basePos[3]+6}, rotation = {0,90,0}, rotation_snap = true})\r\n    getObjectFromGUID(TDiscard).takeObject({position = {basePos[1]-19+LEMod+WFMod+WMod,basePos[2],basePos[3]+6}, rotation = {0,90,0}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]-19+LEMod+WFMod+WMod,basePos[2],basePos[3]+6}, rotation = {0,90,0}, rotation_snap = true})\r\n    getObjectFromGUID(TERef).takeObject({position = {basePos[1]-4.5+LEMod+WFMod+WMod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)\r\n    TEPlatesPlaced = true\r\n    return true\r\nend\r\nfunction TraitsPlates()\r\n    if TraitsPlatesPlaced then return false end\r\n    getObjectFromGUID(TraitsDeck).takeObject({position = {basePos[1]-10+TEMod+LEMod+WFMod+WMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]-10+TEMod+LEMod+WFMod+WMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, rotation_snap = true})\r\n    TraitsPlatesPlaced = true\r\n    return true\r\nend\r\nfunction WildPlates()\r\n    if WildPlatesPlaced then return false end\r\n    getObjectFromGUID(WildDeck).takeObject({position = {basePos[1]-5+WFMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]-5+WFMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, rotation_snap = true})\r\n    getObjectFromGUID(WildDeck).takeObject({position = {basePos[1]-5+WFMod,basePos[2]+0.1,basePos[3]-2}, rotation = {0,180,180}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]-5+WFMod,basePos[2],basePos[3]-2}, rotation = {0,180,0}, rotation_snap = true})\r\n    WildPlatesPlaced = true\r\n    return true\r\nend\r\nfunction doEverything()\r\n    snapPoints = Global.getSnapPoints()\r\n    if #DeckerCards.PrecognitionCards>0 then\r\n        basePos[1] = basePos[1]+2.5\r\n        WFMod = -5\r\n    end\r\n    if #DeckerCards.NightCards>0 then\r\n        basePos[1] = basePos[1]-2.5\r\n    end\r\n    if #DeckerCards.TerminalCards>0 then\r\n        TEMod = -15\r\n        basePos[1] = basePos[1]+7.5\r\n    end\r\n    if #DeckerCards.LunaticCards>0 or expansions.LunaticExtra then\r\n        basePos[1] = basePos[1]+2.5\r\n        LEMod = -5\r\n    end\r\n    if #DeckerCards.WildCards>0 then\r\n        basePos[1] = basePos[1]+2.5\r\n        WMod = -5\r\n    end\r\n    if #DeckerCards.TraitCards>0 then\r\n        basePos[1] = basePos[1]+2.5\r\n    end\r\n    if #DeckerCards.TerminalCards>0 then\r\n        TEPlates()\r\n    end\r\n    if #DeckerCards.LunaticCards>0 or expansions.LunaticExtra then\r\n        LEPlates()\r\n    end\r\n    if #DeckerCards.TraitCards>0 then\r\n        TraitsPlates()\r\n    end\r\n    if #DeckerCards.WildCards>0 then\r\n        WildPlates()\r\n    end\r\n    if expansions.WillofFate then\r\n        getObjectFromGUID(WinterToken).takeObject({position = {basePos[1]-6.5,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)\r\n        getObjectFromGUID(SummerToken).takeObject({position = {basePos[1]-4.5,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)\r\n        getObjectFromGUID(AutumnToken).takeObject({position = {basePos[1]-6.5,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)\r\n        getObjectFromGUID(SpringToken).takeObject({position = {basePos[1]-4.5,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)\r\n        getObjectFromGUID(WoFRef).takeObject({position = {basePos[1]-7.5+WFMod+WMod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)\r\n    end\r\n    if expansions.ShitTier then\r\n        getObjectFromGUID(ChenToken).takeObject({position = {basePos[1]-0.5+LEMod+WFMod+WMod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)\r\n        getObjectFromGUID(OkinaToken).takeObject({position = {basePos[1]+1.5+LEMod+WFMod+WMod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)\r\n    end\r\n    if expansions.EToFS then\r\n        getObjectFromGUID(SilenceToken).takeObject({position = {basePos[1]+18.5+LEMod,basePos[2]-0.01,basePos[3]-4}, smooth = false}).setLock(true)\r\n        getObjectFromGUID(NightButton).takeObject({position = {basePos[1]+20.5+LEMod,basePos[2]-0.01,basePos[3]-4}, smooth = false}).setLock(true)\r\n        getObjectFromGUID(LoreButton).takeObject({position = {basePos[1]+18.5+LEMod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)\r\n        getObjectFromGUID(ClankButton).takeObject({position = {basePos[1]+20.5+LEMod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)\r\n        getObjectFromGUID(Past).takeObject({position = {basePos[1]+18.5+LEMod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)\r\n        getObjectFromGUID(GoodFuture).takeObject({position = {basePos[1]+20.5+LEMod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)\r\n        getObjectFromGUID(EToFSRef).takeObject({position = {basePos[1]+18.5+LEMod,basePos[2]-0.01,basePos[3]-10}, smooth = false}).setLock(true)\r\n    end\r\n    BasePlates()\r\n    if expansions.LunaticExtra then\r\n        getObjectFromGUID(MCardsLunatic).takeObject({position = {basePos[1]-5+LEMod+WFMod+WMod,3,basePos[3]+5}, rotation = {0,180,180}, smooth = false})\r\n        getObjectFromGUID(ICardsLunatic).takeObject({position = {basePos[1]+1,3,basePos[3]+6}, rotation = {0,90,180}, smooth = false})\r\n        getObjectFromGUID(LCardsLunatic).takeObject({position = {basePos[1]-5+WFMod+WMod,2,basePos[3]+5}, rotation = {0,180,180}, smooth = false})\r\n        getObjectFromGUID(CCardsLunatic).takeObject({position = {basePos[1]+25,2,basePos[3]+15-6*CDecks}, rotation = {0,90,0}, smooth = false})\r\n        CDecks = CDecks+1\r\n        if expansions.ZhelotRoles~=true then\r\n            getObjectFromGUID(RExLunatic).takeObject({position = {-30,3,-9}, rotation = {0,180,0}, smooth = false})\r\n            getObjectFromGUID(RRevealLunatic).takeObject({position = {-25,3,-9}, rotation = {0,180,0}, smooth = false})\r\n        end\r\n    end\r\n    for key,value in pairs(DeckerCards) do\r\n        if #value>1 and key~=\"CharacterCards\" then\r\n            local tempDeck = Decker.Deck(value)\r\n            if key==\"MainCards\" then\r\n                tempDeck:spawn({position = {basePos[1]-5+LEMod+WFMod+WMod,5,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"LunaticCards\" then\r\n                tempDeck:spawn({position = {basePos[1]-5+WFMod+WMod,4,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"IncidentCards\" then\r\n                tempDeck:spawn({position = {basePos[1]+1,5,basePos[3]+6}, rotation = {0,90,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"HeroineCards\" then\r\n                tempDeck:spawn({position = {-35,3,5}, rotation = {0,180,0}}).setScale({1.82,1,1.82})\r\n            elseif key==\"PartnerCards\" then\r\n                tempDeck:spawn({position = {-35,3,-2}, rotation = {0,180,0}}).setScale({1.82,1,1.82})\r\n            elseif key==\"StageCards\" then\r\n                tempDeck:spawn({position = {-35,3,-9}, rotation = {0,180,0}}).setScale({1.82,1,1.82})\r\n            elseif key==\"ExCards\" then\r\n                tempDeck:spawn({position = {-30,4,-9}, rotation = {0,180,0}}).setScale({1.82,1,1.82})\r\n            elseif key==\"RevealCards\" then\r\n                tempDeck:spawn({position = {-25,4,-9}, rotation = {0,180,0}}).setScale({1.82,1,1.82})\r\n            elseif key==\"TerminalCards\" then\r\n                tempDeck:spawn({position = {basePos[1]-11+LEMod+WFMod+WMod,2,basePos[3]+6}, rotation = {0,90,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"PrecognitionCards\" then\r\n                tempDeck:spawn({position = {basePos[1]-5,2,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n                table.insert(snapPoints, {position = {basePos[1]-5,basePos[2],basePos[3]+5}, rotation = {0,180,180}, rotation_snap = true})\r\n                table.insert(snapPoints, {position = {basePos[1]-5,basePos[2],basePos[3]-2}, rotation = {0,180,180}, rotation_snap = true})\r\n            elseif key==\"NightCards\" then\r\n                tempDeck:spawn({position = {basePos[1]+15,2,basePos[3]}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n                table.insert(snapPoints, {position = {basePos[1]+15,basePos[2],basePos[3]}, rotation = {0,180,180}, rotation_snap = true})\r\n                table.insert(snapPoints, {position = {basePos[1]+15,basePos[2],basePos[3]-7}, rotation = {0,180,180}, rotation_snap = true})\r\n            elseif key==\"TraitCards\" then\r\n                tempDeck:spawn({position = {basePos[1]-10+TEMod+LEMod+WFMod+WMod,4,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"WildCards\" then\r\n                tempDeck:spawn({position = {basePos[1]-5+WFMod,2,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n            end\r\n        elseif #value==1 and key~=\"CharacterCards\" then\r\n            if key==\"MainCards\" then\r\n                value[1]:spawn({position = {basePos[1]-5+LEMod+WFMod+WMod,5,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"LunaticCards\" then\r\n                value[1]:spawn({position = {basePos[1]-5+WFMod+WMod,4,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"IncidentCards\" then\r\n                value[1]:spawn({position = {basePos[1]+1,5,basePos[3]+6}, rotation = {0,90,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"HeroineCards\" then\r\n                value[1]:spawn({position = {-35,3,5}, rotation = {0,180,0}}).setScale({1.82,1,1.82})\r\n            elseif key==\"PartnerCards\" then\r\n                value[1]:spawn({position = {-35,3,-2}, rotation = {0,180,0}}).setScale({1.82,1,1.82})\r\n            elseif key==\"StageCards\" then\r\n                value[1]:spawn({position = {-35,3,-9}, rotation = {0,180,0}}).setScale({1.82,1,1.82})\r\n            elseif key==\"ExCards\" then\r\n                value[1]:spawn({position = {-30,4,-9}, rotation = {0,180,0}}).setScale({1.82,1,1.82})\r\n            elseif key==\"RevealCards\" then\r\n                value[1]:spawn({position = {-25,4,-9}, rotation = {0,180,0}}).setScale({1.82,1,1.82})\r\n            elseif key==\"TerminalCards\" and expansions.TerminalExpansion then\r\n                value[1]:spawn({position = {basePos[1]-11+LEMod+WFMod+WMod,2,basePos[3]+6}, rotation = {0,90,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"PrecognitionCards\" and expansions.LunaticExtra then\r\n                value[1]:spawn({position = {basePos[1]-5,2,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n                table.insert(snapPoints, {position = {basePos[1]-5,basePos[2],basePos[3]+5}, rotation = {0,180,180}, rotation_snap = true})\r\n                table.insert(snapPoints, {position = {basePos[1]-5,basePos[2],basePos[3]-2}, rotation = {0,180,180}, rotation_snap = true})\r\n            elseif key==\"NightCards\" then\r\n                value[1]:spawn({position = {basePos[1]+15,2,basePos[3]}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n                table.insert(snapPoints, {position = {basePos[1]+15,basePos[2],basePos[3]}, rotation = {0,180,180}, rotation_snap = true})\r\n                table.insert(snapPoints, {position = {basePos[1]+15,basePos[2],basePos[3]-7}, rotation = {0,180,180}, rotation_snap = true})\r\n            elseif key==\"TraitCards\" then\r\n                value[1]:spawn({position = {basePos[1]-10+TEMod+LEMod+WFMod+WMod,4,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"WildCards\" then\r\n                value[1]:spawn({position = {basePos[1]-5+WFMod,2,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n            end\r\n        end\r\n    end\r\n    for key,value in pairs(DeckerCards.CharacterCards) do\r\n        if #value>1 then \r\n            local tempDeck = Decker.Deck(value, {sideways=true})\r\n            tempDeck:spawn({position = {basePos[1]+25,2,basePos[3]+15-6*CDecks}, rotation = {0,90,0}}).setScale({2.61,1,2.61})\r\n        end\r\n        if #value==1 then value[1]:spawn({position = {basePos[1]+25,2,basePos[3]+15-6*CDecks}, rotation = {0,90,0}}).setScale({2.61,1,2.61}) end\r\n        CDecks = CDecks+1\r\n    end\r\n    Global.setSnapPoints(snapPoints)\r\nend\r\n\r\nfunction loadExpansions(player, _, id)\r\n    print('Loading expansions...')\r\n    closePanel(nil,nil,nil)\r\n    basePos = {-2.5, 1.5, 0}\r\n    LEMod = 0\r\n    WFMod = 0\r\n    TEMod = 0\r\n    WMod = 0\r\n    for key,value in pairs(expansions) do\r\n        if value~=false and key~=\"LunaticExtra\" then\r\n            remeber = key\r\n            WebRequest.get(\"http://66.70.189.147:8080/danmaku/\"..key, function(a) webRequestCallback(a) end)\r\n        end\r\n    end\r\n    Wait.condition(doEverything, waitCondition)\r\nend\r\n\r\nfunction closePanel(player, _, id)\r\n    UI.setAttribute(\"expansionSelection\", \"active\", false)\r\n    UI.setAttribute(\"openButton\", \"active\", true)\r\nend\r\n\r\nfunction openPanel(player, _, id)\r\n    UI.setAttribute(\"expansionSelection\", \"active\", true)\r\n    UI.setAttribute(\"openButton\", \"active\", false)\r\nend\r\n\r\n--# Turn Phase Tracker\r\n\r\nfunction StringToBool(s) if s == \"False\" or s == \"false\" then return false else return true end end\r\n\r\nfunction onPlayerTurnStart(_, _)\r\n    UI.setAttribute(\"phaseTrackerButtonStart\" , \"isOn\", true)\r\nend\r\n\r\nfunction phaseTrackerPhaseChange(Playerr, isOn, id)\r\n    on = StringToBool(isOn)\r\n    --print(Playerr.color)\r\n    --# Makes sure only active player can change phase\r\n    if Playerr.color ~= Turns.turn_color and Playerr.color ~= \"Black\" then UI.setAttribute(id, \"isOn\", not on) return else UI.setAttribute(id, \"isOn\", on) end\r\n    --print(id)\r\n    --print(isOn)\r\n    --print(on)\r\n    --# Goes to next turn \r\n    -- if id==\"phaseTrackerButtonEnd\" and on then\r\n    --     print(Turns.getNextTurnColor())\r\n    --     Turns.turn_color = Turns.getNextTurnColor()\r\n    --     UI.setAttribute(id, \"isOn\", false)\r\n    -- end\r\nend",
+  "LuaScript": "--%include <vscode/console>\r\n\r\n--Decker\r\ndo\r\n    Decker = {}\r\n\r\n    -- provide unique ID starting from 20 for present decks\r\n    local nextID\r\n    do\r\n        local _nextID = 20\r\n        nextID = function()\r\n            _nextID = _nextID + 1\r\n            return tostring(_nextID)\r\n        end\r\n    end\r\n\r\n    -- Asset signature (equality comparison)\r\n    local function assetSignature(assetData)\r\n        return table.concat({\r\n            assetData.FaceURL,\r\n            assetData.BackURL,\r\n            assetData.NumWidth,\r\n            assetData.NumHeight,\r\n            assetData.BackIsHidden and 'hb' or '',\r\n            assetData.UniqueBack and 'ub' or ''\r\n        })\r\n    end\r\n    -- Asset ID storage to avoid new ones for identical assets\r\n    local idLookup = {}\r\n    local function assetID(assetData)\r\n        local sig = assetSignature(assetData)\r\n        local key = idLookup[sig]\r\n        if not key then\r\n            key = nextID()\r\n            idLookup[sig] = key\r\n        end\r\n        return key\r\n    end\r\n\r\n    local assetMeta = {\r\n        deck = function(self, cardNum, options)\r\n            return Decker.AssetDeck(self, cardNum, options)\r\n        end\r\n    }\r\n    assetMeta = {__index = assetMeta}\r\n\r\n    -- Create a new CustomDeck asset\r\n    function Decker.Asset(face, back, options)\r\n        local asset = {}\r\n        options = options or {}\r\n        asset.data = {\r\n            FaceURL = face or error('Decker.Asset: faceImg link required'),\r\n            BackURL = back or error('Decker.Asset: backImg link required'),\r\n            NumWidth = options.width or 1,\r\n            NumHeight = options.height or 1,\r\n            BackIsHidden = options.hiddenBack or false,\r\n            UniqueBack = options.uniqueBack or false\r\n        }\r\n        -- Reuse ID if asset existing\r\n        asset.id = assetID(asset.data)\r\n        return setmetatable(asset, assetMeta)\r\n    end\r\n    -- Pull a Decker.Asset from card JSONs CustomDeck entry\r\n    local function assetFromData(assetData)\r\n        return setmetatable({data = assetData, id = assetID(assetData)}, assetMeta)\r\n    end\r\n\r\n    -- Create a base for JSON objects\r\n    function Decker.BaseObject()\r\n        return {\r\n            Name = 'Base',\r\n            Transform = {\r\n                posX = 0, posY = 5, posZ = 0,\r\n                rotX = 0, rotY = 0, rotZ = 0,\r\n                scaleX = 1, scaleY = 1, scaleZ = 1\r\n            },\r\n            Nickname = '',\r\n            Description = '',\r\n            ColorDiffuse = { r = 1, g = 1, b = 1 },\r\n            Locked = false,\r\n            Grid = true,\r\n            Snap = true,\r\n            Autoraise = true,\r\n            Sticky = true,\r\n            Tooltip = true,\r\n            GridProjection = false,\r\n            Hands = false,\r\n            XmlUI = '',\r\n            LuaScript = '',\r\n            LuaScriptState = '',\r\n            GUID = 'deadbf'\r\n        }\r\n    end\r\n    -- Typical paramters map with defaults\r\n    local commonMap = {\r\n        name   = {field = 'Nickname',    default = ''},\r\n        desc   = {field = 'Description', default = ''},\r\n        script = {field = 'LuaScript',   default = ''},\r\n        xmlui  = {field = 'XmlUI',       default = ''},\r\n        scriptState = {field = 'LuaScriptState', default = ''},\r\n        locked  = {field = 'Locked',  default = false},\r\n        tooltip = {field = 'Tooltip', default = true},\r\n        guid    = {field = 'GUID',    default = 'deadbf'},\r\n    }\r\n    -- Apply some basic parameters on base JSON object\r\n    function Decker.SetCommonOptions(obj, options)\r\n        options = options or {}\r\n        for k,v in pairs(commonMap) do\r\n            -- can't use and/or logic cause of boolean fields\r\n            if options[k] ~= nil then\r\n                obj[v.field] = options[k]\r\n            else\r\n                obj[v.field] = v.default\r\n            end\r\n        end\r\n        -- passthrough unrecognized keys\r\n        for k,v in pairs(options) do\r\n            if not commonMap[k] then\r\n                obj[k] = v\r\n            end\r\n        end\r\n    end\r\n    -- default spawnObjectJSON params since it doesn't like blank fields\r\n    local function defaultParams(params, json)\r\n        params = params or {}\r\n        params.json = json\r\n        params.position = params.position or {0, 5, 0}\r\n        params.rotation = params.rotation or {0, 0, 0}\r\n        params.scale = params.scale or {1, 1, 1}\r\n        if params.sound == nil then\r\n            params.sound = true\r\n        end\r\n        return params\r\n    end\r\n\r\n    -- For copy method\r\n    local deepcopy\r\n    deepcopy = function(t)\r\n        local copy = {}\r\n        for k,v in pairs(t) do\r\n           if type(v) == 'table' then\r\n               copy[k] = deepcopy(v)\r\n           else\r\n               copy[k] = v\r\n           end\r\n        end\r\n        return copy\r\n    end\r\n    -- meta for all Decker derived objects\r\n    local commonMeta = {\r\n        -- return object JSON string, used cached if present\r\n        _cache = function(self)\r\n            if not self.json then\r\n                self.json = JSON.encode(self.data)\r\n            end\r\n            return self.json\r\n        end,\r\n        -- invalidate JSON string cache\r\n        _recache = function(self)\r\n            self.json = nil\r\n            return self\r\n        end,\r\n        spawn = function(self, params)\r\n            params = defaultParams(params, self:_cache())\r\n            return spawnObjectJSON(params)\r\n        end,\r\n        copy = function(self)\r\n            return setmetatable(deepcopy(self), getmetatable(self))\r\n        end,\r\n        setCommon = function(self, options)\r\n            Decker.SetCommonOptions(self.data, options)\r\n            return self\r\n        end,\r\n    }\r\n    -- apply common part on a specific metatable\r\n    local function customMeta(mt)\r\n        for k,v in pairs(commonMeta) do\r\n            mt[k] = v\r\n        end\r\n        mt.__index = mt\r\n        return mt\r\n    end\r\n\r\n    -- DeckerCard metatable\r\n    local cardMeta = {\r\n        setAsset = function(self, asset)\r\n            local cardIndex = self.data.CardID:sub(-2, -1)\r\n            self.data.CardID = asset.id .. cardIndex\r\n            self.data.CustomDeck = {[asset.id] = asset.data}\r\n            return self:_recache()\r\n        end,\r\n        getAsset = function(self)\r\n            local deckID = next(self.data.CustomDeck)\r\n            return assetFromData(self.data.CustomDeck[deckID])\r\n        end,\r\n        -- reset deck ID to a consistent value script-wise\r\n        _recheckDeckID = function(self)\r\n            local oldID = next(self.data.CustomDeck)\r\n            local correctID = assetID(self.data.CustomDeck[oldID])\r\n            if oldID ~= correctID then\r\n                local cardIndex = self.data.CardID:sub(-2, -1)\r\n                self.data.CardID = correctID .. cardIndex\r\n                self.data.CustomDeck[correctID] = self.data.CustomDeck[oldID]\r\n                self.data.CustomDeck[oldID] = nil\r\n            end\r\n            return self\r\n        end\r\n    }\r\n    cardMeta = customMeta(cardMeta)\r\n    -- Create a DeckerCard from an asset\r\n    function Decker.Card(asset, row, col, options)\r\n        row, col = row or 1, col or 1\r\n        options = options or {}\r\n        local card = Decker.BaseObject()\r\n        card.Name = 'Card'\r\n        card.Hands = true\r\n        -- optional custom fields\r\n        Decker.SetCommonOptions(card, options)\r\n        if options.sideways ~= nil then\r\n            card.SidewaysCard = options.sideways\r\n            -- FIXME passthrough set that field, find some more elegant solution\r\n            card.sideways = nil\r\n        end\r\n        -- CardID string is parent deck ID concat with its 0-based index (always two digits)\r\n        local num = (row-1)*asset.data.NumWidth + col - 1\r\n        num = string.format('%02d', num)\r\n        card.CardID = asset.id .. num\r\n        -- just the parent asset reference needed\r\n        card.CustomDeck = {[asset.id] = asset.data}\r\n\r\n        local obj = setmetatable({data = card}, cardMeta)\r\n        obj:_cache()\r\n        return obj\r\n    end\r\n\r\n\r\n    -- DeckerDeck meta\r\n    local deckMeta = {\r\n        count = function(self)\r\n            return #self.data.DeckIDs\r\n        end,\r\n        -- Transform index into positive\r\n        index = function(self, ind)\r\n            if ind < 0 then\r\n                return self:count() + ind + 1\r\n            else\r\n                return ind\r\n            end\r\n        end,\r\n        swap = function(self, i1, i2)\r\n            local ri1, ri2 = self:index(i1), self:index(i2)\r\n            assert(ri1 > 0 and ri1 <= self:count(), 'DeckObj.rearrange: index ' .. i1 .. ' out of bounds')\r\n            assert(ri2 > 0 and ri2 <= self:count(), 'DeckObj.rearrange: index ' .. i2 .. ' out of bounds')\r\n            self.data.DeckIDs[ri1], self.data.DeckIDs[ri2] = self.data.DeckIDs[ri2], self.data.DeckIDs[ri1]\r\n            local co = self.data.ContainedObjects\r\n            co[ri1], co[ri2] = co[ri2], co[ri1]\r\n            return self:_recache()\r\n        end,\r\n        -- rebuild self.data.CustomDeck based on contained cards\r\n        _rescanDeckIDs = function(self, id)\r\n            local cardIDs = {}\r\n            for k,card in ipairs(self.data.ContainedObjects) do\r\n                local cardID = next(card.CustomDeck)\r\n                if not cardIDs[cardID] then\r\n                    cardIDs[cardID] = card.CustomDeck[cardID]\r\n                end\r\n            end\r\n            -- eeh, GC gotta earn its keep as well\r\n            -- FIXME if someone does shitton of removals, may cause performance issues?\r\n            self.data.CustomDeck = cardIDs\r\n        end,\r\n        remove = function(self, ind, skipRescan)\r\n            local rind = self:index(ind)\r\n            assert(rind > 0 and rind <= self:count(), 'DeckObj.remove: index ' .. ind .. ' out of bounds')\r\n            local card = self.data.ContainedObjects[rind]\r\n            table.remove(self.data.DeckIDs, rind)\r\n            table.remove(self.data.ContainedObjects, rind)\r\n            if not skipRescan then\r\n                self:_rescanDeckIDs(next(card.CustomDeck))\r\n            end\r\n            return self:_recache()\r\n        end,\r\n        removeMany = function(self, ...)\r\n            local indices = {...}\r\n            table.sort(indices, function(e1,e2) return self:index(e1) > self:index(e2) end)\r\n            for _,ind in ipairs(indices) do\r\n                self:remove(ind, true)\r\n            end\r\n            self:_rescanDeckIDs()\r\n            return self:_recache()\r\n        end,\r\n        insert = function(self, card, ind)\r\n            ind = ind or (self:count() + 1)\r\n            local rind = self:index(ind)\r\n            assert(rind > 0 and rind <= (self:count()+1), 'DeckObj.insert: index ' .. ind .. ' out of bounds')\r\n            table.insert(self.data.DeckIDs, rind, card.data.CardID)\r\n            table.insert(self.data.ContainedObjects, rind, card.data)\r\n            local id = next(card.data.CustomDeck)\r\n            if not self.data.CustomDeck[id] then\r\n                self.data.CustomDeck[id] = card.data.CustomDeck[id]\r\n            end\r\n            return self:_recache()\r\n        end,\r\n        reverse = function(self)\r\n            local s,e = 1, self:count()\r\n            while s < e do\r\n                self:swap(s, e)\r\n                s = s+1\r\n                e = e-1\r\n            end\r\n            return self:_recache()\r\n        end,\r\n        cardAt = function(self, ind)\r\n            local rind = self:index(ind)\r\n            assert(rind > 0 and rind <= (self:count()+1), 'DeckObj.insert: index ' .. ind .. ' out of bounds')\r\n            local card = setmetatable({data = deepcopy(self.data.ContainedObjects[rind])}, cardMeta)\r\n            card:_cache()\r\n            return card\r\n        end,\r\n        switchAssets = function(self, replaceTable)\r\n            -- destructure replace table into\r\n            -- [ID_to_replace] -> [ID_to_replace_with]\r\n            -- [new_asset_ID] -> [new_asset_data]\r\n            local idReplace = {}\r\n            local assets = {}\r\n            for oldAsset, newAsset in pairs(replaceTable) do\r\n                assets[newAsset.id] = newAsset.data\r\n                idReplace[oldAsset.id] = newAsset.id\r\n            end\r\n            -- update deckIDs\r\n            for k,cardID in ipairs(self.data.DeckIDs) do\r\n                local deckID, cardInd = cardID:sub(1, -3), cardID:sub(-2, -1)\r\n                if idReplace[deckID] then\r\n                    self.data.DeckIDs[k] = idReplace[deckID] .. cardInd\r\n                end\r\n            end\r\n            -- update CustomDeck data - nil replaced\r\n            for replacedID in pairs(idReplace) do\r\n                if self.data.CustomDeck[replacedID] then\r\n                    self.data.CustomDeck[replacedID] = nil\r\n                end\r\n            end\r\n            -- update CustomDeck data - add replacing\r\n            for _,replacingID in pairs(idReplace) do\r\n                self.data.CustomDeck[replacingID] = assets[replacingID]\r\n            end\r\n            -- update card data\r\n            for k,cardData in ipairs(self.data.ContainedObjects) do\r\n                local deckID = next(cardData.CustomDeck)\r\n                if idReplace[deckID] then\r\n                    cardData.CustomDeck[deckID] = nil\r\n                    cardData.CustomDeck[idReplace[deckID]] = assets[idReplace[deckID]]\r\n                end\r\n            end\r\n            return self:_recache()\r\n        end,\r\n        getAssets = function(self)\r\n            local assets = {}\r\n            for id,assetData in pairs(self.data.CustomDeck) do\r\n                assets[#assets+1] = assetFromData(assetData)\r\n            end\r\n            return assets\r\n        end\r\n    }\r\n    deckMeta = customMeta(deckMeta)\r\n    -- Create DeckerDeck object from DeckerCards\r\n    function Decker.Deck(cards, options)\r\n        options = options or {}\r\n        assert(#cards > 1, 'Trying to create a Decker.deck with less than 2 cards')\r\n        local deck = Decker.BaseObject()\r\n        deck.Name = 'Deck'\r\n        Decker.SetCommonOptions(deck, options)\r\n        deck.DeckIDs = {}\r\n        deck.CustomDeck = {}\r\n        deck.ContainedObjects = {}\r\n        deck.SidewaysCard = options.sideways or false\r\n        for _,card in ipairs(cards) do\r\n            deck.DeckIDs[#deck.DeckIDs+1] = card.data.CardID\r\n            local id = next(card.data.CustomDeck)\r\n            if not deck.CustomDeck[id] then\r\n                deck.CustomDeck[id] = card.data.CustomDeck[id]\r\n            end\r\n            deck.ContainedObjects[#deck.ContainedObjects+1] = card.data\r\n        end\r\n\r\n        local obj = setmetatable({data = deck}, deckMeta)\r\n        obj:_cache()\r\n        return obj\r\n    end\r\n    -- Create DeckerDeck from an asset using X cards on its sheet\r\n    function Decker.AssetDeck(asset, cardNum, options)\r\n        cardNum = cardNum or asset.data.NumWidth * asset.data.NumHeight\r\n        local row, col, width = 1, 1, asset.data.NumWidth\r\n        local cards = {}\r\n        for k=1,cardNum do\r\n            cards[#cards+1] = Decker.Card(asset, row, col, {sideways=options.sideways})\r\n            col = col+1\r\n            if col > width then\r\n                row, col = row+1, 1\r\n            end\r\n        end\r\n        return Decker.Deck(cards, options)\r\n    end\r\nend\r\n--End Decker\r\n\r\nfunction tablelength(T)\r\n    local count = 0\r\n    for _ in pairs(T) do count = count + 1 end\r\n    return count\r\nend\r\n\r\nexpansions = {LunaticExtra = false, ShitTier = false, GarbageTier = false, TerminalExpansion = false, FoxBox = false, YuriParadise = false, EToFS = false, ZhelotRoles = false, WillofFate = false, DBSCharacters = false, GoldenAdditions = false, DumbassCards = false, MUSCLE = false, Traits = false, AdvancedShitposting = false, Wild = false, BullshitTier = false, VastGensokyo = false}\r\nexpansions2 = {LunaticExtra = false, ShitTier = false, GarbageTier = false, TerminalExpansion = false, FoxBox = false, YuriParadise = false, EToFS = false, ZhelotRoles = false, WillofFate = false, DBSCharacters = false, GoldenAdditions = false, DumbassCards = false, MUSCLE = false, Traits = false, AdvancedShitposting = false, Wild = false, BullshitTier = false, VastGensokyo = false}\r\nDeckerCards = {\r\n    MainCards = {},\r\n    LunaticCards = {},\r\n    IncidentCards = {},\r\n    CharacterCards = {},\r\n    HeroineCards = {},\r\n    PartnerCards = {},\r\n    StageCards = {},\r\n    ExCards = {},\r\n    RevealCards = {},\r\n    TerminalCards = {},\r\n    PrecognitionCards = {},\r\n    NightCards = {},\r\n    TraitCards = {},\r\n    WildCards = {}\r\n}\r\nremeber = 0\r\n\r\nCharacterLocation = {-8.00, 1.55, 12.00}\r\ncardNamesTable = {}\r\n\r\nfunction onLoad()\r\n    WebRequest.get(\"https://pastebin.com/raw/pdxWnTgD\", function(obj) GETcardNames(JSON.decode(obj.text)) end)\r\n    local scriptObjects = getObjectFromGUID(\"906d21\").getObjects()\r\n    for key,value in pairs(scriptObjects) do _G[value.getName()] = value.getGUID() end\r\nend\r\n\r\nfunction GETcardNames(list)\r\n    cardNamesTable = list\r\nend\r\n\r\nfunction namer(deck,currentexpansion,deckName)\r\n    deck = deck.ContainedObjects[1]\r\n    if cardNamesTable[currentexpansion] ~= nil and cardNamesTable[currentexpansion][deckName] ~= nil then\r\n        local deckNames = cardNamesTable[currentexpansion][deckName]\r\n        for key,card in ipairs(deck.ContainedObjects) do\r\n            local cardNumber = key\r\n                card.Nickname = deckNames[cardNumber] or card.Nickname\r\n            deck.ContainedObjects[key] = card\r\n        end\r\n    end\r\n    return deck\r\nend\r\n\r\nfunction mysplit(inputstr, sep)\r\n    if sep == nil then\r\n            sep = \"%s\"\r\n    end\r\n    local t={} ; i=1\r\n    for str in string.gmatch(inputstr, \"([^\"..sep..\"]+)\") do\r\n            t[i] = str\r\n            i = i + 1\r\n    end\r\n    return t\r\nend\r\n\r\nfunction toggleExpansion(player, isOn, id)\r\n    local bool = false\r\n    if isOn == \"True\" then\r\n        bool = true\r\n    end\r\n    expansions[id] = bool\r\n    expansions2[id] = bool\r\nend\r\n\r\nfunction webRequestCallback(webReturn)\r\n    local currentexpansion = \"\"\r\n    for index,value in ipairs(mysplit(webReturn.url, '/')) do\r\n        firstChar = string.sub(value,1,1)\r\n        if firstChar:gsub(\"^%l\", string.upper)==firstChar and firstChar~='6' then\r\n            currentexpansion = value\r\n        end\r\n    end\r\n    cardResources = JSON.decode(webReturn.text)\r\n    for deckName,deck in pairs(cardResources) do\r\n        if deck.face then\r\n            if deckName==\"HeroineCards\" or deckName==\"PartnerCards\" or deckName==\"ExCards\" or deckName==\"StageCards\" then deck.back = \"https://i.imgur.com/NQSqNLQ.jpg\" end\r\n            local cardAsset = Decker.Asset(deck.face, deck.back, {width = deck.width, height = deck.height, hiddenBack = true})\r\n            for i=1,deck.cards do\r\n                local yc = 1\r\n                local xc = i\r\n                while xc>deck.width do\r\n                    xc = xc-deck.width\r\n                    yc = yc+1\r\n                end\r\n                table.insert(DeckerCards[deckName], Decker.Card(cardAsset, yc, xc, {sideways=(deckName==\"CharacterCards\"), name = cardNamesTable[currentexpansion][deckName][i] or ''}))\r\n            end\r\n        end\r\n    end\r\n    expansions2[currentexpansion] = false\r\nend\r\n\r\nfunction waitCondition()\r\n    if remeber == 0 then\r\n        return true\r\n    elseif expansions2[remeber] == false then\r\n        print('Last expansion done.')\r\n        return true\r\n    else\r\n        return false\r\n    end\r\nend\r\n\r\nfunction BasePlates()\r\n    if basePlatesPlaced then return false end\r\n    for i=1,3 do\r\n        getObjectFromGUID(IPlate).takeObject({position = {basePos[1]+5*(i-1),basePos[2],basePos[3]}, rotation = {0,180,0}, smooth = false}).setLock(true)\r\n        table.insert(snapPoints, {position = {basePos[1]+5*(i-1),basePos[2],basePos[3]}, rotation = {0,180,0}, rotation_snap = true})\r\n    end\r\n    for i=1,3 do\r\n        getObjectFromGUID(IPlate).takeObject({position = {basePos[1]+5*(i-1),basePos[2]+0.1,basePos[3]-7}, rotation = {0,180,180}, smooth = false}).setLock(true)\r\n        table.insert(snapPoints, {position = {basePos[1]+5*(i-1),basePos[2],basePos[3]-7}, rotation = {0,180,180}, rotation_snap = true})\r\n    end\r\n    getObjectFromGUID(IDeck).takeObject({position = {basePos[1]+1,basePos[2],basePos[3]+6}, rotation = {0,90,0}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]+1,basePos[2],basePos[3]+6}, rotation = {0,90,0}, rotation_snap = true})\r\n    getObjectFromGUID(IDiscard).takeObject({position = {basePos[1]+9,basePos[2],basePos[3]+6}, rotation = {0,90,0}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]+9,basePos[2],basePos[3]+6}, rotation = {0,90,0}, rotation_snap = true})\r\n    getObjectFromGUID(MDeck).takeObject({position = {basePos[1]-5+LEMod+WFMod+WMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]-5+LEMod+WFMod+WMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, rotation_snap = true})\r\n    getObjectFromGUID(MDiscard).takeObject({position = {basePos[1]-5+LEMod+WFMod+WMod,basePos[2],basePos[3]-2}, rotation = {0,180,0}, smooth = false}).setLock(true)\r\n    getObjectFromGUID(BaseRef).takeObject({position = {basePos[1]-6.5+LEMod+WFMod+WMod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)\r\n    getObjectFromGUID(Die).takeObject({position = {basePos[1]-4.5+LEMod+WFMod+WMod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)\r\n    getObjectFromGUID(LifeToken).takeObject({position = {basePos[1]-6.5+LEMod+WFMod+WMod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]-5+LEMod+WFMod+WMod,basePos[2],basePos[3]-2}, rotation = {0,180,0}, rotation_snap = true})\r\n    spawnObjectJSON({json = JSON.encode(namer(JSON.decode(getObjectFromGUID(MCardsBase).getJSON()),'BaseGame','MainCards')), position = {basePos[1]-5+LEMod+WFMod+WMod,2,basePos[3]+5}, rotation = {0,180,180}, sound = false})\r\n    spawnObjectJSON({json = JSON.encode(namer(JSON.decode(getObjectFromGUID(ICardsBase).getJSON()),'BaseGame','IncidentCards')), position = {basePos[1]+1,2,basePos[3]+6}, rotation = {0,90,180}, sound = false})\r\n    spawnObjectJSON({json = JSON.encode(namer(JSON.decode(getObjectFromGUID(CCardsBase).getJSON()),'BaseGame','CharacterCards')), position = CharacterLocation, rotation = {0,90,180}, sound = false})\r\n    if expansions.ZhelotRoles~=true then\r\n        spawnObjectJSON({json = JSON.encode(namer(JSON.decode(getObjectFromGUID(RHeroineBase).getJSON()),'BaseGame','HeroineCards')), position = {-35,2,5}, rotation = {0,180,0}, sound = false})\r\n        spawnObjectJSON({json = JSON.encode(namer(JSON.decode(getObjectFromGUID(RPartnerBase).getJSON()),'BaseGame','PartnerCards')), position = {-35,2,-2}, rotation = {0,180,0}, sound = false})\r\n        spawnObjectJSON({json = JSON.encode(namer(JSON.decode(getObjectFromGUID(RStageBase).getJSON()),'BaseGame','StageCards')), position = {-35,2,-9}, rotation = {0,180,0}, sound = false})\r\n        spawnObjectJSON({json = JSON.encode(namer(JSON.decode(getObjectFromGUID(RExBase).getJSON()),'BaseGame','ExCards')), position = {-30,2,-9}, rotation = {0,180,0}, sound = false})\r\n        spawnObjectJSON({json = JSON.encode(namer(JSON.decode(getObjectFromGUID(RRevealBase).getJSON()),'BaseGame','RevealCards')), position = {-25,2,-9}, rotation = {0,180,0}, sound = false})\r\n    end\r\n    basePlatesPlaced = true\r\n    return true\r\nend\r\n\r\nfunction LEPlates()\r\n    if LEPlatesPlaced then return false end\r\n    getObjectFromGUID(LDeck).takeObject({position = {basePos[1]-5+WFMod+WMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]-5+WFMod+WMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, rotation_snap = true})\r\n    getObjectFromGUID(LDiscard).takeObject({position = {basePos[1]-5+WFMod+WMod,basePos[2],basePos[3]-2}, rotation = {0,180,0}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]-5+WFMod+WMod,basePos[2],basePos[3]-2}, rotation = {0,180,0}, rotation_snap = true})\r\n    getObjectFromGUID(SeasonDie).takeObject({position = {basePos[1]-2.5+LEMod+WFMod+WMod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)\r\n    getObjectFromGUID(ExtraPlate).takeObject({position = {basePos[1]-0.5+LEMod+WFMod+WMod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)\r\n    getObjectFromGUID(ExtraCard).takeObject({position = {basePos[1]+1.5+LEMod+WFMod+WMod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)\r\n    LEPlatesPlaced = true\r\n    return true\r\nend\r\n\r\nfunction TEPlates()\r\n    if TEPlatesPlaced then return false end\r\n    for i=1,3 do\r\n        getObjectFromGUID(TPlate).takeObject({position = {basePos[1]-10+LEMod+WFMod+WMod-5*(i-1),basePos[2],basePos[3]}, rotation = {0,180,0}, smooth = false}).setLock(true)\r\n        table.insert(snapPoints, {position = {basePos[1]-10+LEMod+WFMod+WMod-5*(i-1),basePos[2],basePos[3]}, rotation = {0,180,0}, rotation_snap = true})\r\n    end\r\n    for i=2,3 do\r\n        getObjectFromGUID(TPlate).takeObject({position = {basePos[1]-10+LEMod+WFMod+WMod-5*(i-1),basePos[2],basePos[3]-7}, rotation = {0,180,0}, smooth = false}).setLock(true)\r\n        table.insert(snapPoints, {position = {basePos[1]-10+LEMod+WFMod+WMod-5*(i-1),basePos[2],basePos[3]-7}, rotation = {0,180,0}, rotation_snap = true})\r\n    end\r\n    getObjectFromGUID(TDeck).takeObject({position = {basePos[1]-11+LEMod+WFMod+WMod,basePos[2],basePos[3]+6}, rotation = {0,90,0}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]-11+LEMod+WFMod+WMod,basePos[2],basePos[3]+6}, rotation = {0,90,0}, rotation_snap = true})\r\n    getObjectFromGUID(TDiscard).takeObject({position = {basePos[1]-19+LEMod+WFMod+WMod,basePos[2],basePos[3]+6}, rotation = {0,90,0}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]-19+LEMod+WFMod+WMod,basePos[2],basePos[3]+6}, rotation = {0,90,0}, rotation_snap = true})\r\n    getObjectFromGUID(TERef).takeObject({position = {basePos[1]-4.5+LEMod+WFMod+WMod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)\r\n    TEPlatesPlaced = true\r\n    return true\r\nend\r\n\r\nfunction TraitsPlates()\r\n    if TraitsPlatesPlaced then return false end\r\n    getObjectFromGUID(TraitsDeck).takeObject({position = {basePos[1]-10+TEMod+LEMod+WFMod+WMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]-10+TEMod+LEMod+WFMod+WMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, rotation_snap = true})\r\n    TraitsPlatesPlaced = true\r\n    return true\r\nend\r\n\r\nfunction WildPlates()\r\n    if WildPlatesPlaced then return false end\r\n    getObjectFromGUID(WildDeck).takeObject({position = {basePos[1]-5+WFMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]-5+WFMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, rotation_snap = true})\r\n    getObjectFromGUID(WildDeck).takeObject({position = {basePos[1]-5+WFMod,basePos[2]+0.1,basePos[3]-2}, rotation = {0,180,180}, smooth = false}).setLock(true)\r\n    table.insert(snapPoints, {position = {basePos[1]-5+WFMod,basePos[2],basePos[3]-2}, rotation = {0,180,0}, rotation_snap = true})\r\n    WildPlatesPlaced = true\r\n    return true\r\nend\r\n\r\nfunction doEverything()\r\n    snapPoints = Global.getSnapPoints()\r\n    if #DeckerCards.PrecognitionCards>0 then\r\n        basePos[1] = basePos[1]+2.5\r\n        WFMod = -5\r\n    end\r\n    if #DeckerCards.NightCards>0 then\r\n        basePos[1] = basePos[1]-2.5\r\n    end\r\n    if #DeckerCards.TerminalCards>0 then\r\n        TEMod = -15\r\n        basePos[1] = basePos[1]+7.5\r\n    end\r\n    if #DeckerCards.LunaticCards>0 or expansions.LunaticExtra then\r\n        basePos[1] = basePos[1]+2.5\r\n        LEMod = -5\r\n    end\r\n    if #DeckerCards.WildCards>0 then\r\n        basePos[1] = basePos[1]+2.5\r\n        WMod = -5\r\n    end\r\n    if #DeckerCards.TraitCards>0 then\r\n        basePos[1] = basePos[1]+2.5\r\n    end\r\n    if #DeckerCards.TerminalCards>0 then\r\n        TEPlates()\r\n    end\r\n    if #DeckerCards.LunaticCards>0 or expansions.LunaticExtra then\r\n        LEPlates()\r\n    end\r\n    if #DeckerCards.TraitCards>0 then\r\n        TraitsPlates()\r\n    end\r\n    if #DeckerCards.WildCards>0 then\r\n        WildPlates()\r\n    end\r\n    if expansions.WillofFate then\r\n        getObjectFromGUID(WinterToken).takeObject({position = {basePos[1]-6.5,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)\r\n        getObjectFromGUID(SummerToken).takeObject({position = {basePos[1]-4.5,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)\r\n        getObjectFromGUID(AutumnToken).takeObject({position = {basePos[1]-6.5,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)\r\n        getObjectFromGUID(SpringToken).takeObject({position = {basePos[1]-4.5,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)\r\n        getObjectFromGUID(WoFRef).takeObject({position = {basePos[1]-7.5+WFMod+WMod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)\r\n    end\r\n    if expansions.ShitTier then\r\n        getObjectFromGUID(OkinaToken).takeObject({position = {basePos[1]+1.5+LEMod+WFMod+WMod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)\r\n    end\r\n    if expansions.EToFS then\r\n        getObjectFromGUID(SilenceToken).takeObject({position = {basePos[1]+18.5+LEMod,basePos[2]-0.01,basePos[3]-4}, smooth = false}).setLock(true)\r\n        getObjectFromGUID(NightButton).takeObject({position = {basePos[1]+20.5+LEMod,basePos[2]-0.01,basePos[3]-4}, smooth = false}).setLock(true)\r\n        getObjectFromGUID(LoreButton).takeObject({position = {basePos[1]+18.5+LEMod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)\r\n        getObjectFromGUID(ClankButton).takeObject({position = {basePos[1]+20.5+LEMod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)\r\n        getObjectFromGUID(Past).takeObject({position = {basePos[1]+18.5+LEMod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)\r\n        getObjectFromGUID(GoodFuture).takeObject({position = {basePos[1]+20.5+LEMod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)\r\n        getObjectFromGUID(EToFSRef).takeObject({position = {basePos[1]+18.5+LEMod,basePos[2]-0.01,basePos[3]-10}, smooth = false}).setLock(true)\r\n    end\r\n    BasePlates()\r\n    if expansions.LunaticExtra then\r\n        spawnObjectJSON({json = JSON.encode(namer(JSON.decode(getObjectFromGUID(MCardsLunatic).getJSON()),'LunaticExtra','MainCards')), position = {basePos[1]-5+LEMod+WFMod+WMod,3,basePos[3]+5}, rotation = {0,180,180}, sound = false})\r\n        spawnObjectJSON({json = JSON.encode(namer(JSON.decode(getObjectFromGUID(ICardsLunatic).getJSON()),'LunaticExtra','IncidentCards')), position = {basePos[1]+1,3,basePos[3]+6}, rotation = {0,90,180}, sound = false})\r\n        spawnObjectJSON({json = JSON.encode(namer(JSON.decode(getObjectFromGUID(LCardsLunatic).getJSON()),'LunaticExtra','LunaticCards')), position = {basePos[1]-5+WFMod+WMod,2,basePos[3]+5}, rotation = {0,180,180}, sound = false})\r\n        spawnObjectJSON({json = JSON.encode(namer(JSON.decode(getObjectFromGUID(CCardsLunatic).getJSON()),'LunaticExtra','CharacterCards')), position = CharacterLocation, rotation = {0,90,180}, sound = false})\r\n        if expansions.ZhelotRoles~=true then\r\n            spawnObjectJSON({json = JSON.encode(namer(JSON.decode(getObjectFromGUID(RExLunatic).getJSON()),'LunaticExtra','ExCards')), position = {-30,3,-9}, rotation = {0,180,0}, sound = false})\r\n            spawnObjectJSON({json = JSON.encode(namer(JSON.decode(getObjectFromGUID(RRevealLunatic).getJSON()),'LunaticExtra','RevealCards')), position = {-25,3,-9}, rotation = {0,180,0}, sound = false})\r\n        end\r\n    end\r\n    for key,value in pairs(DeckerCards) do\r\n        if #value>1 then\r\n            local tempDeck = Decker.Deck(value, {sideways=key==\"CharacterCards\"})\r\n            if key==\"MainCards\" then\r\n                tempDeck:spawn({position = {basePos[1]-5+LEMod+WFMod+WMod,5,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"LunaticCards\" then\r\n                tempDeck:spawn({position = {basePos[1]-5+WFMod+WMod,4,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"IncidentCards\" then\r\n                tempDeck:spawn({position = {basePos[1]+1,5,basePos[3]+6}, rotation = {0,90,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"HeroineCards\" then\r\n                tempDeck:spawn({position = {-35,3,5}, rotation = {0,180,0}}).setScale({1.82,1,1.82})\r\n            elseif key==\"PartnerCards\" then\r\n                tempDeck:spawn({position = {-35,3,-2}, rotation = {0,180,0}}).setScale({1.82,1,1.82})\r\n            elseif key==\"StageCards\" then\r\n                tempDeck:spawn({position = {-35,3,-9}, rotation = {0,180,0}}).setScale({1.82,1,1.82})\r\n            elseif key==\"ExCards\" then\r\n                tempDeck:spawn({position = {-30,4,-9}, rotation = {0,180,0}}).setScale({1.82,1,1.82})\r\n            elseif key==\"RevealCards\" then\r\n                tempDeck:spawn({position = {-25,4,-9}, rotation = {0,180,0}}).setScale({1.82,1,1.82})\r\n            elseif key==\"TerminalCards\" then\r\n                tempDeck:spawn({position = {basePos[1]-11+LEMod+WFMod+WMod,2,basePos[3]+6}, rotation = {0,90,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"PrecognitionCards\" then\r\n                tempDeck:spawn({position = {basePos[1]-5,2,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n                table.insert(snapPoints, {position = {basePos[1]-5,basePos[2],basePos[3]+5}, rotation = {0,180,180}, rotation_snap = true})\r\n                table.insert(snapPoints, {position = {basePos[1]-5,basePos[2],basePos[3]-2}, rotation = {0,180,180}, rotation_snap = true})\r\n            elseif key==\"NightCards\" then\r\n                tempDeck:spawn({position = {basePos[1]+15,2,basePos[3]}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n                table.insert(snapPoints, {position = {basePos[1]+15,basePos[2],basePos[3]}, rotation = {0,180,180}, rotation_snap = true})\r\n                table.insert(snapPoints, {position = {basePos[1]+15,basePos[2],basePos[3]-7}, rotation = {0,180,180}, rotation_snap = true})\r\n            elseif key==\"TraitCards\" then\r\n                tempDeck:spawn({position = {basePos[1]-10+TEMod+LEMod+WFMod+WMod,4,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"WildCards\" then\r\n                tempDeck:spawn({position = {basePos[1]-5+WFMod,2,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"CharacterCards\" then\r\n                tempDeck:spawn({position = CharacterLocation, rotation = {0,90,180}}).setScale({2.61,1,2.61})\r\n            end\r\n        elseif #value==1 then\r\n            if key==\"MainCards\" then\r\n                value[1]:spawn({position = {basePos[1]-5+LEMod+WFMod+WMod,5,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"LunaticCards\" then\r\n                value[1]:spawn({position = {basePos[1]-5+WFMod+WMod,4,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"IncidentCards\" then\r\n                value[1]:spawn({position = {basePos[1]+1,5,basePos[3]+6}, rotation = {0,90,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"HeroineCards\" then\r\n                value[1]:spawn({position = {-35,3,5}, rotation = {0,180,0}}).setScale({1.82,1,1.82})\r\n            elseif key==\"PartnerCards\" then\r\n                value[1]:spawn({position = {-35,3,-2}, rotation = {0,180,0}}).setScale({1.82,1,1.82})\r\n            elseif key==\"StageCards\" then\r\n                value[1]:spawn({position = {-35,3,-9}, rotation = {0,180,0}}).setScale({1.82,1,1.82})\r\n            elseif key==\"ExCards\" then\r\n                value[1]:spawn({position = {-30,4,-9}, rotation = {0,180,0}}).setScale({1.82,1,1.82})\r\n            elseif key==\"RevealCards\" then\r\n                value[1]:spawn({position = {-25,4,-9}, rotation = {0,180,0}}).setScale({1.82,1,1.82})\r\n            elseif key==\"TerminalCards\" and expansions.TerminalExpansion then\r\n                value[1]:spawn({position = {basePos[1]-11+LEMod+WFMod+WMod,2,basePos[3]+6}, rotation = {0,90,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"PrecognitionCards\" and expansions.LunaticExtra then\r\n                value[1]:spawn({position = {basePos[1]-5,2,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n                table.insert(snapPoints, {position = {basePos[1]-5,basePos[2],basePos[3]+5}, rotation = {0,180,180}, rotation_snap = true})\r\n                table.insert(snapPoints, {position = {basePos[1]-5,basePos[2],basePos[3]-2}, rotation = {0,180,180}, rotation_snap = true})\r\n            elseif key==\"NightCards\" then\r\n                value[1]:spawn({position = {basePos[1]+15,2,basePos[3]}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n                table.insert(snapPoints, {position = {basePos[1]+15,basePos[2],basePos[3]}, rotation = {0,180,180}, rotation_snap = true})\r\n                table.insert(snapPoints, {position = {basePos[1]+15,basePos[2],basePos[3]-7}, rotation = {0,180,180}, rotation_snap = true})\r\n            elseif key==\"TraitCards\" then\r\n                value[1]:spawn({position = {basePos[1]-10+TEMod+LEMod+WFMod+WMod,4,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"WildCards\" then\r\n                value[1]:spawn({position = {basePos[1]-5+WFMod,2,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})\r\n            elseif key==\"CharacterCards\" then\r\n                value[1]:spawn({value[1]:spawn({position = CharacterLocation, rotation = {0,90,180}}).setScale({2.61,1,2.61})})\r\n            end\r\n        end\r\n    end\r\n    Global.setSnapPoints(snapPoints)\r\nend\r\n\r\nfunction loadExpansions(player, _, id)\r\n    print('Loading expansions...')\r\n    closePanel(nil,nil,nil)\r\n    basePos = {-2.5, 1.5, 0}\r\n    LEMod = 0\r\n    WFMod = 0\r\n    TEMod = 0\r\n    WMod = 0\r\n    for key,value in pairs(expansions) do\r\n        if value~=false and key~=\"LunaticExtra\" then\r\n            remeber = key\r\n            WebRequest.get(\"http://66.70.189.147:8080/danmaku/\"..key, function(a) webRequestCallback(a) end)\r\n        end\r\n    end\r\n    Wait.condition(doEverything, waitCondition)\r\nend\r\n\r\nfunction closePanel(player, _, id)\r\n    UI.setAttribute(\"expansionSelection\", \"active\", false)\r\n    UI.setAttribute(\"openButton\", \"active\", true)\r\nend\r\n\r\nfunction openPanel(player, _, id)\r\n    UI.setAttribute(\"expansionSelection\", \"active\", true)\r\n    UI.setAttribute(\"openButton\", \"active\", false)\r\nend\r\n\r\n--# Turn Phase Tracker\r\n\r\nfunction StringToBool(s) if s == \"False\" or s == \"false\" then return false else return true end end\r\n\r\nfunction onPlayerTurnStart(_, _)\r\n    UI.setAttribute(\"phaseTrackerButtonStart\" , \"isOn\", true)\r\nend\r\n\r\nfunction phaseTrackerPhaseChange(Playerr, isOn, id)\r\n    on = StringToBool(isOn)\r\n    --print(Playerr.color)\r\n    --# Makes sure only active player can change phase\r\n    if Playerr.color ~= Turns.turn_color and Playerr.color ~= \"Black\" then\r\n        UI.setAttribute(id, \"isOn\", not on)\r\n        return\r\n    else\r\n        UI.setAttribute(id, \"isOn\", on)\r\n    end\r\n    --print(id)\r\n    --print(isOn)\r\n    --print(on)\r\n    --# Goes to next turn \r\n    -- if id==\"phaseTrackerButtonEnd\" and on then\r\n    --     print(Turns.getNextTurnColor())\r\n    --     Turns.turn_color = Turns.getNextTurnColor()\r\n    --     UI.setAttribute(id, \"isOn\", false)\r\n    -- end\r\nend",
   "LuaScriptState": "",
   "Grid": {
     "Type": 0,
@@ -151,113 +151,113 @@
       {
         "Color": "White",
         "Transform": {
-          "posX": -24.0939,
+          "posX": -24.0,
           "posY": 5.0,
-          "posZ": -43.9101448,
+          "posZ": -44.9999924,
           "rotX": 0.0,
-          "rotY": 359.976379,
+          "rotY": 0.0,
           "rotZ": 0.0,
-          "scaleX": 27.82499,
-          "scaleY": 7.0,
-          "scaleZ": 4.90455627
+          "scaleX": 27.6150036,
+          "scaleY": 6.483764,
+          "scaleZ": 3.9108
         }
       },
       {
         "Color": "Pink",
         "Transform": {
-          "posX": 9.97987652,
+          "posX": 10.0,
           "posY": 5.0,
-          "posZ": -44.08408,
+          "posZ": -44.9999924,
           "rotX": 0.0,
-          "rotY": 359.976379,
+          "rotY": 0.0,
           "rotZ": 0.0,
-          "scaleX": 27.7243633,
-          "scaleY": 7.0,
-          "scaleZ": 4.932518
+          "scaleX": 27.6150036,
+          "scaleY": 6.483764,
+          "scaleZ": 3.91080427
         }
       },
       {
         "Color": "Purple",
         "Transform": {
-          "posX": 43.13217,
-          "posY": 5.000002,
-          "posZ": -24.022356,
+          "posX": 45.0,
+          "posY": 5.0,
+          "posZ": -23.9999962,
           "rotX": 0.0,
-          "rotY": 270.012451,
+          "rotY": 270.0,
           "rotZ": 0.0,
-          "scaleX": 28.1122246,
-          "scaleY": 7.0,
-          "scaleZ": 3.947369
+          "scaleX": 27.378973,
+          "scaleY": 6.483764,
+          "scaleZ": 3.94551444
         }
       },
       {
         "Color": "Blue",
         "Transform": {
-          "posX": 43.4368134,
-          "posY": 5.000002,
-          "posZ": 10.2348976,
+          "posX": 45.0,
+          "posY": 5.0,
+          "posZ": 10.0,
           "rotX": 0.0,
-          "rotY": 269.67923,
+          "rotY": 270.0,
           "rotZ": 0.0,
-          "scaleX": 28.0265942,
-          "scaleY": 7.0,
-          "scaleZ": 4.34065437
+          "scaleX": 27.3785419,
+          "scaleY": 6.483764,
+          "scaleZ": 3.94544649
         }
       },
       {
         "Color": "Teal",
         "Transform": {
-          "posX": 24.0748634,
+          "posX": 24.0,
           "posY": 5.0,
-          "posZ": 42.9934235,
+          "posZ": 44.9999924,
           "rotX": 0.0,
-          "rotY": 179.881836,
+          "rotY": 180.0,
           "rotZ": 0.0,
-          "scaleX": 28.0483913,
-          "scaleY": 7.0,
-          "scaleZ": 3.490178
+          "scaleX": 27.61498,
+          "scaleY": 6.483764,
+          "scaleZ": 3.910795
         }
       },
       {
         "Color": "Green",
         "Transform": {
-          "posX": -10.1414413,
+          "posX": -10.0,
           "posY": 5.0,
-          "posZ": 43.53872,
+          "posZ": 44.9999924,
           "rotX": 0.0,
-          "rotY": 179.881836,
+          "rotY": 180.0,
           "rotZ": 0.0,
-          "scaleX": 28.2546482,
-          "scaleY": 7.0,
-          "scaleZ": 3.97629023
+          "scaleX": 27.6150036,
+          "scaleY": 6.483764,
+          "scaleZ": 3.9108
         }
       },
       {
         "Color": "Yellow",
         "Transform": {
-          "posX": -43.4186478,
-          "posY": 5.000002,
-          "posZ": 23.98677,
+          "posX": -45.0,
+          "posY": 5.0,
+          "posZ": 23.9999962,
           "rotX": 0.0,
-          "rotY": 89.75119,
+          "rotY": 90.0,
           "rotZ": 0.0,
-          "scaleX": 28.0350933,
-          "scaleY": 7.0,
-          "scaleZ": 4.189837
+          "scaleX": 27.3774834,
+          "scaleY": 6.483764,
+          "scaleZ": 3.94529319
         }
       },
       {
         "Color": "Red",
         "Transform": {
-          "posX": -43.9607239,
-          "posY": 5.000002,
-          "posZ": -8.02646,
+          "posX": -45.0,
+          "posY": 5.0,
+          "posZ": -10.0,
           "rotX": 0.0,
-          "rotY": 89.75119,
+          "rotY": 90.0,
           "rotZ": 0.0,
-          "scaleX": 27.9813519,
-          "scaleY": 7.0,
-          "scaleZ": 5.31361246
+          "scaleX": 27.3768845,
+          "scaleY": 6.483764,
+          "scaleZ": 3.94522548
         }
       }
     ]
@@ -294,37 +294,6 @@
           "x": -12.1461525,
           "y": 1.511116,
           "z": 9.076852
-        }
-      ],
-      "color": {
-        "r": 0.0,
-        "g": 1.0,
-        "b": 0.9330852
-      },
-      "thickness": 0.1,
-      "loop": true
-    },
-    {
-      "points3": [
-        {
-          "x": 3.87011051,
-          "y": 1.4904995,
-          "z": 14.888422
-        },
-        {
-          "x": 12.1845045,
-          "y": 1.47890282,
-          "z": 14.8676758
-        },
-        {
-          "x": 12.1702528,
-          "y": 1.47724056,
-          "z": 9.158042
-        },
-        {
-          "x": 3.855863,
-          "y": 1.48883724,
-          "z": 9.178791
         }
       ],
       "color": {
@@ -813,386 +782,6 @@
     {
       "points3": [
         {
-          "x": 7.30626,
-          "y": 1.48654556,
-          "z": 17.7247372
-        },
-        {
-          "x": 7.29818535,
-          "y": 1.48647118,
-          "z": 17.4383411
-        },
-        {
-          "x": 7.26655865,
-          "y": 1.486433,
-          "z": 17.1552238
-        },
-        {
-          "x": 7.2373395,
-          "y": 1.486414,
-          "z": 16.9512653
-        },
-        {
-          "x": 7.2332077,
-          "y": 1.4863739,
-          "z": 16.7992382
-        },
-        {
-          "x": 7.25109,
-          "y": 1.48629,
-          "z": 16.5976944
-        },
-        {
-          "x": 7.243479,
-          "y": 1.48621941,
-          "z": 16.32334
-        },
-        {
-          "x": 7.238006,
-          "y": 1.48616982,
-          "z": 16.1256313
-        },
-        {
-          "x": 7.256322,
-          "y": 1.48609352,
-          "z": 15.95372
-        }
-      ],
-      "color": {
-        "r": 0.0,
-        "g": 1.0,
-        "b": 0.9330852
-      },
-      "thickness": 0.1
-    },
-    {
-      "points3": [
-        {
-          "x": 7.33166027,
-          "y": 1.48652458,
-          "z": 17.7769451
-        },
-        {
-          "x": 7.569126,
-          "y": 1.48617744,
-          "z": 17.7227039
-        },
-        {
-          "x": 7.85390043,
-          "y": 1.48576546,
-          "z": 17.6681938
-        },
-        {
-          "x": 8.06767,
-          "y": 1.48545837,
-          "z": 17.6404114
-        },
-        {
-          "x": 8.257385,
-          "y": 1.48518562,
-          "z": 17.6128845
-        },
-        {
-          "x": 8.424376,
-          "y": 1.48495293,
-          "z": 17.6116066
-        },
-        {
-          "x": 8.568862,
-          "y": 1.48475838,
-          "z": 17.6365719
-        },
-        {
-          "x": 8.579063,
-          "y": 1.48466873,
-          "z": 17.3767185
-        },
-        {
-          "x": 8.593253,
-          "y": 1.48459435,
-          "z": 17.196291
-        },
-        {
-          "x": 8.608718,
-          "y": 1.48452759,
-          "z": 17.0425587
-        },
-        {
-          "x": 8.624071,
-          "y": 1.48446274,
-          "z": 16.88975
-        },
-        {
-          "x": 8.63388252,
-          "y": 1.48437309,
-          "z": 16.637167
-        },
-        {
-          "x": 8.625697,
-          "y": 1.48434067,
-          "z": 16.4869041
-        },
-        {
-          "x": 8.617559,
-          "y": 1.48430824,
-          "z": 16.337492
-        },
-        {
-          "x": 8.6095,
-          "y": 1.48427582,
-          "z": 16.1889515
-        },
-        {
-          "x": 8.575662,
-          "y": 1.48426533,
-          "z": 15.99241
-        },
-        {
-          "x": 8.546009,
-          "y": 1.484271,
-          "z": 15.8704
-        },
-        {
-          "x": 8.335975,
-          "y": 1.48454857,
-          "z": 15.823288
-        },
-        {
-          "x": 8.221887,
-          "y": 1.48471642,
-          "z": 15.84853
-        },
-        {
-          "x": 8.062649,
-          "y": 1.484952,
-          "z": 15.8985519
-        },
-        {
-          "x": 7.85592937,
-          "y": 1.48524857,
-          "z": 15.92461
-        },
-        {
-          "x": 7.69610071,
-          "y": 1.485486,
-          "z": 15.9747915
-        },
-        {
-          "x": 7.557449,
-          "y": 1.48568058,
-          "z": 15.9758577
-        },
-        {
-          "x": 7.41877747,
-          "y": 1.48587418,
-          "z": 15.97694
-        },
-        {
-          "x": 7.257703,
-          "y": 1.486105,
-          "z": 16.0026932
-        }
-      ],
-      "color": {
-        "r": 0.0,
-        "g": 1.0,
-        "b": 0.9330852
-      },
-      "thickness": 0.1
-    },
-    {
-      "points3": [
-        {
-          "x": 6.99088049,
-          "y": 1.48724365,
-          "z": 18.6055031
-        },
-        {
-          "x": 7.035794,
-          "y": 1.487133,
-          "z": 18.4432869
-        },
-        {
-          "x": 7.08106327,
-          "y": 1.48703,
-          "z": 18.3088074
-        },
-        {
-          "x": 7.12544,
-          "y": 1.48692131,
-          "z": 18.1483879
-        },
-        {
-          "x": 7.216895,
-          "y": 1.48674011,
-          "z": 17.9621181
-        },
-        {
-          "x": 7.30846739,
-          "y": 1.48656464,
-          "z": 17.8033867
-        },
-        {
-          "x": 7.398706,
-          "y": 1.48638535,
-          "z": 17.6195011
-        },
-        {
-          "x": 7.53586054,
-          "y": 1.4861393,
-          "z": 17.4365311
-        },
-        {
-          "x": 7.64841032,
-          "y": 1.48592949,
-          "z": 17.2549877
-        },
-        {
-          "x": 7.760164,
-          "y": 1.48572159,
-          "z": 17.07467
-        },
-        {
-          "x": 7.895696,
-          "y": 1.485487,
-          "z": 16.9207935
-        },
-        {
-          "x": 8.05175,
-          "y": 1.48520851,
-          "z": 16.7171841
-        },
-        {
-          "x": 8.208915,
-          "y": 1.4849453,
-          "z": 16.5651932
-        },
-        {
-          "x": 8.341873,
-          "y": 1.48471451,
-          "z": 16.4142647
-        },
-        {
-          "x": 8.496002,
-          "y": 1.48444939,
-          "z": 16.2392883
-        },
-        {
-          "x": 8.649112,
-          "y": 1.48418427,
-          "z": 16.0654526
-        },
-        {
-          "x": 8.734745,
-          "y": 1.48402786,
-          "z": 15.9421844
-        },
-        {
-          "x": 8.83868,
-          "y": 1.48382568,
-          "z": 15.7464428
-        },
-        {
-          "x": 8.877408,
-          "y": 1.483737,
-          "z": 15.6250486
-        }
-      ],
-      "color": {
-        "r": 0.0,
-        "g": 1.0,
-        "b": 0.9330852
-      },
-      "thickness": 0.1
-    },
-    {
-      "points3": [
-        {
-          "x": 6.606223,
-          "y": 1.48693562,
-          "z": 15.7396278
-        },
-        {
-          "x": 6.74552059,
-          "y": 1.486764,
-          "z": 15.8114042
-        },
-        {
-          "x": 6.908832,
-          "y": 1.48656464,
-          "z": 15.9075661
-        },
-        {
-          "x": 7.1440115,
-          "y": 1.48628616,
-          "z": 16.0771751
-        },
-        {
-          "x": 7.3336215,
-          "y": 1.48606491,
-          "z": 16.2235966
-        },
-        {
-          "x": 7.57172251,
-          "y": 1.48578262,
-          "z": 16.3953476
-        },
-        {
-          "x": 7.81146336,
-          "y": 1.48550034,
-          "z": 16.5682716
-        },
-        {
-          "x": 8.124334,
-          "y": 1.48512268,
-          "z": 16.7670727
-        },
-        {
-          "x": 8.320633,
-          "y": 1.48490143,
-          "z": 16.942915
-        },
-        {
-          "x": 8.494651,
-          "y": 1.48471069,
-          "z": 17.1201344
-        },
-        {
-          "x": 8.646142,
-          "y": 1.48455238,
-          "z": 17.2987976
-        },
-        {
-          "x": 8.798694,
-          "y": 1.48439217,
-          "z": 17.4786549
-        },
-        {
-          "x": 8.95384,
-          "y": 1.48423576,
-          "z": 17.6858978
-        },
-        {
-          "x": 9.159852,
-          "y": 1.48401833,
-          "z": 17.9207859
-        },
-        {
-          "x": 9.46781349,
-          "y": 1.483675,
-          "z": 18.2103672
-        }
-      ],
-      "color": {
-        "r": 0.0,
-        "g": 1.0,
-        "b": 0.9330852
-      },
-      "thickness": 0.1
-    },
-    {
-      "points3": [
-        {
           "x": -2.045497,
           "y": 1.50050735,
           "z": 20.8683567
@@ -1475,6 +1064,422 @@
         "b": 1.0
       },
       "thickness": 0.1
+    },
+    {
+      "points3": [
+        {
+          "x": 3.90170431,
+          "y": 1.49150085,
+          "z": 14.7888451
+        },
+        {
+          "x": 12.0666924,
+          "y": 1.49150085,
+          "z": 14.788847
+        },
+        {
+          "x": 12.0666933,
+          "y": 1.4914999,
+          "z": 9.194698
+        },
+        {
+          "x": 3.90170527,
+          "y": 1.4914999,
+          "z": 9.194697
+        }
+      ],
+      "color": {
+        "r": 0.129411772,
+        "g": 0.694117665,
+        "b": 0.607843161
+      },
+      "thickness": 0.1,
+      "loop": true
+    },
+    {
+      "points3": [
+        {
+          "x": 7.44297743,
+          "y": 1.49150085,
+          "z": 17.9670124
+        },
+        {
+          "x": 7.422411,
+          "y": 1.49150085,
+          "z": 17.7613468
+        },
+        {
+          "x": 7.422411,
+          "y": 1.49150085,
+          "z": 17.5968113
+        },
+        {
+          "x": 7.422411,
+          "y": 1.49150085,
+          "z": 17.4322777
+        },
+        {
+          "x": 7.422411,
+          "y": 1.49150085,
+          "z": 17.3088779
+        },
+        {
+          "x": 7.422411,
+          "y": 1.49150085,
+          "z": 17.1854782
+        },
+        {
+          "x": 7.422411,
+          "y": 1.49150085,
+          "z": 17.0620766
+        },
+        {
+          "x": 7.422411,
+          "y": 1.49150085,
+          "z": 16.91811
+        },
+        {
+          "x": 7.422411,
+          "y": 1.49150085,
+          "z": 16.7330112
+        },
+        {
+          "x": 7.422411,
+          "y": 1.49150085,
+          "z": 16.60961
+        },
+        {
+          "x": 7.422411,
+          "y": 1.49150085,
+          "z": 16.48621
+        }
+      ],
+      "color": {
+        "r": 0.129411772,
+        "g": 0.694117665,
+        "b": 0.607843161
+      },
+      "thickness": 0.1
+    },
+    {
+      "points3": [
+        {
+          "x": 7.44297743,
+          "y": 1.49150085,
+          "z": 17.9670124
+        },
+        {
+          "x": 7.607511,
+          "y": 1.49150085,
+          "z": 17.9670124
+        },
+        {
+          "x": 7.73091173,
+          "y": 1.49150085,
+          "z": 17.9670124
+        },
+        {
+          "x": 7.85431147,
+          "y": 1.49150085,
+          "z": 17.9670124
+        },
+        {
+          "x": 8.0394125,
+          "y": 1.49150085,
+          "z": 17.9670124
+        },
+        {
+          "x": 8.142245,
+          "y": 1.49150085,
+          "z": 17.9464474
+        },
+        {
+          "x": 8.245079,
+          "y": 1.49150085,
+          "z": 17.92588
+        },
+        {
+          "x": 8.347914,
+          "y": 1.49150085,
+          "z": 17.8847466
+        },
+        {
+          "x": 8.450746,
+          "y": 1.49150085,
+          "z": 17.8436127
+        },
+        {
+          "x": 8.471314,
+          "y": 1.49150085,
+          "z": 17.7202129
+        },
+        {
+          "x": 8.49188,
+          "y": 1.49150085,
+          "z": 17.5968132
+        },
+        {
+          "x": 8.512447,
+          "y": 1.49150085,
+          "z": 17.4528465
+        },
+        {
+          "x": 8.533013,
+          "y": 1.49150085,
+          "z": 17.288311
+        },
+        {
+          "x": 8.55358,
+          "y": 1.49150085,
+          "z": 17.1854782
+        },
+        {
+          "x": 8.55358,
+          "y": 1.49150085,
+          "z": 17.0003777
+        },
+        {
+          "x": 8.55358,
+          "y": 1.49150085,
+          "z": 16.8152771
+        },
+        {
+          "x": 8.55358,
+          "y": 1.49150085,
+          "z": 16.67131
+        },
+        {
+          "x": 8.55358,
+          "y": 1.49150085,
+          "z": 16.5067768
+        },
+        {
+          "x": 8.55358,
+          "y": 1.49150085,
+          "z": 16.3422432
+        },
+        {
+          "x": 8.55358,
+          "y": 1.49150085,
+          "z": 16.2188416
+        },
+        {
+          "x": 8.533013,
+          "y": 1.49150085,
+          "z": 16.1160088
+        }
+      ],
+      "color": {
+        "r": 0.129411772,
+        "g": 0.694117665,
+        "b": 0.607843161
+      },
+      "thickness": 0.1
+    },
+    {
+      "points3": [
+        {
+          "x": 7.422411,
+          "y": 1.49150085,
+          "z": 16.36281
+        },
+        {
+          "x": 7.566377,
+          "y": 1.49150085,
+          "z": 16.30111
+        },
+        {
+          "x": 7.68977833,
+          "y": 1.49150085,
+          "z": 16.2599754
+        },
+        {
+          "x": 7.91601229,
+          "y": 1.49150085,
+          "z": 16.1777077
+        },
+        {
+          "x": 8.059979,
+          "y": 1.49150085,
+          "z": 16.1365757
+        },
+        {
+          "x": 8.183379,
+          "y": 1.49150085,
+          "z": 16.1160088
+        },
+        {
+          "x": 8.347914,
+          "y": 1.49150085,
+          "z": 16.0954418
+        },
+        {
+          "x": 8.471314,
+          "y": 1.49150085,
+          "z": 16.0954418
+        }
+      ],
+      "color": {
+        "r": 0.129411772,
+        "g": 0.694117665,
+        "b": 0.607843161
+      },
+      "thickness": 0.1
+    },
+    {
+      "points3": [
+        {
+          "x": 8.985481,
+          "y": 1.49150085,
+          "z": 18.1932468
+        },
+        {
+          "x": 8.841515,
+          "y": 1.49150085,
+          "z": 18.090414
+        },
+        {
+          "x": 8.676981,
+          "y": 1.49150085,
+          "z": 17.8436127
+        },
+        {
+          "x": 8.450746,
+          "y": 1.49150085,
+          "z": 17.5145454
+        },
+        {
+          "x": 8.224513,
+          "y": 1.49150085,
+          "z": 17.1443443
+        },
+        {
+          "x": 7.99827862,
+          "y": 1.49150085,
+          "z": 16.8152771
+        },
+        {
+          "x": 7.77204466,
+          "y": 1.49150085,
+          "z": 16.48621
+        },
+        {
+          "x": 7.60751152,
+          "y": 1.49150085,
+          "z": 16.2805424
+        },
+        {
+          "x": 7.442978,
+          "y": 1.49150085,
+          "z": 16.0954418
+        },
+        {
+          "x": 7.34014463,
+          "y": 1.49150181,
+          "z": 15.972043
+        },
+        {
+          "x": 7.2578764,
+          "y": 1.49150085,
+          "z": 15.8897743
+        },
+        {
+          "x": 7.13447666,
+          "y": 1.49150085,
+          "z": 15.7458076
+        },
+        {
+          "x": 7.05221,
+          "y": 1.49150181,
+          "z": 15.6429739
+        }
+      ],
+      "color": {
+        "r": 0.129411772,
+        "g": 0.694117665,
+        "b": 0.607843161
+      },
+      "thickness": 0.1
+    },
+    {
+      "points3": [
+        {
+          "x": 6.78484154,
+          "y": 1.49150085,
+          "z": 18.6868477
+        },
+        {
+          "x": 6.88767624,
+          "y": 1.49150085,
+          "z": 18.5223141
+        },
+        {
+          "x": 7.05221,
+          "y": 1.49150085,
+          "z": 18.35778
+        },
+        {
+          "x": 7.2578764,
+          "y": 1.49150085,
+          "z": 18.0698471
+        },
+        {
+          "x": 7.504678,
+          "y": 1.49150085,
+          "z": 17.74078
+        },
+        {
+          "x": 7.73091173,
+          "y": 1.49150085,
+          "z": 17.4117126
+        },
+        {
+          "x": 7.93657827,
+          "y": 1.49150085,
+          "z": 17.12378
+        },
+        {
+          "x": 8.183379,
+          "y": 1.49150085,
+          "z": 16.79471
+        },
+        {
+          "x": 8.36848,
+          "y": 1.49150085,
+          "z": 16.54791
+        },
+        {
+          "x": 8.574146,
+          "y": 1.49150085,
+          "z": 16.3216763
+        },
+        {
+          "x": 8.697547,
+          "y": 1.49150085,
+          "z": 16.1777077
+        },
+        {
+          "x": 8.800382,
+          "y": 1.49150085,
+          "z": 16.05431
+        },
+        {
+          "x": 8.9032135,
+          "y": 1.49150085,
+          "z": 15.9309082
+        },
+        {
+          "x": 8.985481,
+          "y": 1.49150085,
+          "z": 15.8280754
+        }
+      ],
+      "color": {
+        "r": 0.129411772,
+        "g": 0.694117665,
+        "b": 0.607843161
+      },
+      "thickness": 0.1
     }
   ],
   "ObjectStates": [
@@ -1682,7 +1687,6 @@
       "HideWhenFaceDown": false,
       "Hands": false,
       "MaterialIndex": 1,
-      "XmlUI": "",
       "LuaScript": "tableHeightOffset = -9\n\nfunction onSave()\n    saved_data = JSON.encode({tid=tableImageData, cd=checkData})\n    --saved_data = \"\"\n    return saved_data\nend\n\nfunction onload(saved_data)\n    --Loads the tracking for if the game has started yet\n    if saved_data ~= \"\" then\n         local loaded_data = JSON.decode(saved_data)\n         tableImageData = loaded_data.tid\n         checkData = loaded_data.cd\n    else\n        tableImageData = {}\n        checkData = {move=false, scale=false}\n    end\n\n    --Disables interactable status of objects with GUID in list\n    for _, guid in ipairs(ref_noninteractable) do\n        local obj = getObjectFromGUID(guid)\n        if obj then obj.interactable = false end\n    end\n\n    --Establish references to table parts\n    obj_leg1 = getObjectFromGUID(\"afc863\")\n    obj_leg2 = getObjectFromGUID(\"c8edca\")\n    obj_leg3 = getObjectFromGUID(\"393bf7\")\n    obj_leg4 = getObjectFromGUID(\"12c65e\")\n    obj_surface = getObjectFromGUID(\"4ee1f2\")\n    obj_side_top = getObjectFromGUID(\"35b95f\")\n    obj_side_bot = getObjectFromGUID(\"f938a2\")\n    obj_side_lef = getObjectFromGUID(\"9f95fd\")\n    obj_side_rig = getObjectFromGUID(\"5af8f2\")\n\n    controlActive = false\n    createOpenCloseButton()\nend\n\n\n\n--Activation/deactivation of control panel\n\n\n\n--Activated by clicking on\nfunction click_toggleControl(_, color)\n    if permissionCheck(color) then\n        if not controlActive then\n            --Activate control panel\n            controlActive = true\n            self.clearButtons()\n            createOpenCloseButton()\n            createSurfaceInput()\n            createSurfaceButtons()\n            createScaleInput()\n            createScaleButtons()\n        else\n            --Deactivate control panel\n            controlActive = false\n            self.clearButtons()\n            self.clearInputs()\n            createOpenCloseButton()\n\n        end\n    end\nend\n\n\n\n\n--Table surface control\n\n\n\n--Changes table surface\nfunction click_applySurface(_, color)\n    if permissionCheck(color) then\n        updateSurface()\n        broadcastToAll(\"New Table Image Applied\", {0.2,0.9,0.2})\n    end\nend\n\n--Saves table surface\nfunction click_saveSurface(_, color)\n    if permissionCheck(color) then\n        local nickname = self.getInputs()[1].value\n        local url = self.getInputs()[2].value\n        if nickname == \"\" then\n            --No nickname\n            broadcastToAll(\"Please supply a nickname for this save.\", {0.9,0.2,0.2})\n        else\n            --Nickname exists\n\n            if findInImageDataIndex(url, nickname) == nil then\n                --Save doesn't exist already\n                table.insert(tableImageData, {url=url, name=nickname})\n                broadcastToAll(\"Image URL saved to memory.\", {0.2,0.9,0.2})\n                --Refresh buttons\n                self.clearButtons()\n                createOpenCloseButton()\n                createSurfaceButtons()\n                createScaleButtons()\n            else\n                --Save exists already\n                broadcastToAll(\"Memory already contains a save with this Name or URL. Delete it first.\", {0.9,0.2,0.2})\n            end\n        end\n    end\nend\n\n--Loads table surface\nfunction click_loadMemory(_, color, index)\n    if permissionCheck(color) then\n        self.editInput({index=0, value=tableImageData[index].name})\n        self.editInput({index=1, value=tableImageData[index].url})\n        updateSurface()\n        broadcastToAll(\"Table Image Loaded\", {0.2,0.9,0.2})\n    end\nend\n\n--Deletes table surface\nfunction click_deleteMemory(_, color, index)\n    if permissionCheck(color) then\n        table.remove(tableImageData, index)\n        self.clearButtons()\n        createOpenCloseButton()\n        createSurfaceButtons()\n        createScaleButtons()\n        broadcastToAll(\"Element Removed from Memory\", {0.2,0.9,0.2})\n    end\nend\n\n--Updates surface from the values in the input field\nfunction updateSurface()\n    local customInfo = obj_surface.getCustomObject()\n    customInfo.diffuse = self.getInputs()[2].value\n    obj_surface.setCustomObject(customInfo)\n    obj_surface = obj_surface.reload()\n    obj_surface.interactable = false\nend\n\n\n\n--Table Scale control\n\n\n\n--Applies Scale to table pieces\nfunction click_applyScale(_, color)\n    if permissionCheck(color) then\n        local newWidth = tonumber(self.getInputs()[3].value)\n        local newDepth = tonumber(self.getInputs()[4].value)\n        if type(newWidth) ~= \"number\" then\n            broadcastToAll(\"Invalid Width\", {0.9,0.2,0.2})\n            return\n        elseif type(newDepth) ~= \"number\" then\n            broadcastToAll(\"Invalid Depth\", {0.9,0.2,0.2})\n            return\n        elseif newWidth<0.1 or newDepth<0.1 then\n            broadcastToAll(\"Scale cannot go below 0.1\", {0.9,0.2,0.2})\n            return\n        elseif newWidth>12 or newDepth>12 then\n            broadcastToAll(\"Scale should not go over 12 (world size limitation)\", {0.9,0.2,0.2})\n            return\n        else\n            changeTableScale(math.abs(newWidth), math.abs(newDepth))\n            broadcastToAll(\"Scale applied.\", {0.2,0.9,0.2})\n        end\n    end\nend\n\n--Checks/unchecks move box for hands\nfunction click_checkMove(_, color)\n    if permissionCheck(color) then\n        local find_func = function(o) return o.click_function==\"click_checkMove\" end\n        if checkData.move == true then\n            checkData.move = false\n            local buttonEntry = findButton(self, find_func)\n            self.editButton({index=buttonEntry.index, label=\"\"})\n        else\n            checkData.move = true\n            local buttonEntry = findButton(self, find_func)\n            self.editButton({index=buttonEntry.index, label=string.char(10008)})\n        end\n    end\nend\n\n--Checks/unchecks scale box for hands\n--This button was disabled for technical reasons\n--[[\nfunction click_checkScale(_, color)\n    if permissionCheck(color) then\n        local find_func = function(o) return o.click_function==\"click_checkScale\" end\n        if checkData.scale == true then\n            checkData.scale = false\n            local buttonEntry = findButton(self, find_func)\n            self.editButton({index=buttonEntry.index, label=\"\"})\n        else\n            checkData.scale = true\n            local buttonEntry = findButton(self, find_func)\n            self.editButton({index=buttonEntry.index, label=string.char(10008)})\n        end\n    end\nend\n]]\n\n--Alters scale of elements and moves them\nfunction changeTableScale(width, depth)\n    --Scaling factors used to translate scale to position offset\n    local width2pos = (width-1) * 18\n    local depth2pos = (depth-1) * 18\n\n    --Hand zone movement\n    if checkData.move == true then\n        for _, pc in ipairs(ref_playerColor) do\n            if Player[pc].getHandCount() > 0 then\n                moveHandZone(Player[pc], width2pos, depth2pos)\n            end\n        end\n    end\n    --Hand zone scaling\n    --The button to enable this was disabled for technical reasons\n    if checkData.scale == true then\n        for _, pc in ipairs(ref_playerColor) do\n            if Player[pc].getHandCount() > 0 then\n                scaleHandZone(Player[pc], width, depth)\n            end\n        end\n    end\n\n    --Resizing table elements\n    obj_side_top.setScale({width, 1, 1})\n    obj_side_bot.setScale({width, 1, 1})\n    obj_side_lef.setScale({depth, 1, 1})\n    obj_side_rig.setScale({depth, 1, 1})\n    obj_surface.setScale({width, 1, depth})\n\n    --Moving table elements to accomodate new scale\n    obj_side_lef.setPosition({-width2pos,tableHeightOffset,0})\n    obj_side_rig.setPosition({ width2pos,tableHeightOffset,0})\n    obj_side_top.setPosition({0,tableHeightOffset, depth2pos})\n    obj_side_bot.setPosition({0,tableHeightOffset,-depth2pos})\n    obj_leg1.setPosition({-width2pos,tableHeightOffset,-depth2pos})\n    obj_leg2.setPosition({-width2pos,tableHeightOffset, depth2pos})\n    obj_leg3.setPosition({ width2pos,tableHeightOffset, depth2pos})\n    obj_leg4.setPosition({ width2pos,tableHeightOffset,-depth2pos})\n    self.setPosition(obj_leg4.positionToWorld({-22.12, 8.74,-19.16}))\n    --Only enabled when changing tableHeightOffset\n    --obj_surface.setPosition({0,tableHeightOffset,0})\nend\n\n--Move hand zone, p=player reference, facts are scaling factors\nfunction moveHandZone(p, width2pos, depth2pos)\n    local widthX = obj_side_rig.getPosition().x\n    local depthZ = obj_side_top.getPosition().z\n    for i=1, p.getHandCount() do\n        local handT = p.getHandTransform()\n        local pos = handT.position\n        local y = handT.rotation.y\n\n        if y<45 or y>320 or y>135 and y<225 then\n            if pos.z > 0 then\n                pos.z = pos.z + depth2pos - depthZ\n            else\n                pos.z = pos.z - depth2pos + depthZ\n            end\n        else\n            if pos.x > 0 then\n                pos.x = pos.x + width2pos - widthX\n            else\n                pos.x = pos.x - width2pos + widthX\n            end\n        end\n\n        --Only enabled when changing tableHeightOffset\n        --pos.y = tableHeightOffset + 14\n\n        handT.position = pos\n        p.setHandTransform(handT, i)\n    end\nend\n\n\n---Scales hand zones, p=player reference, facts are scaling factors\nfunction scaleHandZone(p, width, depth)\n    local widthFact = width / obj_side_top.getScale().x\n    local depthFact = depth / obj_side_lef.getScale().x\n    for i=1, p.getHandCount() do\n        local handT = p.getHandTransform()\n        local scale = handT.scale\n        local y = handT.rotation.y\n        if y<45 or y>320 or y>135 and y<225 then\n            scale.x = scale.x * widthFact\n        else\n            scale.x = scale.x * depthFact\n        end\n        handT.scale = scale\n        p.setHandTransform(handT, i)\n    end\nend\n\n\n\n--Information gathering\n\n\n\n--Checks if a color is promoted or host\nfunction permissionCheck(color)\n    if Player[color].host==true or Player[color].promoted==true then\n        return true\n    else\n        return false\n    end\nend\n\n--Locates a string saved within memory file\nfunction findInImageDataIndex(...)\n    for _, str in ipairs({...}) do\n        for i, v in ipairs(tableImageData) do\n            if v.url == str or v.name == str then\n                return i\n            end\n        end\n    end\n    return nil\nend\n\n--Round number (num) to the Nth decimal (dec)\nfunction round(num, dec)\n  local mult = 10^(dec or 0)\n  return math.floor(num * mult + 0.5) / mult\nend\n\n--Locates a button with a helper function\nfunction findButton(obj, func)\n    if func==nil then error(\"No func supplied to findButton\") end\n    for _, v in ipairs(obj.getButtons()) do\n        if func(v) then\n            return v\n        end\n    end\n    return nil\nend\n\n\n\n--Creation of buttons/inputs\n\n\n\nfunction createOpenCloseButton()\n    local tooltip = \"Open Table Control Panel\"\n    if controlActive then\n        tooltip = \"Close Table Control Panel\"\n    end\n    self.createButton({\n        click_function=\"click_toggleControl\", function_owner=self,\n        position={0,0,0}, rotation={-45,0,0}, height=400, width=400,\n        color={1,1,1,0}, tooltip=tooltip\n    })\nend\n\nfunction createSurfaceInput()\n    local currentURL = obj_surface.getCustomObject().diffuse\n    local nickname = \"\"\n    if findInImageDataIndex(currentURL) ~= nil then\n        nickname = tableImageData[findInImageDataIndex(currentURL)].name\n    end\n    self.createInput({\n        label=\"Nickname\", input_function=\"none\", function_owner=self,\n        alignment=3, position={0,0,2}, height=224, width=4000,\n        font_size=200, tooltip=\"Enter nickname for table image (only used for save)\",\n        value=nickname\n    })\n    self.createInput({\n        label=\"URL\", input_function=\"none\", function_owner=self,\n        alignment=3, position={0,0,3}, height=224, width=4000,\n        font_size=200, tooltip=\"Enter URL for tabletop image\",\n        value=currentURL\n    })\nend\n\nfunction createSurfaceButtons()\n    --Label\n    self.createButton({\n        label=\"Tabletop Surface Image\", click_function=\"none\",\n        position={0,0,1}, height=0, width=0, font_size=300, font_color={1,1,1}\n    })\n    --Functional\n    self.createButton({\n        label=\"Apply Image\\nTo Table\", click_function=\"click_applySurface\",\n        function_owner=self, tooltip=\"Apply URL as table image\",\n        position={2,0,4}, height=440, width=1400, font_size=200,\n    })\n    self.createButton({\n        label=\"Save Image\\nTo Memory\", click_function=\"click_saveSurface\",\n        function_owner=self, tooltip=\"Record URL into memory (requires nickname)\",\n        position={-2,0,4}, height=440, width=1400, font_size=200,\n    })\n    --Label\n    self.createButton({\n        label=\"Load From Memory\", click_function=\"none\",\n        position={0,0,5.5}, height=0, width=0, font_size=300, font_color={1,1,1}\n    })\n    --Saves, created dynamically from memory file\n    for i, memoryEntry in ipairs(tableImageData) do\n        --Load\n        local funcName = i..\"loadMemory\"\n        local func = function(x,y) click_loadMemory(x,y,i) end\n        self.setVar(funcName, func)\n        self.createButton({\n            label=memoryEntry.name, click_function=funcName,\n            function_owner=self, tooltip=memoryEntry.url, font_size=200,\n            position={-0.6,0,6.5+0.5*(i-1)}, height=240, width=3300,\n        })\n        --Delete\n        local funcName = i..\"deleteMemory\"\n        local func = function(x,y) click_deleteMemory(x,y,i) end\n        self.setVar(funcName, func)\n        self.createButton({\n            label=\"DELETE\", click_function=funcName,\n            function_owner=self, tooltip=\"\",\n            position={3.6,0,6.5+0.5*(i-1)}, height=240, width=600,\n            font_size=160, font_color={1,0,0}, color={0.8,0.8,0.8}\n        })\n    end\nend\n\nfunction createScaleInput()\n    self.createInput({\n        label=string.char(8644), input_function=\"none\", function_owner=self,\n        alignment=3, position={-8.5,0,2}, height=224, width=400,\n        font_size=200, tooltip=\"Table Width\",\n        value=round(obj_side_top.getScale().x, 1)\n    })\n    self.createInput({\n        label=string.char(8645), input_function=\"none\", function_owner=self,\n        alignment=3, position={-7.5,0,2}, height=224, width=400,\n        font_size=200, tooltip=\"Table Depth\",\n        value=round(obj_side_lef.getScale().x, 1)\n    })\nend\n\nfunction createScaleButtons()\n    --Labels\n    self.createButton({\n        label=\"Table Scale\", click_function=\"none\",\n        position={-8,0,1}, height=0, width=0, font_size=300, font_color={1,1,1}\n    })\n    self.createButton({\n        label=string.char(8644)..\"            \"..string.char(8645),\n        click_function=\"none\",\n        position={-8,0,2}, height=0, width=0, font_size=300, font_color={1,1,1}\n    })\n    self.createButton({\n        label=\"Move Hands:\", click_function=\"none\",\n        position={-8.3,0,3}, height=0, width=0, font_size=200, font_color={1,1,1}\n    })\n    --Disabled due to me removing the feature for technical reasons\n    --[[\n    self.createButton({\n        label=\"Scale Hands:\", click_function=\"none\",\n        position={-8.3,0,4}, height=0, width=0, font_size=200, font_color={1,1,1}\n    })\n    ]]\n    --Checkboxes\n    local label = \"\"\n    if checkData.move == true then label = string.char(10008) end\n    self.createButton({\n        label=label, click_function=\"click_checkMove\",\n        function_owner=self, tooltip=\"Check to move hands when table is rescaled\",\n        position={-6.8,0,3}, height=224, width=224, font_size=200,\n    })\n    --[[\n    local label = \"\"\n    if checkData.scale == true then label = string.char(10008) end\n    self.createButton({\n        label=label, click_function=\"click_checkScale\",\n        function_owner=self, tooltip=\"Check to scale the width of hands when table is rescaled\",\n        position={-6.8,0,4}, height=224, width=224, font_size=200,\n    })\n    ]]\n    --Apply button\n    self.createButton({\n        label=\"Apply Scale\", click_function=\"click_applyScale\",\n        function_owner=self, tooltip=\"Apply width/depth to table\",\n        position={-8,0,4}, height=440, width=1400, font_size=200,\n    })\nend\n\n\n\n\n\n--Data tables\n\n\n\n\nref_noninteractable = {\n    \"afc863\",\"c8edca\",\"393bf7\",\"12c65e\",\"f938a2\",\"9f95fd\",\"35b95f\",\n    \"5af8f2\",\"4ee1f2\",\"bd69bd\"\n}\n\nref_playerColor = {\n    \"White\", \"Brown\", \"Red\", \"Orange\", \"Yellow\",\n    \"Green\", \"Teal\", \"Blue\", \"Purple\", \"Pink\", \"Black\"\n}\n\n--Dummy function, absorbs unwanted triggers\nfunction none() end",
       "LuaScriptState": "{\"cd\":{\"move\":true,\"scale\":false},\"tid\":[{\"name\":\"Felt - Green\",\"url\":\"https://i.imgur.com/eHXDjyy.jpg\"},{\"name\":\"Felt - Red\",\"url\":\"https://i.imgur.com/DbPelDi.jpg\"},{\"name\":\"Felt - Grey\",\"url\":\"https://i.imgur.com/N0O6aqj.jpg\"},{\"name\":\"Danmaku w/ Keine\",\"url\":\"https://media.discordapp.net/attachments/361582221368360971/574036061169123341/keinepattern.png\"},{\"name\":\"Danmaku\",\"url\":\"https://i.imgur.com/sMDC9iK.png\"}]}",
       "GUID": "bd69bd"
@@ -1913,7 +1917,7 @@
         "posX": 36.0007973,
         "posY": 1.42130888,
         "posZ": -33.99932,
-        "rotX": 0.0168341119,
+        "rotX": 0.0168341249,
         "rotY": 180.027191,
         "rotZ": 0.07988504,
         "scaleX": 3.91263676,
@@ -1924,7 +1928,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117998637,
+        "r": 0.117998563,
         "g": 0.53,
         "b": 1.0
       },
@@ -1961,7 +1965,7 @@
         "posX": 35.99982,
         "posY": 1.43132257,
         "posZ": 0.00252245367,
-        "rotX": 0.0168864634,
+        "rotX": 0.01688647,
         "rotY": 179.98941,
         "rotZ": 0.07987363,
         "scaleX": 3.91263676,
@@ -1972,7 +1976,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.128998667,
+        "r": 0.1289986,
         "g": 0.694,
         "b": 0.606999934
       },
@@ -2020,9 +2024,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.19199869,
+        "r": 0.191998631,
         "g": 0.701,
-        "b": 0.167998672
+        "b": 0.167998612
       },
       "Locked": true,
       "Grid": true,
@@ -2070,7 +2074,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.17199868
+        "b": 0.17199862
       },
       "Locked": true,
       "Grid": true,
@@ -2117,8 +2121,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.9559999,
-        "g": 0.391998559,
-        "b": 0.112998582
+        "g": 0.3919985,
+        "b": 0.112998508
       },
       "Locked": true,
       "Grid": true,
@@ -2150,12 +2154,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -36.0000534,
-        "posY": 1.53228617,
-        "posZ": 2.00000787,
-        "rotX": 0.0168884024,
-        "rotY": 179.9876,
-        "rotZ": 0.07987314,
+        "posX": -35.9999771,
+        "posY": 1.53169727,
+        "posZ": 0.000593351666,
+        "rotX": 0.0169062112,
+        "rotY": 179.975037,
+        "rotZ": 0.07987005,
         "scaleX": 3.91263676,
         "scaleY": 1.0,
         "scaleZ": 4.0134964
@@ -2164,9 +2168,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.4429986,
-        "g": 0.230998576,
-        "b": 0.08999886
+        "r": 0.442998528,
+        "g": 0.230998516,
+        "b": 0.08999882
       },
       "Locked": true,
       "Grid": true,
@@ -2345,7 +2349,7 @@
         "posX": -12.0000887,
         "posY": 1.48763788,
         "posZ": -36.0000343,
-        "rotX": 0.0168289486,
+        "rotX": 0.01682896,
         "rotY": 180.030655,
         "rotZ": 0.0798868239,
         "scaleX": 2.7356956,
@@ -2393,7 +2397,7 @@
         "posX": 10.001152,
         "posY": 1.456966,
         "posZ": -35.9998436,
-        "rotX": 0.0169061,
+        "rotX": 0.0169061068,
         "rotY": 179.972153,
         "rotZ": 0.0798679739,
         "scaleX": 2.73636365,
@@ -2405,7 +2409,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.96,
-        "g": 0.43899864,
+        "g": 0.43899858,
         "b": 0.807
       },
       "Locked": true,
@@ -2453,7 +2457,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.96,
-        "g": 0.43899864,
+        "g": 0.43899858,
         "b": 0.807
       },
       "Locked": true,
@@ -2489,7 +2493,7 @@
         "posX": 18.0001316,
         "posY": 1.44581449,
         "posZ": -36.0002441,
-        "rotX": 0.0169113558,
+        "rotX": 0.0169113651,
         "rotY": 179.967621,
         "rotZ": 0.07986727,
         "scaleX": 2.73636365,
@@ -2501,7 +2505,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.96,
-        "g": 0.43899864,
+        "g": 0.43899858,
         "b": 0.807
       },
       "Locked": true,
@@ -2549,7 +2553,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.96,
-        "g": 0.43899864,
+        "g": 0.43899858,
         "b": 0.807
       },
       "Locked": true,
@@ -2598,7 +2602,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.17199868
+        "b": 0.17199862
       },
       "Locked": true,
       "Grid": true,
@@ -2646,7 +2650,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.17199868
+        "b": 0.17199862
       },
       "Locked": true,
       "Grid": true,
@@ -2682,7 +2686,7 @@
         "posY": 1.51162672,
         "posZ": 36.0001221,
         "rotX": 359.983154,
-        "rotY": 0.0284405053,
+        "rotY": 0.02844051,
         "rotZ": 359.9201,
         "scaleX": 2.73636365,
         "scaleY": 1.0,
@@ -2694,7 +2698,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.17199868
+        "b": 0.17199862
       },
       "Locked": true,
       "Grid": true,
@@ -2742,7 +2746,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.17199868
+        "b": 0.17199862
       },
       "Locked": true,
       "Grid": true,
@@ -2790,7 +2794,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.17199868
+        "b": 0.17199862
       },
       "Locked": true,
       "Grid": true,
@@ -2837,8 +2841,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.9559999,
-        "g": 0.391998529,
-        "b": 0.112998553
+        "g": 0.39199847,
+        "b": 0.112998478
       },
       "Locked": true,
       "Grid": true,
@@ -2885,8 +2889,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.9559999,
-        "g": 0.391998529,
-        "b": 0.112998553
+        "g": 0.39199847,
+        "b": 0.112998478
       },
       "Locked": true,
       "Grid": true,
@@ -2933,8 +2937,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.9559999,
-        "g": 0.391998529,
-        "b": 0.112998553
+        "g": 0.39199847,
+        "b": 0.112998478
       },
       "Locked": true,
       "Grid": true,
@@ -2981,8 +2985,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.9559999,
-        "g": 0.391998529,
-        "b": 0.112998553
+        "g": 0.39199847,
+        "b": 0.112998478
       },
       "Locked": true,
       "Grid": true,
@@ -3029,8 +3033,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.9559999,
-        "g": 0.391998529,
-        "b": 0.112998553
+        "g": 0.39199847,
+        "b": 0.112998478
       },
       "Locked": true,
       "Grid": true,
@@ -3062,12 +3066,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -36.00013,
-        "posY": 1.53051937,
-        "posZ": -4.000644,
+        "posX": -36.0000534,
+        "posY": 1.52993059,
+        "posZ": -5.99999428,
         "rotX": 359.920135,
-        "rotY": 269.977234,
-        "rotZ": 0.016904017,
+        "rotY": 269.977356,
+        "rotZ": 0.0169037376,
         "scaleX": 2.73636365,
         "scaleY": 1.0,
         "scaleZ": 2.73636365
@@ -3076,9 +3080,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.4429986,
-        "g": 0.230998576,
-        "b": 0.08999886
+        "r": 0.442998528,
+        "g": 0.230998516,
+        "b": 0.08999882
       },
       "Locked": true,
       "Grid": true,
@@ -3110,12 +3114,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -36.0000534,
-        "posY": 1.52934158,
-        "posZ": -7.999994,
+        "posX": -36.000042,
+        "posY": 1.52875268,
+        "posZ": -9.999997,
         "rotX": 359.920135,
-        "rotY": 270.003479,
-        "rotZ": 0.01686737,
+        "rotY": 270.003571,
+        "rotZ": 0.01686633,
         "scaleX": 2.73636365,
         "scaleY": 1.0,
         "scaleZ": 2.73636365
@@ -3124,9 +3128,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.4429986,
-        "g": 0.230998576,
-        "b": 0.08999886
+        "r": 0.442998528,
+        "g": 0.230998516,
+        "b": 0.08999882
       },
       "Locked": true,
       "Grid": true,
@@ -3158,12 +3162,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -36.00007,
-        "posY": 1.52816379,
-        "posZ": -11.9999981,
+        "posX": -36.00004,
+        "posY": 1.52757478,
+        "posZ": -13.9999971,
         "rotX": 359.920135,
-        "rotY": 270.0027,
-        "rotZ": 0.0168688726,
+        "rotY": 270.002869,
+        "rotZ": 0.0168687142,
         "scaleX": 2.73636365,
         "scaleY": 1.0,
         "scaleZ": 2.73636365
@@ -3172,9 +3176,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.4429986,
-        "g": 0.230998576,
-        "b": 0.08999886
+        "r": 0.442998528,
+        "g": 0.230998516,
+        "b": 0.08999882
       },
       "Locked": true,
       "Grid": true,
@@ -3206,12 +3210,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -36.0000648,
-        "posY": 1.52698588,
-        "posZ": -16.00011,
+        "posX": -36.00003,
+        "posY": 1.526397,
+        "posZ": -18.0,
         "rotX": 359.920135,
-        "rotY": 269.987671,
-        "rotZ": 0.0168889817,
+        "rotY": 269.9878,
+        "rotZ": 0.0168893915,
         "scaleX": 2.73636365,
         "scaleY": 1.0,
         "scaleZ": 2.73636365
@@ -3220,9 +3224,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.4429986,
-        "g": 0.230998576,
-        "b": 0.08999886
+        "r": 0.442998528,
+        "g": 0.230998516,
+        "b": 0.08999882
       },
       "Locked": true,
       "Grid": true,
@@ -3254,12 +3258,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -36.0001259,
-        "posY": 1.52580869,
-        "posZ": -19.9981461,
+        "posX": -36.00006,
+        "posY": 1.5252192,
+        "posZ": -22.0,
         "rotX": 359.920135,
-        "rotY": 270.004761,
-        "rotZ": 0.0168663859,
+        "rotY": 270.005,
+        "rotZ": 0.016865816,
         "scaleX": 2.73636365,
         "scaleY": 1.0,
         "scaleZ": 2.73636365
@@ -3268,9 +3272,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.4429986,
-        "g": 0.230998576,
-        "b": 0.08999886
+        "r": 0.442998528,
+        "g": 0.230998516,
+        "b": 0.08999882
       },
       "Locked": true,
       "Grid": true,
@@ -3306,7 +3310,7 @@
         "posY": 1.61423063,
         "posZ": 11.9970341,
         "rotX": 359.7564,
-        "rotY": 0.00193663675,
+        "rotY": 0.00193663838,
         "rotZ": 359.689484,
         "scaleX": 1.0,
         "scaleY": 1.0,
@@ -3316,9 +3320,9 @@
       "Description": "Use these to track how many Danmaku you've used each round!",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191997409,
+        "r": 0.19199729,
         "g": 0.701,
-        "b": 0.16799739
+        "b": 0.167997271
       },
       "Locked": true,
       "Grid": true,
@@ -3413,9 +3417,9 @@
         "posX": 1.17115843,
         "posY": 1.61412787,
         "posZ": 12.0308313,
-        "rotX": 0.0225021224,
+        "rotX": 0.0225020889,
         "rotY": 270.002136,
-        "rotZ": 0.117600076,
+        "rotZ": 0.117599957,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -3424,7 +3428,7 @@
       "Description": "Use these to track how many Spellcards you've used each round!",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117997281,
+        "r": 0.117997147,
         "g": 0.53,
         "b": 1.0
       },
@@ -3595,7 +3599,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.96,
-        "g": 0.43899864,
+        "g": 0.43899858,
         "b": 0.807
       },
       "Locked": true,
@@ -3642,7 +3646,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117998637,
+        "r": 0.117998563,
         "g": 0.53,
         "b": 1.0
       },
@@ -3690,7 +3694,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117998637,
+        "r": 0.117998563,
         "g": 0.53,
         "b": 1.0
       },
@@ -3738,7 +3742,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117998637,
+        "r": 0.117998563,
         "g": 0.53,
         "b": 1.0
       },
@@ -3786,7 +3790,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117998637,
+        "r": 0.117998563,
         "g": 0.53,
         "b": 1.0
       },
@@ -3834,7 +3838,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117998637,
+        "r": 0.117998563,
         "g": 0.53,
         "b": 1.0
       },
@@ -3882,7 +3886,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.128998667,
+        "r": 0.1289986,
         "g": 0.694,
         "b": 0.606999934
       },
@@ -3930,7 +3934,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.128998667,
+        "r": 0.1289986,
         "g": 0.694,
         "b": 0.606999934
       },
@@ -3967,7 +3971,7 @@
         "posX": 35.99737,
         "posY": 1.43426752,
         "posZ": 9.992004,
-        "rotX": 0.07988408,
+        "rotX": 0.07988404,
         "rotY": 90.02896,
         "rotZ": 359.983154,
         "scaleX": 2.73636365,
@@ -3978,7 +3982,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.128998667,
+        "r": 0.1289986,
         "g": 0.694,
         "b": 0.606999934
       },
@@ -4026,7 +4030,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.128998667,
+        "r": 0.1289986,
         "g": 0.694,
         "b": 0.606999934
       },
@@ -4074,7 +4078,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.128998667,
+        "r": 0.1289986,
         "g": 0.694,
         "b": 0.606999934
       },
@@ -4122,9 +4126,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.19199869,
+        "r": 0.191998631,
         "g": 0.701,
-        "b": 0.167998672
+        "b": 0.167998612
       },
       "Locked": true,
       "Grid": true,
@@ -4170,9 +4174,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.19199869,
+        "r": 0.191998631,
         "g": 0.701,
-        "b": 0.167998672
+        "b": 0.167998612
       },
       "Locked": true,
       "Grid": true,
@@ -4218,9 +4222,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.19199869,
+        "r": 0.191998631,
         "g": 0.701,
-        "b": 0.167998672
+        "b": 0.167998612
       },
       "Locked": true,
       "Grid": true,
@@ -4266,9 +4270,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.19199869,
+        "r": 0.191998631,
         "g": 0.701,
-        "b": 0.167998672
+        "b": 0.167998612
       },
       "Locked": true,
       "Grid": true,
@@ -4314,9 +4318,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.19199869,
+        "r": 0.191998631,
         "g": 0.701,
-        "b": 0.167998672
+        "b": 0.167998612
       },
       "Locked": true,
       "Grid": true,
@@ -4351,7 +4355,7 @@
         "posX": 5.999956,
         "posY": 1.462544,
         "posZ": -36.0001068,
-        "rotX": 0.0169067085,
+        "rotX": 0.0169067215,
         "rotY": 179.970657,
         "rotZ": 0.079868,
         "scaleX": 2.73636365,
@@ -4363,7 +4367,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.96,
-        "g": 0.43899864,
+        "g": 0.43899858,
         "b": 0.807
       },
       "Locked": true,
@@ -4399,9 +4403,9 @@
         "posX": -27.9995251,
         "posY": 1.50994289,
         "posZ": -35.9998169,
-        "rotX": 0.0168295838,
+        "rotX": 0.0168295875,
         "rotY": 180.030045,
-        "rotZ": 0.07988622,
+        "rotZ": 0.07988618,
         "scaleX": 2.7356956,
         "scaleY": 1.0,
         "scaleZ": 2.7356956
@@ -4445,22 +4449,22 @@
       "Name": "Custom_Assetbundle",
       "Transform": {
         "posX": 0.00176145963,
-        "posY": 1.46973944,
-        "posZ": -12.0143785,
-        "rotX": 359.983154,
-        "rotY": -0.000152249413,
-        "rotZ": 359.920074,
-        "scaleX": 1.17499948,
-        "scaleY": 1.17499948,
-        "scaleZ": 1.17499948
+        "posY": 1.47,
+        "posZ": -12.0,
+        "rotX": 0.0,
+        "rotY": 0.0,
+        "rotZ": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
       },
       "Nickname": "Random Season",
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.09999766,
-        "b": 0.09399765
+        "g": 0.09999756,
+        "b": 0.09399753
       },
       "Locked": true,
       "Grid": true,
@@ -4479,7 +4483,6 @@
         "TypeIndex": 1,
         "LoopingEffectIndex": 0
       },
-      "XmlUI": "",
       "LuaScript": "objectType = \"Tumba's Best Button\"\r\nobjectVersion = 1\r\n\r\n-- Set reset memory to false if you want the button to remember bound objects in savegames.\r\n-- Remeber to set reset to true if you change the boundObjects table. Otherwise objects that do not fulfill criterias might still be remebered\r\n-- If you set reset =true after it being false, YOU SHOULD SAVE THE GAME AT LEAST ONCE to really make sure the memory is reset. Otherwise the old saved memories may be returned.\r\nresetMemory = true\r\n\r\n-- buttonMemory:\r\n-- Put here variables you want to store in save games. Remeber to set resetMemory to false to enambe resetMemory\r\n-- Do not remove [\"BoundObjectIds\"] if you intend to use bound objects.\r\n-- There must be as many [\"BoundObjectIds\"] values as there are bound object values.\r\n-- The values should be either nil if unknown or a valid object guid if presetting a bound object.\r\n-- Sample buttonMemory\r\n-- buttonMemory = {\r\n--    [\"BoundObjectIds\"] = { nil, nil }\r\n-- }\r\nbuttonMemory = {\r\n    BoundObjectIds = {}\r\n}\r\n\r\n-- Binding:\r\n-- There must be as many [\"BoundObjectIds\"] values in buttonMemory as there are bound object values. See sample above.\r\n-- The bound object itself MUST have the objectType and objectVersion variables\r\n-- It is also recomendable (optional) to have a isLoading=true varaible and onload functon setting isLoading=false when the object is ready\r\n-- The point of isLoading is that if the object needs to initialize onLoad and does it with code that that takes some time to finnish.\r\n-- The button will only start to use the object when iti is ready (isLoading=false).\r\n-- Sample minimum lua for a bound object:\r\n-- objectType = \"MyObject\"\r\n-- objectVersion = 0\r\n-- isLoading = true --This is optional\r\n-- function onload()\r\n--     isLoading = false --This is optional\r\n-- end\r\n--\r\n-- Binding criterias\r\n-- The button will bind an object to the fist boundObjects criteria that matches\r\n-- It will overwrite an existing bound object if the criteria matches even if there is empty rows matching later in the boundObjects table.\r\n-- If you need to bind several similar objects, use Version number to distinguish between them\r\n-- TagCriteria = \"\" : Tag of object to bind to; \"Dice\", \"Tile\", etc , \"\" = No tag check\r\n-- bindsToObjectType = \"\" objectType variable value of object to bind to; MyObject, MyCard, etc , \"\" = No tag check\r\n-- bindsToObjectMinVersion = 0 or other numeric value  -- the minimum objectVersion variable to bind to. Will bind to\r\n\r\n-- Mandatory = true/false. If set to true, the button will require this object to be bound before working.\r\n-- IsLocked = true/false. If set to true, the row cannot be bound to in onCollision. Any preset id's in buttonMemory will still bind to it in onLoad.\r\n-- MissingError = \"My Message\". If Mandatory is set to true, and there is no object bound on this row (Object==nil), this message will be displayed .\r\n-- Object = nil or object reference -- the bound object. Once binding is done the bound object is referred to here.\r\n-- Sample boundObjects:\r\n-- boundObjects = {\r\n--         {[\"TagCriteria\"] = \"Tile\", [\"ObjectTypeCriteria\"] = \"MyObject\", [\"MinVersionCriteria\"] = 0, [\"Mandatory\"] = false , [\"IsLocked\"] = false , [\"MissingError\"] = \"A Object needs to be bound.\",[\"Object\"] = nil},\r\n--        {[\"TagCriteria\"] = \"Card\", [\"ObjectTypeCriteria\"] = \"MyCard\", [\"MinVersionCriteria\"] = 0, [\"Mandatory\"] = false , [\"IsLocked\"] = false, [\"MissingError\"] = \"A Card needs to be bound.\",[\"Object\"] = nil}\r\n-- }\r\n-- If you do not need to bind anything just clear the bound objects AND BoundObjectIds = {}, Sample: buttonMemory = {BoundObjectIds = {}} boundObjects = {}\r\nboundObjects = { }\r\nallowBinding = true  -- Set to false if you want to set specific Ids in the buttonMemory. Button will bind to those automatically but will ignore any new collisions. Same as having isLocked set to each boundObject, but more efficient.\r\nallowChangeDescription = false -- Set to false if you dont want button to update it's Description when binding to new object\r\n\r\n-- Button general settings\r\nbuttonSize = 1100  -- Button base size increase/decrease to make the button area bigger/smaller\r\nscaleModifier = 0 -- object scale modifier. Do not touch.\r\n\r\n--Waiting\r\nwaitForRestMax = 1000 -- Maximum time to wait for button to be resting afte it is dropped.\r\nisLoading = true -- Loading detector. Do not touch.\r\nloadDelay = 50 -- Loading delay. Controls the amount of time the button is considered to be in Loading and unresponsive.\r\nWait = false -- State of button during Action code execute. Button woo lall button postActions after waiting for waitMax -time or Wait is set to false. Do not touch.\r\nwaitMax = 1000 -- Maximun time amount button will wait for Action code execute before calling PostAction. Can be adjusted in Action code. Ex waitMax=100. Calling stopWait() or setting Wait=false will also stop the wait\r\nActionTimer = os.clock() --Used to check code execution time. Timer will reset automatically when Action is called. Use  ShowElapsedTime(\"MyTag\") to see elapsed time.\r\n\r\n-- DoubleClick\r\n-- Using doubleclick makes single click slower as there is the doubleClickDelay to wait to determine a second clicks\r\n-- Its possible to have both doubleclick and SingleClick at the same time. Just use the isDoubleClick variable in your actioncode to see which it was this time.\r\nenableDoubleClick = false -- Enables double click\r\ndoubleClickDelay=0.3 -- Time to wait for second click\r\nisDoubleClick= false --Use this to determine if isDoubleClick in your action code\r\nclicks=0 -- Used to determine if double-clicking. Do not touch.\r\n\r\n--Whodunit?\r\nclickingPlayerName = nil -- name of the clicking player\r\nclickingPlayerColor = nil-- color of the clicking player\r\nclickingTime = nil -- time of click\r\n\r\n-- Collision\r\n-- Temporare store of collsion information. Do not touch these. No use in custom coding.\r\ncollisionInfo = nil\r\ncollisionIndex = 0\r\n\r\n-------------------------------------------------------------------------------------------------------\r\n-- Code Here...\r\n-- TheActions this button should do\r\n-- It's a good idea to always end your Actions code with a stopWait(). This prompts the button to immediately proceed to postActions.\r\n-- Othewise the button will wait for a waitMax value amount of time before proceeding.\r\n-- if calling some other object with callback, you can remove stopWait from Actions and use the callback stopWait() to stop the wait.\r\nseasontable = {\"summer\",\"autumn\",\"winter\",\"spring\"}\nfunction Actions()\r\n    broadcastToAll(seasontable[math.random(4)],clickingPlayerColor)\r\n    stopWait()\r\nend\r\n\r\n----------------------------------------\r\n-- PostActions\r\n----------------------------------------\r\n-- Triggeras after the Actions are done and \"Wait\" is stopped\r\n-- Wait time is either waitMax value or immediately when stopWait() is called. It's good idea to aleays end your Actions code with a stopWait().\r\nfunction postActions()\r\nend\r\n\r\n----------------------------------------\r\n-- PostActions\r\n----------------------------------------\r\n-- Triggeras after the a Binding is done\r\n-- boundObjectIndex = the row index in boundObjects the object is bound to\r\n-- boundObject = the bound object. Same as boundObjects[boundObjectIndex].Object\r\nfunction postBinding(boundObjectIndex,boundObject)\r\nend\r\n\r\n----------------------------------------\r\n-- Custom supportFunctions\r\n----------------------------------------\r\n-- If you need to include your own functions. This would be the place.\r\nfunction someCustonFunction()\r\nend\r\n\r\n\r\n\r\n---------------------------------------------------------------------------------------------------------\r\n-- Do not change below this line!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\r\n-- Here there be dragons!!!!!!!!!!!!\r\n----------------------------------------------------------------------------------------------------------\r\nfunction onload(saved_button)\r\n    if resetMemory then\r\n         saved_button = \"\"\r\n    end\r\n    if saved_button ~= nil and saved_button ~= \"\" then\r\n      buttonMemory = JSON.decode(saved_button)\r\n    end\r\n\r\n    for index, id in ipairs(buttonMemory.BoundObjectIds) do\r\n        if id ~= nil then\r\n            boundObjects[index][\"Object\"] = getObjectFromGUID(id)\r\n        end\r\n    end\r\n\r\n    scaleModifier = self.getScale()\r\n    size = buttonSize * scaleModifier['x']\r\n    self.createButton({\r\n        label=\"\", click_function=\"buttonClick\", function_owner=self,\r\n        position={0,0.5,0}, height=size, width=size, color={0,0,0,0}\r\n    })\r\n    waitForAllLoaded()\r\nend\r\n\r\nfunction onSave()\r\n    if resetMemory then\r\n         saved_button = \"\"\r\n     else\r\n         saved_button = JSON.encode(buttonMemory)\r\n    end\r\n   return saved_button\r\nend\r\n\r\nfunction doBindAction()\r\n        playTriggerEffect(1)\r\n        boundObjects[collisionIndex].Object = collisionInfo.collision_object\r\n        buttonMemory.BoundObjectIds[collisionIndex] = collisionInfo.collision_object.getGUID()\r\n        local ci = collisionIndex\r\n        local bo = boundObjects[collisionIndex].Object\r\n        collisionInfo = nil\r\n        collisionIndex = 0\r\n\r\n        if allowChangeDescription then\r\n            local description = \"Bound to:\\n\"\r\n            local name = \"\"\r\n            for index, boundObject in ipairs(boundObjects) do\r\n                if boundObject.Object ~= nil then\r\n                    name =  boundObject.Object.getName() or \"\"\r\n                    if name == \"\" then\r\n                            name =  boundObject.Object.getGUID()\r\n                    end\r\n                    description = description .. name .. \" \"\r\n                end\r\n            end\r\n            self.setDescription(description)\r\n        end\r\n\r\n        name =  bo.getGUID()\r\n        if bo.getName() ~= nil and  bo.getName() ~= \"\" then  name = bo.getName() end\r\n        broadcastToAll(RGBToBracketedHex(stringColorToRGB(\"White\"))..\"Button is now bound to: \" ..\r\n        RGBToBracketedHex(stringColorToRGB(\"Yellow\")).. bo.tag ..\": \" .. name .. RGBToBracketedHex(stringColorToRGB(\"White\"))..\".\"  , {1,1,1,1})\r\n\r\n        postBinding(ci, bo)\r\nend\r\n\r\nfunction buttonClick(objButton, playerColor)\r\n    clickingPlayerName  = Player[playerColor].steam_name\r\n    clickingPlayerColor = playerColor\r\n    clickingTime = os.date(\"%H:%M:%S\")\r\n    isDoubleClick= false\r\n    clicks = clicks + 1\r\n    if clicks == 1 then\r\n        Timer.create({\r\n            identifier=\"doubleClickWait\",\r\n            function_name=\"doPreAction\",\r\n            delay=doubleClickDelay\r\n        })\r\n    end\r\n    if clicks == 2  or not enableDoubleClick then\r\n        Timer.destroy(\"doubleClickWait\")\r\n        doPreAction()\r\n    end\r\nend\r\n\r\nfunction doPreAction()\r\n    if isLoading then\r\n        broadcastToAll(\"Button is still Loading...\", {1,1,1,1})\r\n    else\r\n        -- Check for errors\r\n        local noErrors = true\r\n        for index, boundObject in ipairs(boundObjects) do\r\n            --Mandatory bound object missing\r\n            if boundObject.Mandatory and boundObject.Object == nil then\r\n                local nilMessage = \"Missing binding at boundObject index: \" .. index\r\n                broadcastToAll(RGBToBracketedHex(stringColorToRGB(\"Red\")) .. boundObject.MissingError or nilMessage, {1,1,1,1})\r\n                noErrors = false\r\n            end\r\n            -- Bound object is still loading\r\n            if boundObject.Object ~= nil then\r\n                if boundObject.Object.getVar(\"isLoading\") or false then\r\n                    broadcastToAll(RGBToBracketedHex(stringColorToRGB(\"Red\")) .. \"Bound Object \" .. (boundObject.Object.getName() or \"\") .. \" is still Loading...\", {1,1,1,1})\r\n                    noErrors = false\r\n                end\r\n            end\r\n        end\r\n\r\n        if noErrors then\r\n            if clicks == 2 then\r\n                isDoubleClick= true\r\n            end\r\n            clicks=0\r\n            ActionTimer = os.clock()\r\n            playTriggerEffect(0)\r\n            waitForResult()\r\n            Actions()\r\n        end\r\n    end\r\nend\r\n\r\nfunction playTriggerEffect(indexEffext)\r\n    local triggerEffects = self.AssetBundle.getTriggerEffects()\r\n    if (#triggerEffects>=indexEffext) then\r\n        self.AssetBundle.playTriggerEffect(indexEffext)\r\n    end\r\nend\r\n\r\nfunction onCollisionEnter(collision_info)\r\n    --print(collision_info.collision_object.getVar(\"objectType\"))\r\n    --print(collision_info.collision_object.getVar(\"objectVersion\"))\r\n    --print(collision_info.collision_object.tag)\r\n    if  allowBinding\r\n    and collision_info.collision_object.getVar(\"objectType\") ~= nil\r\n    and collision_info.collision_object.getVar(\"objectVersion\") ~= nil\r\n    then\r\n        for index, boundObject in ipairs(boundObjects) do\r\n            if  (boundObject.ObjectTypeCriteria == collision_info.collision_object.getVar(\"objectType\") or boundObject.ObjectTypeCriteria == \"\")\r\n            and (boundObject.TagCriteria == collision_info.collision_object.tag or boundObject.TagCriteria == \"\")\r\n            and (boundObject.MinVersionCriteria <= collision_info.collision_object.getVar(\"objectVersion\"))\r\n            and not boundObject.IsLocked\r\n            then\r\n                if (boundObject.Object ~= nil) then\r\n                    if (boundObject.Object.getGUID() == collision_info.collision_object.getGUID()) then\r\n                        break\r\n                    end\r\n                end\r\n\r\n                if (boundObject.Object == nil)\r\n                or (boundObject.Object.getGUID() ~= collision_info.collision_object.getGUID())\r\n                then\r\n                    collisionInfo = collision_info\r\n                    collisionIndex = index\r\n                    break\r\n                end\r\n            end\r\n\r\n        end\r\n    end\r\nend\r\n\r\nfunction onCollisionExit(collision_info)\r\nend\r\n\r\nfunction onDropped(player_color)\r\n    waitForRest()\r\nend\r\n\r\nfunction waitForRest()\r\n    function coroutine_waitForRest()\r\n        local counter = 0\r\n        repeat\r\n            counter=counter + 1\r\n            coroutine.yield(0)\r\n            if self == nil then return 1 end\r\n        until self.resting == true or counter == waitForRestMax\r\n\r\n        if collisionIndex > 0 and allowBinding then doBindAction() end\r\n        return 1\r\n    end\r\n    if self.resting==false then\r\n        startLuaCoroutine(self, \"coroutine_waitForRest\")\r\n    end\r\nend\r\n\r\nfunction waitForAllLoaded()\r\n    function coroutine_waitForAllLoaded()\r\n        for i=0, loadDelay, 1 do\r\n            coroutine.yield(0)\r\n            if self == nil then return 1 end\r\n        end\r\n        isLoading=false\r\n        return 1\r\n    end\r\n    if isLoading then\r\n        startLuaCoroutine(self, \"coroutine_waitForAllLoaded\")\r\n    end\r\nend\r\n\r\nfunction waitForResult()\r\n    function coroutine_waitForResult()\r\n\r\n        local counter = 0\r\n        Wait = true\r\n        repeat\r\n            counter=counter + 1\r\n            if counter == waitMax then stopWait() end\r\n            coroutine.yield(0)\r\n            if self == nil then return 1 end\r\n        until not Wait\r\n        postActions()\r\n        return 1\r\n    end\r\n    if not Wait then\r\n        startLuaCoroutine(self, \"coroutine_waitForResult\")\r\n    end\r\nend\r\n\r\nfunction stopWait()\r\n    Wait = false\r\nend\r\n\r\nfunction RGBToBracketedHex(rgb)\r\n    if rgb ~= nil then\r\n        return \"[\" .. string.format(\"%02x%02x%02x\", rgb.r*255,rgb.g*255,rgb.b*255) .. \"]\"\r\n    else\r\n        return \"\"\r\n    end\r\nend\r\n\r\nfunction ShowElapsedTime(myTag)\r\n    print(string.format(myTag .. \": Elapsed time: %.2f\\n\", os.clock() - ActionTimer))\r\nend\r\n\r\nfunction hasValue(tab, val)\r\n    for index, value in ipairs(tab) do\r\n        if value == val then\r\n            return true\r\n        end\r\n    end\r\n    return false\r\nend",
       "LuaScriptState": "",
       "GUID": "afc238"
@@ -4623,9 +4626,9 @@
         "posX": 100.0,
         "posY": 100.0,
         "posZ": 100.0,
-        "rotX": 2.71339286E-05,
+        "rotX": 2.713394E-05,
         "rotY": 269.310425,
-        "rotZ": 1.61974469E-06,
+        "rotZ": 1.6197439E-06,
         "scaleX": 1.0,
         "scaleY": 1.0,
         "scaleZ": 1.0
@@ -17522,9 +17525,9 @@
         "posX": 100.0,
         "posY": 100.0,
         "posZ": 100.0,
-        "rotX": 5.805286E-07,
+        "rotX": 5.80528763E-07,
         "rotY": 179.984039,
-        "rotZ": 1.39062813E-05,
+        "rotZ": 1.39062886E-05,
         "scaleX": 0.975,
         "scaleY": 0.975,
         "scaleZ": 0.975
@@ -18895,9 +18898,9 @@
         "posX": 0.0,
         "posY": -9.0,
         "posZ": 0.0,
-        "rotX": 359.983124,
+        "rotX": 0.0,
         "rotY": -0.00189453643,
-        "rotZ": 359.920135,
+        "rotZ": 0.0,
         "scaleX": 2.2,
         "scaleY": 1.0,
         "scaleZ": 2.2
@@ -20348,51 +20351,6 @@
     {
       "Name": "3DText",
       "Transform": {
-        "posX": -8.094715,
-        "posY": 1.496413,
-        "posZ": 12.4158859,
-        "rotX": 90.0,
-        "rotY": 0.142981067,
-        "rotZ": 0.0,
-        "scaleX": 1.0,
-        "scaleY": 1.0,
-        "scaleZ": 1.0
-      },
-      "Nickname": "",
-      "Description": "",
-      "GMNotes": "",
-      "ColorDiffuse": {
-        "r": 1.0,
-        "g": 1.0,
-        "b": 1.0
-      },
-      "Locked": true,
-      "Grid": true,
-      "Snap": true,
-      "IgnoreFoW": false,
-      "Autoraise": true,
-      "Sticky": true,
-      "Tooltip": true,
-      "GridProjection": false,
-      "HideWhenFaceDown": false,
-      "Hands": false,
-      "Text": {
-        "Text": "Pile",
-        "colorstate": {
-          "r": 0.0,
-          "g": 1.0,
-          "b": 1.0
-        },
-        "fontSize": 64
-      },
-      "XmlUI": "",
-      "LuaScript": "",
-      "LuaScriptState": "",
-      "GUID": "c54aff"
-    },
-    {
-      "Name": "3DText",
-      "Transform": {
         "posX": 7.965994,
         "posY": 1.47404623,
         "posZ": 12.4952822,
@@ -20438,12 +20396,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -31.0000973,
-        "posY": 1.52443218,
-        "posZ": -0.999992132,
-        "rotX": 359.920135,
-        "rotY": 270.001831,
-        "rotZ": 0.0168697685,
+        "posX": -31.00003,
+        "posY": 1.48149908,
+        "posZ": -2.999994,
+        "rotX": -6.32124568E-07,
+        "rotY": 270.0017,
+        "rotZ": -4.42388853E-07,
         "scaleX": 1.88669944,
         "scaleY": 1.0,
         "scaleZ": 1.88669944
@@ -20486,12 +20444,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -31.0001163,
-        "posY": 1.5338552,
+        "posX": -31.0001087,
+        "posY": 1.4814992,
         "posZ": 31.0001049,
-        "rotX": 359.920135,
-        "rotY": 270.000031,
-        "rotZ": 0.0168705359,
+        "rotX": 1.714286E-07,
+        "rotY": 270.000122,
+        "rotZ": -9.16891963E-07,
         "scaleX": 1.88669944,
         "scaleY": 1.0,
         "scaleZ": 1.88669944
@@ -20534,12 +20492,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -30.99792,
-        "posY": 1.5155952,
-        "posZ": -31.0003471,
-        "rotX": 0.0169275627,
-        "rotY": 179.959427,
-        "rotZ": 0.07986516,
+        "posX": -30.9979019,
+        "posY": 1.48149908,
+        "posZ": -31.000349,
+        "rotX": -9.33730746E-08,
+        "rotY": 179.959274,
+        "rotZ": 5.262967E-08,
         "scaleX": 1.88669944,
         "scaleY": 1.0,
         "scaleZ": 1.88669944
@@ -20582,12 +20540,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": 3.0000596,
-        "posY": 1.4681983,
-        "posZ": -31.00006,
-        "rotX": 0.01687096,
-        "rotY": 180.000015,
-        "rotZ": 0.07987837,
+        "posX": 3.00007033,
+        "posY": 1.481499,
+        "posZ": -31.0000629,
+        "rotX": -3.95739534E-07,
+        "rotY": 179.999954,
+        "rotZ": -3.6290848E-07,
         "scaleX": 1.88669944,
         "scaleY": 1.0,
         "scaleZ": 1.88669944
@@ -20630,12 +20588,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": 31.0028057,
-        "posY": 1.42915952,
-        "posZ": -31.00004,
-        "rotX": 0.07988083,
-        "rotY": 90.0095444,
-        "rotZ": 359.983154,
+        "posX": 31.0028133,
+        "posY": 1.481499,
+        "posZ": -31.0000439,
+        "rotX": 3.17848361E-08,
+        "rotY": 90.00945,
+        "rotZ": 8.785985E-07,
         "scaleX": 1.88669944,
         "scaleY": 1.0,
         "scaleZ": 1.88669944
@@ -20678,12 +20636,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": 31.00001,
-        "posY": 1.43917525,
-        "posZ": 3.000025,
-        "rotX": 0.07987664,
-        "rotY": 89.99539,
-        "rotZ": 359.983124,
+        "posX": 31.0000019,
+        "posY": 1.481499,
+        "posZ": 3.00002313,
+        "rotX": -7.537408E-08,
+        "rotY": 89.99548,
+        "rotZ": -6.32218E-07,
         "scaleX": 1.88669944,
         "scaleY": 1.0,
         "scaleZ": 1.88669944
@@ -20726,12 +20684,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": 30.999958,
-        "posY": 1.4474206,
-        "posZ": 31.000164,
-        "rotX": 359.983276,
-        "rotY": 0.11576461,
-        "rotZ": 359.9201,
+        "posX": 30.9999485,
+        "posY": 1.4814992,
+        "posZ": 31.0001621,
+        "rotX": -1.13307715E-06,
+        "rotY": 0.115773432,
+        "rotZ": -4.30739874E-07,
         "scaleX": 1.88669944,
         "scaleY": 1.0,
         "scaleZ": 1.88669944
@@ -20774,12 +20732,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -3.00008917,
-        "posY": 1.49482,
-        "posZ": 30.9993,
-        "rotX": 359.9831,
-        "rotY": 359.9744,
-        "rotZ": 359.920135,
+        "posX": -3.00008869,
+        "posY": 1.481499,
+        "posZ": 30.9993019,
+        "rotX": 1.51566027E-07,
+        "rotY": 359.974457,
+        "rotZ": -1.13771364E-06,
         "scaleX": 1.88669944,
         "scaleY": 1.0,
         "scaleZ": 1.88669944
@@ -20925,7 +20883,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.96,
-        "g": 0.438999444,
+        "g": 0.438999385,
         "b": 0.807
       },
       "Locked": true,
@@ -20960,7 +20918,7 @@
         "posX": 31.0001011,
         "posY": 1.477986,
         "posZ": -35.00008,
-        "rotX": 0.07987745,
+        "rotX": 0.0798775,
         "rotY": 89.99996,
         "rotZ": 359.983124,
         "scaleX": 1.05552506,
@@ -20972,7 +20930,7 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.627,
-        "g": 0.124999441,
+        "g": 0.124999382,
         "b": 0.941
       },
       "Locked": true,
@@ -20996,7 +20954,6 @@
           "Stackable": false
         }
       },
-      "XmlUI": "",
       "LuaScript": "MIN_VALUE = -99\r\nMAX_VALUE = 999\r\n\r\nfunction onload(saved_data)\r\n    light_mode = false\r\n    tooltip_show = true\r\n    val = 0\r\n\r\n    if saved_data ~= \"\" then\r\n        local loaded_data = JSON.decode(saved_data)\r\n        light_mode = loaded_data[1]\r\n        val = loaded_data[2]\r\n        tooltip_show = loaded_data[3]\r\n    end\r\n\r\n    createAll()\r\nend\r\n\r\nfunction updateSave()\r\n    local data_to_save = {light_mode, val, tooltip_show}\r\n    saved_data = JSON.encode(data_to_save)\r\n    self.script_state = saved_data\r\nend\r\n\r\nfunction createAll()\r\n    s_color = {0.5, 0.5, 0.5, 95}\r\n\r\n    if light_mode then\r\n        f_color = {1,1,1,95}\r\n    else\r\n        f_color = {0,0,0,100}\r\n    end\r\n\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.createButton({\r\n      label=tostring(val),\r\n      click_function=\"add_subtract\",\r\n      tooltip=ttText,\r\n      function_owner=self,\r\n      position={0,0.05,-0.2},\r\n      height=600,\r\n      width=1000,\r\n      alignment = 3,\r\n      scale={x=1.5, y=1.5, z=1.5},\r\n      font_size=600,\r\n      font_color=f_color,\r\n      color={0,0,0,0}\r\n      })\r\n\r\n    self.createInput({\r\n        value = self.getName(), \r\n        input_function = \"editName\", \r\n        tooltip=ttText,\r\n        label = \"Counter\",\r\n        function_owner = self, \r\n        alignment = 3,\r\n        position = {0,0.05,1.7}, \r\n        width = 1200, \r\n        height = 1000, \r\n        font_size = 200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color= f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n\r\n    if tooltip_show then\r\n        tooltipShowText = \"[ Hide value in tooltip ]\"\r\n    else\r\n        tooltipShowText = \"[ Show value in tooltip ]\"\r\n    end\r\n    self.createButton({\r\n        label=tooltipShowText,\r\n        tooltip=tooltipShowText,\r\n        click_function=\"swap_tooltip\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.2},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    if light_mode then\r\n        lightButtonText = \"[ Set dark text ]\"\r\n    else\r\n        lightButtonText = \"[ Set light text ]\"\r\n    end\r\n    self.createButton({\r\n        label=lightButtonText,\r\n        tooltip=lightButtonText,\r\n        click_function=\"swap_fcolor\",\r\n        function_owner=self,\r\n        position={0,-0.05,0.6},\r\n        rotation={180,180,0},\r\n        height=150,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=150,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n\r\n    self.createButton({\r\n        label=\"[ Reset ]\",\r\n        tooltip=\"[ Reset ]\",\r\n        click_function=\"reset_val\",\r\n        function_owner=self,\r\n        position={0,-0.05,1.4},\r\n        rotation={180,180,0},\r\n        height=250,\r\n        width=1200,\r\n        scale={x=1, y=1, z=1},\r\n        font_size=250,\r\n        font_color=s_color,\r\n        color={0,0,0,0}\r\n        })\r\n\r\n    self.createInput({\r\n        value = \"#\",\r\n        label = \"...\",\r\n        input_function = \"keepSample\", \r\n        function_owner = self, \r\n        alignment = 3,\r\n        position={0,-0.05,-0.8},\r\n        rotation={180,180,0},\r\n        width = 600, \r\n        height = 800, \r\n        font_size = 1200, \r\n        scale={x=1, y=1, z=1},\r\n        font_color=f_color,\r\n        color = {0,0,0,0}\r\n        })\r\n\r\n    setTooltips()\r\nend\r\n\r\nfunction removeAll()\r\n    self.removeInput(0)\r\n    self.removeInput(1)\r\n    self.removeButton(0)\r\n    self.removeButton(1)\r\n    self.removeButton(2)\r\n    self.removeButton(3)\r\nend\r\n\r\nfunction reloadAll()\r\n    removeAll()\r\n    createAll()\r\n    setTooltips()\r\n    updateSave()\r\nend\r\n\r\nfunction swap_fcolor(_obj, _color, alt_click)\r\n    light_mode = not light_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_align(_obj, _color, alt_click)\r\n    center_mode = not center_mode\r\n    reloadAll()\r\nend\r\n\r\nfunction swap_tooltip(_obj, _color, alt_click)\r\n    tooltip_show = not tooltip_show\r\n    reloadAll()\r\n    setTooltips()\r\nend\r\n\r\nfunction editName(_obj, _string, value) \r\n    self.setName(value)\r\n    setTooltips()\r\nend\r\n\r\nfunction add_subtract(_obj, _color, alt_click)\r\n    mod = alt_click and -1 or 1\r\n    new_value = math.min(math.max(val + mod, MIN_VALUE), MAX_VALUE)\r\n    if val ~= new_value then\r\n        val = new_value\r\n        updateVal()\r\n        updateSave()\r\n    end\r\nend\r\n\r\nfunction updateVal()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editButton({\r\n        index = 0,\r\n        label = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction reset_val()\r\n    val = 0\r\n    updateVal()\r\n    updateSave()\r\nend\r\n\r\nfunction setTooltips()\r\n    if tooltip_show then\r\n        ttText = \"     \" .. val .. \"\\n\" .. self.getName()\r\n    else\r\n        ttText = self.getName()\r\n    end\r\n\r\n    self.editInput({\r\n        index = 0,\r\n        value = self.getName(),\r\n        tooltip = ttText\r\n        })\r\n    self.editButton({\r\n        index = 0,\r\n        value = tostring(val),\r\n        tooltip = ttText\r\n        })\r\nend\r\n\r\nfunction null()\r\nend\r\n\r\nfunction keepSample(_obj, _string, value) \r\n    reloadAll()\r\nend",
       "LuaScriptState": "[true,4,false]",
       "GUID": "044077"
@@ -21018,7 +20975,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.117999546,
+        "r": 0.117999487,
         "g": 0.53,
         "b": 1.0
       },
@@ -21065,7 +21022,7 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.128999531,
+        "r": 0.128999472,
         "g": 0.694,
         "b": 0.606999934
       },
@@ -21112,9 +21069,9 @@
       "Description": "",
       "GMNotes": "",
       "ColorDiffuse": {
-        "r": 0.191999555,
+        "r": 0.1919995,
         "g": 0.701,
-        "b": 0.167999536
+        "b": 0.167999476
       },
       "Locked": true,
       "Grid": true,
@@ -21161,7 +21118,7 @@
       "ColorDiffuse": {
         "r": 0.905,
         "g": 0.898,
-        "b": 0.171999544
+        "b": 0.171999484
       },
       "Locked": true,
       "Grid": true,
@@ -21192,12 +21149,12 @@
     {
       "Name": "Custom_Token",
       "Transform": {
-        "posX": -30.9994373,
-        "posY": 1.57560945,
-        "posZ": 2.99986887,
+        "posX": -30.99995,
+        "posY": 1.57502091,
+        "posZ": 0.9999888,
         "rotX": 359.920135,
         "rotY": 270.000031,
-        "rotZ": 0.0168737434,
+        "rotZ": 0.0168691557,
         "scaleX": 1.05552506,
         "scaleY": 1.0,
         "scaleZ": 1.05552506
@@ -21207,8 +21164,8 @@
       "GMNotes": "",
       "ColorDiffuse": {
         "r": 0.856,
-        "g": 0.09999954,
-        "b": 0.09399951
+        "g": 0.099999465,
+        "b": 0.09399945
       },
       "Locked": true,
       "Grid": true,
@@ -21239,12 +21196,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": 28.0000858,
-        "posY": 1.43305135,
-        "posZ": -32.00008,
-        "rotX": 0.0798838362,
-        "rotY": 89.99954,
-        "rotZ": 359.983124,
+        "posX": 28.00004,
+        "posY": 1.4814992,
+        "posZ": -36.0,
+        "rotX": 2.977036E-07,
+        "rotY": 89.99948,
+        "rotZ": -1.22774765E-07,
         "scaleX": 0.933085263,
         "scaleY": 1.0,
         "scaleZ": 0.933085263
@@ -21287,12 +21244,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": 27.9997253,
-        "posY": 1.44306374,
-        "posZ": 2.000364,
-        "rotX": 0.07988167,
-        "rotY": 89.99885,
-        "rotZ": 359.983124,
+        "posX": 28.0000343,
+        "posY": 1.4814992,
+        "posZ": -1.99999809,
+        "rotX": 1.22067576E-07,
+        "rotY": 89.99881,
+        "rotZ": -5.768084E-07,
         "scaleX": 0.933085263,
         "scaleY": 1.0,
         "scaleZ": 0.933085263
@@ -21335,12 +21292,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": 32.0001335,
-        "posY": 1.44514275,
-        "posZ": 28.0000248,
-        "rotX": 359.983124,
-        "rotY": -0.0007549034,
-        "rotZ": 359.920135,
+        "posX": 36.00003,
+        "posY": 1.4814992,
+        "posZ": 28.0000114,
+        "rotX": -1.43496521E-07,
+        "rotY": -0.0006786108,
+        "rotZ": -6.77402241E-08,
         "scaleX": 0.933085263,
         "scaleY": 1.0,
         "scaleZ": 0.933085263
@@ -21383,12 +21340,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -1.99995339,
-        "posY": 1.49254251,
-        "posZ": 28.0000553,
-        "rotX": 359.983124,
-        "rotY": -0.000675957068,
-        "rotZ": 359.920135,
+        "posX": 1.9999696,
+        "posY": 1.4814992,
+        "posZ": 28.0000134,
+        "rotX": 8.580829E-07,
+        "rotY": -0.0008063973,
+        "rotZ": 9.893466E-07,
         "scaleX": 0.933085263,
         "scaleY": 1.0,
         "scaleZ": 0.933085263
@@ -21431,12 +21388,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -27.9999771,
-        "posY": 1.52996731,
-        "posZ": 32.0,
-        "rotX": 359.9201,
-        "rotY": 269.9984,
-        "rotZ": 0.0168796964,
+        "posX": -28.0001011,
+        "posY": 1.4814992,
+        "posZ": 36.00002,
+        "rotX": -1.96199622E-07,
+        "rotY": 269.9979,
+        "rotZ": 1.60964575E-07,
         "scaleX": 0.933085263,
         "scaleY": 1.0,
         "scaleZ": 0.933085263
@@ -21479,12 +21436,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -28.00008,
-        "posY": 1.52054429,
-        "posZ": 7.297949E-07,
-        "rotX": 359.9201,
-        "rotY": 270.082581,
-        "rotZ": 0.0167625435,
+        "posX": -28.00006,
+        "posY": 1.4814992,
+        "posZ": 2.00000453,
+        "rotX": 1.527372E-06,
+        "rotY": 270.017,
+        "rotZ": -5.62547E-07,
         "scaleX": 0.933085263,
         "scaleY": 1.0,
         "scaleZ": 0.933085263
@@ -21527,12 +21484,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": -29.9999962,
-        "posY": 1.51508737,
-        "posZ": -28.00006,
-        "rotX": 0.0168547835,
-        "rotY": 180.010818,
-        "rotZ": 0.07988015,
+        "posX": -36.0000458,
+        "posY": 1.4814992,
+        "posZ": -28.0,
+        "rotX": -1.92888038E-07,
+        "rotY": 180.011078,
+        "rotZ": -1.26832717E-07,
         "scaleX": 0.933085263,
         "scaleY": 1.0,
         "scaleZ": 0.933085263
@@ -21575,12 +21532,12 @@
     {
       "Name": "Custom_Tile",
       "Transform": {
-        "posX": 4.00002241,
-        "posY": 1.46768773,
-        "posZ": -28.0000229,
-        "rotX": 0.0170445628,
-        "rotY": 179.872253,
-        "rotZ": 0.07983989,
+        "posX": -1.99995625,
+        "posY": 1.4814992,
+        "posZ": -28.0000172,
+        "rotX": 2.15231353E-06,
+        "rotY": 179.978088,
+        "rotZ": 8.468652E-08,
         "scaleX": 0.933085263,
         "scaleY": 1.0,
         "scaleZ": 0.933085263
@@ -21619,6 +21576,96 @@
       "LuaScript": "",
       "LuaScriptState": "",
       "GUID": "bae094"
+    },
+    {
+      "Name": "3DText",
+      "Transform": {
+        "posX": -8.254783,
+        "posY": 1.48150182,
+        "posZ": 15.8709021,
+        "rotX": 90.0,
+        "rotY": -2.89780382E-05,
+        "rotZ": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "Text": {
+        "Text": "Pile",
+        "colorstate": {
+          "r": 0.0,
+          "g": 1.0,
+          "b": 1.0
+        },
+        "fontSize": 64
+      },
+      "XmlUI": "",
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "GUID": "2d2dab"
+    },
+    {
+      "Name": "3DText",
+      "Transform": {
+        "posX": 7.97156668,
+        "posY": 1.481507,
+        "posZ": 15.7444391,
+        "rotX": 90.0,
+        "rotY": 359.333557,
+        "rotZ": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "Text": {
+        "Text": "Discard",
+        "colorstate": {
+          "r": 0.129,
+          "g": 0.694,
+          "b": 0.607
+        },
+        "fontSize": 64
+      },
+      "XmlUI": "",
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "GUID": "5b6ec7"
     }
   ],
   "DecalPallet": [
@@ -21762,5 +21809,5 @@
       "id": 11
     }
   },
-  "VersionNumber": "v12.2.1"
+  "VersionNumber": "v12.2.2"
 }
