@@ -430,9 +430,30 @@ DeckerCards = {
 }
 remeber = 0
 
+CharacterLocation = {-8.00, 1.55, 12.00}
+cardNamesTable = {}
+
 function onLoad()
+    WebRequest.get("https://pastebin.com/raw/pdxWnTgD", function(obj) GETcardNames(JSON.decode(obj.text)) end)
     local scriptObjects = getObjectFromGUID("906d21").getObjects()
     for key,value in pairs(scriptObjects) do _G[value.getName()] = value.getGUID() end
+end
+
+function GETcardNames(list)
+    cardNamesTable = list
+end
+
+function namer(deck,currentexpansion,deckName)
+    deck = deck.ContainedObjects[1]
+    if cardNamesTable[currentexpansion] ~= nil and cardNamesTable[currentexpansion][deckName] ~= nil then
+        local deckNames = cardNamesTable[currentexpansion][deckName]
+        for key,card in ipairs(deck.ContainedObjects) do
+            local cardNumber = key
+                card.Nickname = deckNames[cardNumber] or card.Nickname
+            deck.ContainedObjects[key] = card
+        end
+    end
+    return deck
 end
 
 function mysplit(inputstr, sep)
@@ -469,7 +490,6 @@ function webRequestCallback(webReturn)
         if deck.face then
             if deckName=="HeroineCards" or deckName=="PartnerCards" or deckName=="ExCards" or deckName=="StageCards" then deck.back = "https://i.imgur.com/NQSqNLQ.jpg" end
             local cardAsset = Decker.Asset(deck.face, deck.back, {width = deck.width, height = deck.height, hiddenBack = true})
-            if deckName=="CharacterCards" then DeckerCards[deckName][currentexpansion] = {} end
             for i=1,deck.cards do
                 local yc = 1
                 local xc = i
@@ -477,8 +497,7 @@ function webRequestCallback(webReturn)
                     xc = xc-deck.width
                     yc = yc+1
                 end
-                if deckName=="CharacterCards" then table.insert(DeckerCards[deckName][currentexpansion], Decker.Card(cardAsset, yc, xc, {sideways=true}))
-                else table.insert(DeckerCards[deckName], Decker.Card(cardAsset, yc, xc)) end
+                table.insert(DeckerCards[deckName], Decker.Card(cardAsset, yc, xc, {sideways=(deckName=="CharacterCards"), name = cardNamesTable[currentexpansion][deckName][i] or ''}))
             end
         end
     end
@@ -495,8 +514,6 @@ function waitCondition()
         return false
     end
 end
-
-CDecks = 1
 
 function BasePlates()
     if basePlatesPlaced then return false end
@@ -521,7 +538,7 @@ function BasePlates()
     table.insert(snapPoints, {position = {basePos[1]-5+LEMod+WFMod+WMod,basePos[2],basePos[3]-2}, rotation = {0,180,0}, rotation_snap = true})
     getObjectFromGUID(MCardsBase).takeObject({position = {basePos[1]-5+LEMod+WFMod+WMod,2,basePos[3]+5}, rotation = {0,180,180}, smooth = false})
     getObjectFromGUID(ICardsBase).takeObject({position = {basePos[1]+1,2,basePos[3]+6}, rotation = {0,90,180}, smooth = false})
-    getObjectFromGUID(CCardsBase).takeObject({position = {basePos[1]+25,2,basePos[3]+15}, rotation = {0,90,0}, smooth = false})
+    getObjectFromGUID(CCardsBase).takeObject({position = CharacterLocation, rotation = {0,90,180}, smooth = false})
     if expansions.ZhelotRoles~=true then
         getObjectFromGUID(RHeroineBase).takeObject({position = {-35,2,5}, rotation = {0,180,0}, smooth = false})
         getObjectFromGUID(RPartnerBase).takeObject({position = {-35,2,-2}, rotation = {0,180,0}, smooth = false})
@@ -532,6 +549,7 @@ function BasePlates()
     basePlatesPlaced = true
     return true
 end
+
 function LEPlates()
     if LEPlatesPlaced then return false end
     getObjectFromGUID(LDeck).takeObject({position = {basePos[1]-5+WFMod+WMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, smooth = false}).setLock(true)
@@ -543,14 +561,15 @@ function LEPlates()
     getObjectFromGUID(ExtraCard).takeObject({position = {basePos[1]+1.5+LEMod+WFMod+WMod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)
     LEPlatesPlaced = true
     return true
-end    
+end
+
 function TEPlates()
     if TEPlatesPlaced then return false end
     for i=1,3 do
         getObjectFromGUID(TPlate).takeObject({position = {basePos[1]-10+LEMod+WFMod+WMod-5*(i-1),basePos[2],basePos[3]}, rotation = {0,180,0}, smooth = false}).setLock(true)
         table.insert(snapPoints, {position = {basePos[1]-10+LEMod+WFMod+WMod-5*(i-1),basePos[2],basePos[3]}, rotation = {0,180,0}, rotation_snap = true})
     end
-    for i=1,3 do
+    for i=2,3 do
         getObjectFromGUID(TPlate).takeObject({position = {basePos[1]-10+LEMod+WFMod+WMod-5*(i-1),basePos[2],basePos[3]-7}, rotation = {0,180,0}, smooth = false}).setLock(true)
         table.insert(snapPoints, {position = {basePos[1]-10+LEMod+WFMod+WMod-5*(i-1),basePos[2],basePos[3]-7}, rotation = {0,180,0}, rotation_snap = true})
     end
@@ -562,6 +581,7 @@ function TEPlates()
     TEPlatesPlaced = true
     return true
 end
+
 function TraitsPlates()
     if TraitsPlatesPlaced then return false end
     getObjectFromGUID(TraitsDeck).takeObject({position = {basePos[1]-10+TEMod+LEMod+WFMod+WMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, smooth = false}).setLock(true)
@@ -569,6 +589,7 @@ function TraitsPlates()
     TraitsPlatesPlaced = true
     return true
 end
+
 function WildPlates()
     if WildPlatesPlaced then return false end
     getObjectFromGUID(WildDeck).takeObject({position = {basePos[1]-5+WFMod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, smooth = false}).setLock(true)
@@ -578,6 +599,7 @@ function WildPlates()
     WildPlatesPlaced = true
     return true
 end
+
 function doEverything()
     snapPoints = Global.getSnapPoints()
     if #DeckerCards.PrecognitionCards>0 then
@@ -622,7 +644,6 @@ function doEverything()
         getObjectFromGUID(WoFRef).takeObject({position = {basePos[1]-7.5+WFMod+WMod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)
     end
     if expansions.ShitTier then
-        getObjectFromGUID(ChenToken).takeObject({position = {basePos[1]-0.5+LEMod+WFMod+WMod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)
         getObjectFromGUID(OkinaToken).takeObject({position = {basePos[1]+1.5+LEMod+WFMod+WMod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)
     end
     if expansions.EToFS then
@@ -639,16 +660,15 @@ function doEverything()
         getObjectFromGUID(MCardsLunatic).takeObject({position = {basePos[1]-5+LEMod+WFMod+WMod,3,basePos[3]+5}, rotation = {0,180,180}, smooth = false})
         getObjectFromGUID(ICardsLunatic).takeObject({position = {basePos[1]+1,3,basePos[3]+6}, rotation = {0,90,180}, smooth = false})
         getObjectFromGUID(LCardsLunatic).takeObject({position = {basePos[1]-5+WFMod+WMod,2,basePos[3]+5}, rotation = {0,180,180}, smooth = false})
-        getObjectFromGUID(CCardsLunatic).takeObject({position = {basePos[1]+25,2,basePos[3]+15-6*CDecks}, rotation = {0,90,0}, smooth = false})
-        CDecks = CDecks+1
+        getObjectFromGUID(CCardsLunatic).takeObject({position = CharacterLocation, rotation = {0,90,180}, smooth = false})
         if expansions.ZhelotRoles~=true then
             getObjectFromGUID(RExLunatic).takeObject({position = {-30,3,-9}, rotation = {0,180,0}, smooth = false})
             getObjectFromGUID(RRevealLunatic).takeObject({position = {-25,3,-9}, rotation = {0,180,0}, smooth = false})
         end
     end
     for key,value in pairs(DeckerCards) do
-        if #value>1 and key~="CharacterCards" then
-            local tempDeck = Decker.Deck(value)
+        if #value>1 then
+            local tempDeck = Decker.Deck(value, {sideways=key=="CharacterCards"})
             if key=="MainCards" then
                 tempDeck:spawn({position = {basePos[1]-5+LEMod+WFMod+WMod,5,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
             elseif key=="LunaticCards" then
@@ -679,8 +699,10 @@ function doEverything()
                 tempDeck:spawn({position = {basePos[1]-10+TEMod+LEMod+WFMod+WMod,4,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
             elseif key=="WildCards" then
                 tempDeck:spawn({position = {basePos[1]-5+WFMod,2,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
+            elseif key=="CharacterCards" then
+                tempDeck:spawn({position = CharacterLocation, rotation = {0,90,180}}).setScale({2.61,1,2.61})
             end
-        elseif #value==1 and key~="CharacterCards" then
+        elseif #value==1 then
             if key=="MainCards" then
                 value[1]:spawn({position = {basePos[1]-5+LEMod+WFMod+WMod,5,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
             elseif key=="LunaticCards" then
@@ -711,16 +733,10 @@ function doEverything()
                 value[1]:spawn({position = {basePos[1]-10+TEMod+LEMod+WFMod+WMod,4,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
             elseif key=="WildCards" then
                 value[1]:spawn({position = {basePos[1]-5+WFMod,2,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
+            elseif key=="CharacterCards" then
+                value[1]:spawn({value[1]:spawn({position = CharacterLocation, rotation = {0,90,180}}).setScale({2.61,1,2.61})})
             end
         end
-    end
-    for key,value in pairs(DeckerCards.CharacterCards) do
-        if #value>1 then 
-            local tempDeck = Decker.Deck(value, {sideways=true})
-            tempDeck:spawn({position = {basePos[1]+25,2,basePos[3]+15-6*CDecks}, rotation = {0,90,0}}).setScale({2.61,1,2.61})
-        end
-        if #value==1 then value[1]:spawn({position = {basePos[1]+25,2,basePos[3]+15-6*CDecks}, rotation = {0,90,0}}).setScale({2.61,1,2.61}) end
-        CDecks = CDecks+1
     end
     Global.setSnapPoints(snapPoints)
 end
@@ -728,7 +744,7 @@ end
 function loadExpansions(player, _, id)
     print('Loading expansions...')
     closePanel(nil,nil,nil)
-    basePos = {-2.5, 0.96, 0}
+    basePos = {-2.5, 1.5, 0}
     LEMod = 0
     WFMod = 0
     TEMod = 0
@@ -764,7 +780,12 @@ function phaseTrackerPhaseChange(Playerr, isOn, id)
     on = StringToBool(isOn)
     --print(Playerr.color)
     --# Makes sure only active player can change phase
-    if Playerr.color ~= Turns.turn_color and Playerr.color ~= "Black" then UI.setAttribute(id, "isOn", not on) return else UI.setAttribute(id, "isOn", on) end
+    if Playerr.color ~= Turns.turn_color and Playerr.color ~= "Black" then
+        UI.setAttribute(id, "isOn", not on)
+        return
+    else
+        UI.setAttribute(id, "isOn", on)
+    end
     --print(id)
     --print(isOn)
     --print(on)
