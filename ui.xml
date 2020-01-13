@@ -71,14 +71,16 @@
                     <Image class="expansionImage" image="Traits"></Image></ToggleButton>
                 <ToggleButton class="expansionButton" id="Wild" text="Wild">
                     <Image class="expansionImage" image="Wild"></Image></ToggleButton>
-                <ToggleButton class="expansionButton" id="DumbassCards" text="Dumbass Cards">
-                    <Image class="expansionImage" image="DumbassCards"></Image></ToggleButton>
                 <ToggleButton class="expansionButton" id="AdvancedShitposting" text="Advanced Shitposting">
                     <Image class="expansionImage" image="Advanced Shitposting"></Image></ToggleButton>
                 <ToggleButton class="expansionButton" id="BullshitTier" text="Bullshit Tier (BuST)">
                     <Image class="expansionImage" image="BullshitTier"></Image></ToggleButton>
                 <ToggleButton class="expansionButton" id="VastGensokyo" text="Vast Gensokyo">
                     <Image class="expansionImage" image="VastGensokyo"></Image></ToggleButton>
+                <ToggleButton class="expansionButton" id="PC98" text="PC-98">
+                    <Image class="expansionImage" image="PC98"></Image></ToggleButton>
+                <ToggleButton class="expansionButton" id="DumbassCards" text="Dumbass Cards">
+                    <Image class="expansionImage" image="DumbassCards"></Image></ToggleButton>
         </GridLayout>
     <!--/Panel-->
     </VerticalScrollView>
