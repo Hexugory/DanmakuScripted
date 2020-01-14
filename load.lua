@@ -451,19 +451,18 @@ end
 
 function GETcardNames(list)
     cardNamesTable = list
-end
-
-function namer(deck,currentexpansion,deckName)
-    deck = deck.ContainedObjects[1]
-    if cardNamesTable[currentexpansion] ~= nil and cardNamesTable[currentexpansion][deckName] ~= nil then
-        local deckNames = cardNamesTable[currentexpansion][deckName]
-        for key,card in ipairs(deck.ContainedObjects) do
-            local cardNumber = key
-                card.Nickname = deckNames[cardNumber] or card.Nickname
-            deck.ContainedObjects[key] = card
+    for key,_ in pairs(expansions) do
+        if cardNamesTable[key] then
+        else
+            cardNamesTable[key] = {}
+        end
+        for key2,_ in pairs(DeckerCards) do
+            if cardNamesTable[key][key2] then
+            else
+                    cardNamesTable[key][key2] = {}
+            end
         end
     end
-    return deck
 end
 
 function mysplit(inputstr, sep)
@@ -499,7 +498,7 @@ function webRequestCallback(webReturn, expansion)
                     xc = xc-deck.width
                     yc = yc+1
                 end
-                table.insert(DeckerCards[deckName], Decker.Card(cardAsset, yc, xc, {sideways=(deckName=="CharacterCards"), name = cardNamesTable[currentexpansion][deckName][i] or ''}))
+                table.insert(DeckerCards[deckName], Decker.Card(cardAsset, yc, xc, {sideways=(deckName=="CharacterCards"), name = cardNamesTable[expansion][deckName][i] or ''}))
             end
         end
     end
@@ -557,7 +556,7 @@ function BasePlates()
     table.insert(snapPoints, {position = {basePos[1]-5+mod,basePos[2],basePos[3]-2}, rotation = {0,180,0}, rotation_snap = true})
     getObjectFromGUID(MCardsBase).takeObject({position = {basePos[1]-5+mod,2,basePos[3]+5}, rotation = {0,180,180}, smooth = false})
     
-    getObjectFromGUID(CCardsBase).takeObject({position = {basePos[1]+25,2,basePos[3]+15}, rotation = {0,90,0}, smooth = false})
+    getObjectFromGUID(CCardsBase).takeObject({position = CharacterLocation, rotation = {0,90,180}, smooth = false})
 
     if expansions.ZhelotRoles==false then
         getObjectFromGUID(RHeroineBase).takeObject({position = {-35,2,5}, rotation = {0,180,0}, smooth = false})
@@ -712,7 +711,7 @@ function doEverything()
         getObjectFromGUID(ICardsLunatic).takeObject({position = {basePos[1]+1+mod,3,basePos[3]+6}, rotation = {0,90,180}, smooth = false})
         local mod = getMod('LunaticCards')
         getObjectFromGUID(LCardsLunatic).takeObject({position = {basePos[1]-5+mod,2,basePos[3]+5}, rotation = {0,180,180}, smooth = false})
-        getObjectFromGUID(CCardsLunatic).takeObject({position = {basePos[1]+25,2,basePos[3]+15-6*CDecks}, rotation = {0,90,0}, smooth = false})
+        getObjectFromGUID(CCardsLunatic).takeObject({position = CharacterLocation, rotation = {0,90,180}, smooth = false})
         CDecks = CDecks+1
         if expansions.ZhelotRoles==false then
             getObjectFromGUID(RExLunatic).takeObject({position = {-30,3,-9}, rotation = {0,180,0}, smooth = false})
@@ -823,7 +822,7 @@ end
 function loadExpansions(player, _, id)
     print('Loading expansions...')
     closePanel(nil,nil,nil)
-    basePos = {-2.5, 0.96, 0}
+    basePos = {-2.5, 1.48, 0}
     for key,value in pairs(expansions) do
         if value~=false and key~="LunaticExtra" then
             remeber = key
