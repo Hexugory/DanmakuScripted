@@ -5368,6 +5368,20 @@
           "GridProjection": false,
           "HideWhenFaceDown": false,
           "Hands": false,
+          "AttachedSnapPoints": [
+            {
+              "Position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              },
+              "Rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              }
+            }
+          ],
           "CustomImage": {
             "ImageURL": "https://i.imgur.com/2dldZpO.png",
             "ImageSecondaryURL": "https://i.imgur.com/rFNA8uU.png",
@@ -5456,6 +5470,20 @@
           "GridProjection": false,
           "HideWhenFaceDown": false,
           "Hands": false,
+          "AttachedSnapPoints": [
+            {
+              "Position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              },
+              "Rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              }
+            }
+          ],
           "CustomImage": {
             "ImageURL": "https://i.imgur.com/Fa2Ju1d.png",
             "ImageSecondaryURL": "https://i.imgur.com/Fa2Ju1d.png",
@@ -5544,6 +5572,20 @@
           "GridProjection": false,
           "HideWhenFaceDown": false,
           "Hands": false,
+          "AttachedSnapPoints": [
+            {
+              "Position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              },
+              "Rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              }
+            }
+          ],
           "CustomImage": {
             "ImageURL": "https://i.imgur.com/8H2Ovxl.png",
             "ImageSecondaryURL": "https://i.imgur.com/8H2Ovxl.png",
@@ -5632,6 +5674,20 @@
           "GridProjection": false,
           "HideWhenFaceDown": false,
           "Hands": false,
+          "AttachedSnapPoints": [
+            {
+              "Position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              },
+              "Rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              }
+            }
+          ],
           "CustomImage": {
             "ImageURL": "https://i.imgur.com/WJKAZln.png",
             "ImageSecondaryURL": "https://i.imgur.com/WJKAZln.png",
@@ -5720,6 +5776,20 @@
           "GridProjection": false,
           "HideWhenFaceDown": false,
           "Hands": false,
+          "AttachedSnapPoints": [
+            {
+              "Position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              },
+              "Rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              }
+            }
+          ],
           "CustomImage": {
             "ImageURL": "https://i.imgur.com/9pMSZAb.png",
             "ImageSecondaryURL": "https://i.imgur.com/9pMSZAb.png",
@@ -5808,6 +5878,20 @@
           "GridProjection": false,
           "HideWhenFaceDown": false,
           "Hands": false,
+          "AttachedSnapPoints": [
+            {
+              "Position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              },
+              "Rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              }
+            }
+          ],
           "CustomImage": {
             "ImageURL": "https://i.imgur.com/2FI0ykq.png",
             "ImageSecondaryURL": "https://i.imgur.com/2FI0ykq.png",
@@ -5896,6 +5980,20 @@
           "GridProjection": false,
           "HideWhenFaceDown": false,
           "Hands": false,
+          "AttachedSnapPoints": [
+            {
+              "Position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              },
+              "Rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              }
+            }
+          ],
           "CustomImage": {
             "ImageURL": "https://i.imgur.com/sOQbsMG.png",
             "ImageSecondaryURL": "https://i.imgur.com/sOQbsMG.png",
@@ -17579,6 +17677,20 @@
           "GridProjection": false,
           "HideWhenFaceDown": false,
           "Hands": false,
+          "AttachedSnapPoints": [
+            {
+              "Position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              },
+              "Rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              }
+            }
+          ],
           "CustomImage": {
             "ImageURL": "https://i.imgur.com/DAANEIO.png",
             "ImageSecondaryURL": "https://i.imgur.com/DAANEIO.png",
@@ -17667,6 +17779,20 @@
           "GridProjection": false,
           "HideWhenFaceDown": false,
           "Hands": false,
+          "AttachedSnapPoints": [
+            {
+              "Position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              },
+              "Rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              }
+            }
+          ],
           "CustomImage": {
             "ImageURL": "https://i.imgur.com/YJtikrF.png",
             "ImageSecondaryURL": "https://i.imgur.com/YJtikrF.png",
@@ -17755,6 +17881,20 @@
           "GridProjection": false,
           "HideWhenFaceDown": false,
           "Hands": false,
+          "AttachedSnapPoints": [
+            {
+              "Position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              },
+              "Rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              }
+            }
+          ],
           "CustomImage": {
             "ImageURL": "https://i.imgur.com/8ILksyw.png",
             "ImageSecondaryURL": "https://i.imgur.com/8ILksyw.png",
@@ -20688,6 +20828,20 @@
           "GridProjection": false,
           "HideWhenFaceDown": false,
           "Hands": false,
+          "AttachedSnapPoints": [
+            {
+              "Position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              },
+              "Rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              }
+            }
+          ],
           "CustomImage": {
             "ImageURL": "https://i.imgur.com/Pjgi73v.png",
             "ImageSecondaryURL": "https://i.imgur.com/Pjgi73v.png",
@@ -20904,6 +21058,20 @@
           "GridProjection": false,
           "HideWhenFaceDown": false,
           "Hands": false,
+          "AttachedSnapPoints": [
+            {
+              "Position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              },
+              "Rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              }
+            }
+          ],
           "CustomImage": {
             "ImageURL": "http://cloud-3.steamusercontent.com/ugc/791982128223246927/AF815E564F49DDF98743B627C5F2791D0BFAB369/",
             "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/791982128223246600/429F54C57E096992E42D1A468D7B69ED508E8F25/",
@@ -20992,6 +21160,20 @@
           "GridProjection": false,
           "HideWhenFaceDown": false,
           "Hands": false,
+          "AttachedSnapPoints": [
+            {
+              "Position": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              },
+              "Rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+              }
+            }
+          ],
           "CustomImage": {
             "ImageURL": "http://cloud-3.steamusercontent.com/ugc/782997563741677586/28C4A678CA1EC8465A87277C14D28ED23875AC37/",
             "ImageSecondaryURL": "http://cloud-3.steamusercontent.com/ugc/782997563741679483/CD5E863862AB1A305E6CD880F765E42CA4B2394D/",
