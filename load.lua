@@ -410,7 +410,7 @@ function tablelength(T)
     return count
 end
 
-expansions = {LunaticExtra = false, ShitTier = false, GarbageTier = false, TerminalExpansion = false, FoxBox = false, YuriParadise = false, EToFS = false, ZhelotRoles = false, WillofFate = false, DBSCharacters = false, GoldenAdditions = false, DumbassCards = false, MUSCLE = false, Traits = false, AdvancedShitposting = false, Wild = false, BullshitTier = false, VastGensokyo = false, PC98 = false}
+expansions = {LunaticExtra = false, ShitTier = false, GarbageTier = false, TerminalExpansion = false, FoxBox = false, YuriParadise = false, EToFS = false, ZhelotRoles = false, WillofFate = false, DBSCharacters = false, GoldenAdditions = false, MUSCLE = false, Traits = false, AdvancedShitposting = false, Wild = false, BullshitTier = false, VastGensokyo = false, PC98 = false, Travel = false, DumbassCards = false}
 DeckerCards = {
     MainCards = {},
     LunaticCards = {},
@@ -427,9 +427,11 @@ DeckerCards = {
     TraitCards = {},
     WildCards = {},
     ContractCards = {},
+    TravelCards = {},
     ExternalCards = {}
 }
 PlateSpace = {
+    TravelCards = 0,
     NightCards = 0,
     IncidentCards = 0,
     PrecognitionCards = 0,
@@ -645,6 +647,10 @@ function doEverything()
         basePos[1] = basePos[1]+2.5
         PlateSpace.ContractCards = -5
     end
+    if #DeckerCards.TravelCards>0 then
+        basePos[1] = basePos[1]+2.5
+        PlateSpace.TravelCards = -5
+    end
     if #DeckerCards.TerminalCards>0 then
         TEPlates()
     end
@@ -683,6 +689,10 @@ function doEverything()
         getObjectFromGUID(Past).takeObject({position = {basePos[1]+8.5+mod,basePos[2]-0.01,basePos[3]-10}, smooth = false}).setLock(true)
         getObjectFromGUID(GoodFuture).takeObject({position = {basePos[1]+10.5+mod,basePos[2]-0.01,basePos[3]-10}, smooth = false}).setLock(true)
         getObjectFromGUID(EToFSRef).takeObject({position = {basePos[1]+8.5+mod,basePos[2]-0.01,basePos[3]-12}, smooth = false}).setLock(true)
+    end
+    if expansions.Travel then
+        local mod = getMod('TravelCards')
+        getObjectFromGUID(TravelRef).takeObject({position = {basePos[1]+8.5+mod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)
     end
     BasePlates()
     if expansions.LunaticExtra then
@@ -743,6 +753,11 @@ function doEverything()
             elseif key=="ContractCards" then
                 local mod = getMod('ContractCards')
                 tempDeck:spawn({position = {basePos[1]-5+mod,4,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
+            elseif key=="TravelCards" then
+                local mod = getMod('TravelCards')
+                tempDeck:spawn({position = {basePos[1]+10+mod,2,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
+                table.insert(snapPoints, {position = {basePos[1]+10+mod,basePos[2],basePos[3]+5}, rotation = {0,180,180}, rotation_snap = true})
+                table.insert(snapPoints, {position = {basePos[1]+10+mod,basePos[2],basePos[3]-2}, rotation = {0,180,180}, rotation_snap = true})
             elseif key=="ExternalCards" then
                 tempDeck:spawn({position = {-25,4,-16}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
             end
@@ -788,6 +803,11 @@ function doEverything()
             elseif key=="ContractCards" then
                 local mod = getMod('ContractCards')
                 value[1]:spawn({position = {basePos[1]-5+mod,4,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
+            elseif key=="TravelCards" then
+                local mod = getMod('TravelCards')
+                value[1]:spawn({position = {basePos[1]+10+mod,2,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
+                table.insert(snapPoints, {position = {basePos[1]+10+mod,basePos[2],basePos[3]+5}, rotation = {0,180,180}, rotation_snap = true})
+                table.insert(snapPoints, {position = {basePos[1]+10+mod,basePos[2],basePos[3]-2}, rotation = {0,180,180}, rotation_snap = true})
             elseif key=="ExternalCards" then
                 value[1]:spawn({position = {-25,4,-16}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
             end
