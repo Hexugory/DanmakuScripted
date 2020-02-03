@@ -79,6 +79,8 @@
                     <Image class="expansionImage" image="VastGensokyo"></Image></ToggleButton>
                 <ToggleButton class="expansionButton" id="PC98" text="PC-98">
                     <Image class="expansionImage" image="PC98"></Image></ToggleButton>
+                <ToggleButton class="expansionButton" id="Travel" text="Travel">
+                    <Image class="expansionImage" image="Travel"></Image></ToggleButton>
                 <ToggleButton class="expansionButton" id="DumbassCards" text="Dumbass Cards">
                     <Image class="expansionImage" image="DumbassCards"></Image></ToggleButton>
         </GridLayout>
