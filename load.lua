@@ -440,16 +440,16 @@ PlateSpace = {
 }
 remeber = 0
 
-CharacterLocation = {-8.00, 1.55, 12.00}
+CharacterLocation = {-8.00, 2, 12.00}
 cardNamesTable = {}
 
 function onLoad()
-    WebRequest.get("https://pastebin.com/raw/pdxWnTgD", function(obj) GETcardNames(JSON.decode(obj.text)) end)
+    WebRequest.get("https://pastebin.com/raw/pdxWnTgD", function(obj) unCrashCardNames(JSON.decode(obj.text)) end) -- GETs the list of names
     local scriptObjects = getObjectFromGUID("906d21").getObjects()
     for key,value in pairs(scriptObjects) do _G[value.getName()] = value.getGUID() end
 end
 
-function GETcardNames(list)
+function unCrashCardNames(list) -- inserts empty entries so we don't try to read nulls and crash
     cardNamesTable = list
     for key,_ in pairs(expansions) do
         if cardNamesTable[key] then
@@ -533,31 +533,31 @@ function BasePlates()
     if basePlatesPlaced then return false end
     local mod = getMod('IncidentCards')
     for i=1,3 do
-        getObjectFromGUID(IPlate).takeObject({position = {basePos[1]+5*(i-1)+mod,basePos[2],basePos[3]}, rotation = {0,180,0}, smooth = false}).setLock(true)
+        getObjectFromGUID(IPlate).takeObject({position = {basePos[1]+1+4*(i)+mod,basePos[2],basePos[3]}, rotation = {0,180,0}, smooth = false}).setLock(true)
     end
     for i=1,3 do
-        getObjectFromGUID(IPlate).takeObject({position = {basePos[1]+5*(i-1)+mod,basePos[2]+0.1,basePos[3]-7}, rotation = {0,180,180}, smooth = false}).setLock(true)
+        getObjectFromGUID(IPlate).takeObject({position = {basePos[1]+1+4*(i)+mod,basePos[2]+0.1,basePos[3]-6}, rotation = {0,180,180}, smooth = false}).setLock(true)
     end
-    getObjectFromGUID(IDeck).takeObject({position = {basePos[1]+1+mod,basePos[2],basePos[3]+6}, rotation = {0,90,0}, smooth = false}).setLock(true)
-    getObjectFromGUID(IDiscard).takeObject({position = {basePos[1]+9+mod,basePos[2],basePos[3]+6}, rotation = {0,90,0}, smooth = false}).setLock(true)
-    getObjectFromGUID(ICardsBase).takeObject({position = {basePos[1]+1+mod,2,basePos[3]+6}, rotation = {0,90,180}, smooth = false})
+    getObjectFromGUID(IDeck).takeObject({position = {basePos[1]+6+mod,basePos[2],basePos[3]+5}, rotation = {0,90,0}, smooth = false}).setLock(true)
+    getObjectFromGUID(IDiscard).takeObject({position = {basePos[1]+12+mod,basePos[2],basePos[3]+5}, rotation = {0,90,0}, smooth = false}).setLock(true)
+    getObjectFromGUID(ICardsBase).takeObject({position = {basePos[1]+6+mod,2,basePos[3]+5}, rotation = {0,90,180}, smooth = false})
 
     local mod = getMod('MainCards')
-    getObjectFromGUID(MDeck).takeObject({position = {basePos[1]-5+mod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, smooth = false}).setLock(true)
-    getObjectFromGUID(MDiscard).takeObject({position = {basePos[1]-5+mod,basePos[2],basePos[3]-2}, rotation = {0,180,0}, smooth = false}).setLock(true)
-    getObjectFromGUID(BaseRef).takeObject({position = {basePos[1]-6.5+mod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)
-    getObjectFromGUID(Die).takeObject({position = {basePos[1]-4.5+mod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)
-    getObjectFromGUID(LifeToken).takeObject({position = {basePos[1]-6.5+mod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)
-    getObjectFromGUID(MCardsBase).takeObject({position = {basePos[1]-5+mod,2,basePos[3]+5}, rotation = {0,180,180}, smooth = false})
+    getObjectFromGUID(MDeck).takeObject({position = {basePos[1]+mod,basePos[2],basePos[3]+4}, rotation = {0,180,0}, smooth = false}).setLock(true)
+    getObjectFromGUID(MDiscard).takeObject({position = {basePos[1]+mod,basePos[2],basePos[3]-2}, rotation = {0,180,0}, smooth = false}).setLock(true)
+    getObjectFromGUID(BaseRef).takeObject({position = {basePos[1]-2+mod,basePos[2]-0.01,basePos[3]-7}, smooth = false}).setLock(true)
+    getObjectFromGUID(Die).takeObject({position = {basePos[1]+mod,basePos[2]-0.01,basePos[3]-7}, smooth = false}).setLock(true)
+    getObjectFromGUID(LifeToken).takeObject({position = {basePos[1]-2+mod,basePos[2]-0.01,basePos[3]-9}, smooth = false}).setLock(true)
+    getObjectFromGUID(MCardsBase).takeObject({position = {basePos[1]+mod,2,basePos[3]+4}, rotation = {0,180,180}, smooth = false})
     
     getObjectFromGUID(CCardsBase).takeObject({position = CharacterLocation, rotation = {0,90,180}, smooth = false})
 
     if expansions.ZhelotRoles==false then
-        getObjectFromGUID(RHeroineBase).takeObject({position = {-35,2,5}, rotation = {0,180,0}, smooth = false})
-        getObjectFromGUID(RPartnerBase).takeObject({position = {-35,2,-2}, rotation = {0,180,0}, smooth = false})
-        getObjectFromGUID(RStageBase).takeObject({position = {-35,2,-9}, rotation = {0,180,0}, smooth = false})
-        getObjectFromGUID(RExBase).takeObject({position = {-30,2,-9}, rotation = {0,180,0}, smooth = false})
-        getObjectFromGUID(RRevealBase).takeObject({position = {-25,2,-9}, rotation = {0,180,0}, smooth = false})
+        getObjectFromGUID(RHeroineBase).takeObject({position = {-9,2,-22}, rotation = {0,180,0}, smooth = false})
+        getObjectFromGUID(RPartnerBase).takeObject({position = {-3,2,-22}, rotation = {0,180,0}, smooth = false})
+        getObjectFromGUID(RStageBase).takeObject({position = {3,2,-22}, rotation = {0,180,0}, smooth = false})
+        getObjectFromGUID(RExBase).takeObject({position = {9,2,-22}, rotation = {0,180,0}, smooth = false})
+        getObjectFromGUID(RRevealBase).takeObject({position = {-5,2,18}, rotation = {0,180,0}, smooth = false})
     end
     basePlatesPlaced = true
     return true
@@ -566,12 +566,12 @@ end
 function LEPlates()
     if LEPlatesPlaced then return false end
     local mod = getMod('LunaticCards')
-    getObjectFromGUID(LDeck).takeObject({position = {basePos[1]-5+mod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, smooth = false}).setLock(true)
-    getObjectFromGUID(LDiscard).takeObject({position = {basePos[1]-5+mod,basePos[2],basePos[3]-2}, rotation = {0,180,0}, smooth = false}).setLock(true)
+    getObjectFromGUID(LDeck).takeObject({position = {basePos[1]+mod,basePos[2],basePos[3]+4}, rotation = {0,180,0}, smooth = false}).setLock(true)
+    getObjectFromGUID(LDiscard).takeObject({position = {basePos[1]+mod,basePos[2],basePos[3]-2}, rotation = {0,180,0}, smooth = false}).setLock(true)
     local mod = getMod('MainCards')
-    getObjectFromGUID(SeasonDie).takeObject({position = {basePos[1]-2.5+mod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)
-    getObjectFromGUID(ExtraPlate).takeObject({position = {basePos[1]-0.5+mod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)
-    getObjectFromGUID(ExtraCard).takeObject({position = {basePos[1]+1.5+mod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)
+    getObjectFromGUID(SeasonDie).takeObject({position = {basePos[1]+2+mod,basePos[2]-0.01,basePos[3]-7}, smooth = false}).setLock(true)
+    getObjectFromGUID(ExtraPlate).takeObject({position = {basePos[1]+4+mod,basePos[2]-0.01,basePos[3]-7}, smooth = false}).setLock(true)
+    getObjectFromGUID(ExtraCard).takeObject({position = {basePos[1]+6+mod,basePos[2]-0.01,basePos[3]-7}, smooth = false}).setLock(true)
     LEPlatesPlaced = true
     return true
 end
@@ -580,14 +580,14 @@ function TEPlates()
     if TEPlatesPlaced then return false end
     local mod = getMod('TerminalCards')
     for i=0,2 do
-        getObjectFromGUID(TPlate).takeObject({position = {basePos[1]-10+mod-5*(i),basePos[2],basePos[3]}, rotation = {0,180,0}, smooth = false}).setLock(true)
+        getObjectFromGUID(TPlate).takeObject({position = {basePos[1]-5+mod-4*(i),basePos[2],basePos[3]}, rotation = {0,180,0}, smooth = false}).setLock(true)
     end
     for i=1,2 do
-        getObjectFromGUID(TPlate).takeObject({position = {basePos[1]-10+mod-5*(i),basePos[2],basePos[3]-7}, rotation = {0,180,0}, smooth = false}).setLock(true)
+        getObjectFromGUID(TPlate).takeObject({position = {basePos[1]-5+mod-4*(i),basePos[2],basePos[3]-6}, rotation = {0,180,0}, smooth = false}).setLock(true)
     end
-    getObjectFromGUID(TDeck).takeObject({position = {basePos[1]-11+mod,basePos[2],basePos[3]+6}, rotation = {0,90,0}, smooth = false}).setLock(true)
-    getObjectFromGUID(TDiscard).takeObject({position = {basePos[1]-19+mod,basePos[2],basePos[3]+6}, rotation = {0,90,0}, smooth = false}).setLock(true)
-    getObjectFromGUID(TERef).takeObject({position = {basePos[1]-4.5+mod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)
+    getObjectFromGUID(TDeck).takeObject({position = {basePos[1]-6+mod,basePos[2],basePos[3]+5}, rotation = {0,90,0}, smooth = false}).setLock(true)
+    getObjectFromGUID(TDiscard).takeObject({position = {basePos[1]-12+mod,basePos[2],basePos[3]+5}, rotation = {0,90,0}, smooth = false}).setLock(true)
+    getObjectFromGUID(TERef).takeObject({position = {basePos[1]+mod,basePos[2]-0.01,basePos[3]-9}, smooth = false}).setLock(true)
     TEPlatesPlaced = true
     return true
 end
@@ -595,7 +595,7 @@ end
 function TraitsPlates()
     if TraitsPlatesPlaced then return false end
     local mod = getMod('TraitCards')
-    getObjectFromGUID(TraitsDeck).takeObject({position = {basePos[1]-10+mod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, smooth = false}).setLock(true)
+    getObjectFromGUID(TraitsDeck).takeObject({position = {basePos[1]-5+mod,basePos[2],basePos[3]+4}, rotation = {0,180,0}, smooth = false}).setLock(true)
     TraitsPlatesPlaced = true
     return true
 end
@@ -603,49 +603,49 @@ end
 function WildPlates()
     if WildPlatesPlaced then return false end
     local mod = getMod('WildCards')
-    getObjectFromGUID(WildDeck).takeObject({position = {basePos[1]-5+mod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, smooth = false}).setLock(true)
-    getObjectFromGUID(WildDeck).takeObject({position = {basePos[1]-5+mod,basePos[2]+0.1,basePos[3]-2}, rotation = {0,180,180}, smooth = false}).setLock(true)
+    getObjectFromGUID(WildDeck).takeObject({position = {basePos[1]+mod,basePos[2],basePos[3]+4}, rotation = {0,180,0}, smooth = false}).setLock(true)
+    getObjectFromGUID(WildDeck).takeObject({position = {basePos[1]+mod,basePos[2]+0.1,basePos[3]-2}, rotation = {0,180,180}, smooth = false}).setLock(true)
     WildPlatesPlaced = true
     return true
 end
 function PC98Plates()
     if PC98PlatesPlaced then return false end
     local mod = getMod('ContractCards')
-    getObjectFromGUID(ContractDeck).takeObject({position = {basePos[1]-5+mod,basePos[2],basePos[3]+5}, rotation = {0,180,0}, smooth = false}).setLock(true)
-    getObjectFromGUID(ContractDeck).takeObject({position = {basePos[1]-5+mod,basePos[2]+0.1,basePos[3]-2}, rotation = {0,180,180}, smooth = false}).setLock(true)
-    getObjectFromGUID(PC98Ref).takeObject({position = {basePos[1]-6.5+mod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)
+    getObjectFromGUID(ContractDeck).takeObject({position = {basePos[1]+mod,basePos[2],basePos[3]+4}, rotation = {0,180,0}, smooth = false}).setLock(true)
+    getObjectFromGUID(ContractDeck).takeObject({position = {basePos[1]+mod,basePos[2]+0.1,basePos[3]-2}, rotation = {0,180,180}, smooth = false}).setLock(true)
+    getObjectFromGUID(PC98Ref).takeObject({position = {basePos[1]-2+mod,basePos[2]-0.01,basePos[3]-7}, smooth = false}).setLock(true)
     PC98PlatesPlaced = true
     return true
 end
 function doEverything()
     snapPoints = Global.getSnapPoints()
     if #DeckerCards.PrecognitionCards>0 then
-        basePos[1] = basePos[1]+2.5
-        PlateSpace.PrecognitionCards = -5
+        basePos[1] = basePos[1]+2
+        PlateSpace.PrecognitionCards = PlateSpace.PrecognitionCards-4
     end
     if #DeckerCards.NightCards>0 then
-        basePos[1] = basePos[1]+2.5
-        PlateSpace.NightCards = -5
+        --basePos[1] = basePos[1]+2
+        --PlateSpace.NightCards = PlateSpace.NightCards-4
     end
     if #DeckerCards.TerminalCards>0 then
-        basePos[1] = basePos[1]+7.5
-        PlateSpace.TerminalCards = -15
+        basePos[1] = basePos[1]+7
+        PlateSpace.TerminalCards = PlateSpace.TerminalCards-13
     end
     if #DeckerCards.LunaticCards>0 or expansions.LunaticExtra then
-        basePos[1] = basePos[1]+2.5
-        PlateSpace.LunaticCards = -5
+        basePos[1] = basePos[1]+2
+        PlateSpace.LunaticCards = PlateSpace.LunaticCards-4
     end
     if #DeckerCards.WildCards>0 then
-        basePos[1] = basePos[1]+2.5
-        PlateSpace.WildCards = -5
+        basePos[1] = basePos[1]+2
+        PlateSpace.WildCards = PlateSpace.WildCards-4
     end
     if #DeckerCards.TraitCards>0 then
-        basePos[1] = basePos[1]+2.5
-        PlateSpace.TraitCards = -5
+        basePos[1] = basePos[1]+2
+        PlateSpace.TraitCards = PlateSpace.TraitCards-4
     end
     if #DeckerCards.ContractCards>0 then
-        basePos[1] = basePos[1]+2.5
-        PlateSpace.ContractCards = -5
+        basePos[1] = basePos[1]+2
+        PlateSpace.ContractCards = PlateSpace.ContractCards-4
     end
     if #DeckerCards.TerminalCards>0 then
         TEPlates()
@@ -664,41 +664,41 @@ function doEverything()
     end
     if expansions.WillofFate then
         local mod = getMod('PrecognitionCards')
-        getObjectFromGUID(WinterToken).takeObject({position = {basePos[1]-6.5+mod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)
-        getObjectFromGUID(SummerToken).takeObject({position = {basePos[1]-4.5+mod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)
-        getObjectFromGUID(AutumnToken).takeObject({position = {basePos[1]-6.5+mod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)
-        getObjectFromGUID(SpringToken).takeObject({position = {basePos[1]-4.5+mod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)
+        getObjectFromGUID(WinterToken).takeObject({position = {basePos[1]-2+mod,basePos[2]-0.01,basePos[3]-7}, smooth = false}).setLock(true)
+        getObjectFromGUID(SummerToken).takeObject({position = {basePos[1]+mod,basePos[2]-0.01,basePos[3]-7}, smooth = false}).setLock(true)
+        getObjectFromGUID(AutumnToken).takeObject({position = {basePos[1]-2+mod,basePos[2]-0.01,basePos[3]-9}, smooth = false}).setLock(true)
+        getObjectFromGUID(SpringToken).takeObject({position = {basePos[1]+mod,basePos[2]-0.01,basePos[3]-9}, smooth = false}).setLock(true)
         local mod = getMod('MainCards')
-        getObjectFromGUID(WoFRef).takeObject({position = {basePos[1]-2.5+mod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)
+        getObjectFromGUID(WoFRef).takeObject({position = {basePos[1]+2+mod,basePos[2]-0.01,basePos[3]-9}, smooth = false}).setLock(true)
     end
     if expansions.ShitTier then
         local mod = getMod('MainCards')
-        getObjectFromGUID(ChenToken).takeObject({position = {basePos[1]-0.5+mod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)
-        getObjectFromGUID(OkinaToken).takeObject({position = {basePos[1]+1.5+mod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)
+        getObjectFromGUID(ChenToken).takeObject({position = {basePos[1]+4+mod,basePos[2]-0.01,basePos[3]-9}, smooth = false}).setLock(true)
+        getObjectFromGUID(OkinaToken).takeObject({position = {basePos[1]+6+mod,basePos[2]-0.01,basePos[3]-9}, smooth = false}).setLock(true)
     end
     if expansions.EToFS then
         local mod = getMod('NightCards')
-        getObjectFromGUID(SilenceToken).takeObject({position = {basePos[1]+8.5+mod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)
-        getObjectFromGUID(NightButton).takeObject({position = {basePos[1]+10.5+mod,basePos[2]-0.01,basePos[3]-6}, smooth = false}).setLock(true)
-        getObjectFromGUID(LoreButton).takeObject({position = {basePos[1]+8.5+mod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)
-        getObjectFromGUID(ClankButton).takeObject({position = {basePos[1]+10.5+mod,basePos[2]-0.01,basePos[3]-8}, smooth = false}).setLock(true)
-        getObjectFromGUID(Past).takeObject({position = {basePos[1]+8.5+mod,basePos[2]-0.01,basePos[3]-10}, smooth = false}).setLock(true)
-        getObjectFromGUID(GoodFuture).takeObject({position = {basePos[1]+10.5+mod,basePos[2]-0.01,basePos[3]-10}, smooth = false}).setLock(true)
-        getObjectFromGUID(EToFSRef).takeObject({position = {basePos[1]+8.5+mod,basePos[2]-0.01,basePos[3]-12}, smooth = false}).setLock(true)
+        getObjectFromGUID(SilenceToken).takeObject({position = {basePos[1]+17+mod,basePos[2]-0.01,basePos[3]-7}, smooth = false}).setLock(true)
+        getObjectFromGUID(NightButton).takeObject({position = {basePos[1]+19+mod,basePos[2]-0.01,basePos[3]-7}, smooth = false}).setLock(true)
+        getObjectFromGUID(LoreButton).takeObject({position = {basePos[1]+17+mod,basePos[2]-0.01,basePos[3]-9}, smooth = false}).setLock(true)
+        getObjectFromGUID(ClankButton).takeObject({position = {basePos[1]+19+mod,basePos[2]-0.01,basePos[3]-9}, smooth = false}).setLock(true)
+        getObjectFromGUID(Past).takeObject({position = {basePos[1]+17+mod,basePos[2]-0.01,basePos[3]-11}, smooth = false}).setLock(true)
+        getObjectFromGUID(GoodFuture).takeObject({position = {basePos[1]+19+mod,basePos[2]-0.01,basePos[3]-11}, smooth = false}).setLock(true)
+        getObjectFromGUID(EToFSRef).takeObject({position = {basePos[1]+17+mod,basePos[2]-0.01,basePos[3]-13}, smooth = false}).setLock(true)
     end
     BasePlates()
     if expansions.LunaticExtra then
         local mod = getMod('MainCards')
-        getObjectFromGUID(MCardsLunatic).takeObject({position = {basePos[1]-5+mod,3,basePos[3]+5}, rotation = {0,180,180}, smooth = false})
+        getObjectFromGUID(MCardsLunatic).takeObject({position = {basePos[1]+mod,2,basePos[3]+4}, rotation = {0,180,180}, smooth = false})
         local mod = getMod('IncidentCards')
-        getObjectFromGUID(ICardsLunatic).takeObject({position = {basePos[1]+1+mod,3,basePos[3]+6}, rotation = {0,90,180}, smooth = false})
+        getObjectFromGUID(ICardsLunatic).takeObject({position = {basePos[1]+6+mod,2,basePos[3]+5}, rotation = {0,90,180}, smooth = false})
         local mod = getMod('LunaticCards')
-        getObjectFromGUID(LCardsLunatic).takeObject({position = {basePos[1]-5+mod,2,basePos[3]+5}, rotation = {0,180,180}, smooth = false})
+        getObjectFromGUID(LCardsLunatic).takeObject({position = {basePos[1]+mod,2,basePos[3]+4}, rotation = {0,180,180}, smooth = false})
         getObjectFromGUID(CCardsLunatic).takeObject({position = CharacterLocation, rotation = {0,90,180}, smooth = false})
         CDecks = CDecks+1
         if expansions.ZhelotRoles==false then
-            getObjectFromGUID(RExLunatic).takeObject({position = {-30,3,-9}, rotation = {0,180,0}, smooth = false})
-            getObjectFromGUID(RRevealLunatic).takeObject({position = {-25,3,-9}, rotation = {0,180,0}, smooth = false})
+            getObjectFromGUID(RExLunatic).takeObject({position = {9,2,-22}, rotation = {0,180,0}, smooth = false})
+            getObjectFromGUID(RRevealLunatic).takeObject({position = {-5,2,18}, rotation = {0,180,0}, smooth = false})
         end
     end
     for key,value in pairs(DeckerCards) do
@@ -706,96 +706,96 @@ function doEverything()
             local tempDeck = Decker.Deck(value, {sideways=key=="CharacterCards"})
             if key=="MainCards" then
                 local mod = getMod('MainCards')
-                tempDeck:spawn({position = {basePos[1]-5+mod,5,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
+                tempDeck:spawn({position = {basePos[1]+mod,2,basePos[3]+4}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
             elseif key=="LunaticCards" then
                 local mod = getMod('LunaticCards')
-                tempDeck:spawn({position = {basePos[1]-5+mod,4,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
+                tempDeck:spawn({position = {basePos[1]+mod,2,basePos[3]+4}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
             elseif key=="IncidentCards" then
                 local mod = getMod('IncidentCards')
-                tempDeck:spawn({position = {basePos[1]+1+mod,5,basePos[3]+6}, rotation = {0,90,180}}).setScale({1.82,1,1.82})
+                tempDeck:spawn({position = {basePos[1]+6+mod,2,basePos[3]+5}, rotation = {0,90,180}}).setScale({1.82,1,1.82})
             elseif key=="HeroineCards" then
-                tempDeck:spawn({position = {-35,3,5}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
+                tempDeck:spawn({position = {-9,2,-22}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
             elseif key=="PartnerCards" then
-                tempDeck:spawn({position = {-35,3,-2}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
+                tempDeck:spawn({position = {-3,2,-22}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
             elseif key=="StageCards" then
-                tempDeck:spawn({position = {-35,3,-9}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
+                tempDeck:spawn({position = {3,2,-22}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
             elseif key=="ExCards" then
-                tempDeck:spawn({position = {-30,4,-9}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
+                tempDeck:spawn({position = {9,2,-22}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
             elseif key=="RevealCards" then
-                tempDeck:spawn({position = {-25,4,-9}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
+                tempDeck:spawn({position = {-5,2,18}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
             elseif key=="TerminalCards" then
                 local mod = getMod('TerminalCards')
-                tempDeck:spawn({position = {basePos[1]-11+mod,2,basePos[3]+6}, rotation = {0,90,180}}).setScale({1.82,1,1.82})
+                tempDeck:spawn({position = {basePos[1]-6+mod,2,basePos[3]+5}, rotation = {0,90,180}}).setScale({1.82,1,1.82})
             elseif key=="PrecognitionCards" then
                 local mod = getMod('PrecognitionCards')
-                tempDeck:spawn({position = {basePos[1]-5+mod,2,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
-                table.insert(snapPoints, {position = {basePos[1]-5+mod,basePos[2],basePos[3]+5}, rotation = {0,180,180}, rotation_snap = true})
+                tempDeck:spawn({position = {basePos[1]+mod,2,basePos[3]+4}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
+                table.insert(snapPoints, {position = {basePos[1]-5+mod,basePos[2],basePos[3]+4}, rotation = {0,180,180}, rotation_snap = true})
                 table.insert(snapPoints, {position = {basePos[1]-5+mod,basePos[2],basePos[3]-2}, rotation = {0,180,180}, rotation_snap = true})
             elseif key=="NightCards" then
                 local mod = getMod('NightCards')
-                tempDeck:spawn({position = {basePos[1]+10+mod,2,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
-                table.insert(snapPoints, {position = {basePos[1]+10+mod,basePos[2],basePos[3]+5}, rotation = {0,180,180}, rotation_snap = true})
-                table.insert(snapPoints, {position = {basePos[1]+10+mod,basePos[2],basePos[3]-2}, rotation = {0,180,180}, rotation_snap = true})
+                tempDeck:spawn({position = {basePos[1]-6+mod,2,basePos[3]-13}, rotation = {0,90,180}}).setScale({1.82,1,1.82})
+                table.insert(snapPoints, {position = {basePos[1]-6+mod,basePos[2],basePos[3]-13}, rotation = {0,90,180}, rotation_snap = true})
+                table.insert(snapPoints, {position = {basePos[1]+mod,basePos[2],basePos[3]-13}, rotation = {0,90,180}, rotation_snap = true})
             elseif key=="TraitCards" then
                 local mod = getMod('TraitCards')
-                tempDeck:spawn({position = {basePos[1]-10+mod,4,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
+                tempDeck:spawn({position = {basePos[1]-5+mod,2,basePos[3]+4}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
             elseif key=="WildCards" then
                 local mod = getMod('WildCards')
-                tempDeck:spawn({position = {basePos[1]-5+mod,2,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
+                tempDeck:spawn({position = {basePos[1]+mod,2,basePos[3]+4}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
             elseif key=="ContractCards" then
                 local mod = getMod('ContractCards')
-                tempDeck:spawn({position = {basePos[1]-5+mod,4,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
+                tempDeck:spawn({position = {basePos[1]+mod,2,basePos[3]+4}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
             elseif key=="ExternalCards" then
-                tempDeck:spawn({position = {-25,4,-16}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
+                tempDeck:spawn({position = {5,2,18}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
             elseif key=="CharacterCards" then
-                tempDeck:spawn({position = CharacterLocation, rotation = {0,90,180}}).setScale({2.61,1,2.61})
+                tempDeck:spawn({position = CharacterLocation, rotation = {0,90,180}}).setScale({2.55,1,2.55})
             end
         elseif #value==1 then
             if key=="MainCards" then
                 local mod = getMod('MainCards')
-                value[1]:spawn({position = {basePos[1]-5+mod,5,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
+                value[1]:spawn({position = {basePos[1]+mod,2,basePos[3]+4}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
             elseif key=="LunaticCards" then
                 local mod = getMod('LunaticCards')
-                value[1]:spawn({position = {basePos[1]-5+mod,4,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
+                value[1]:spawn({position = {basePos[1]+mod,2,basePos[3]+4}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
             elseif key=="IncidentCards" then
                 local mod = getMod('IncidentCards')
-                value[1]:spawn({position = {basePos[1]+1+mod,5,basePos[3]+6}, rotation = {0,90,180}}).setScale({1.82,1,1.82})
+                value[1]:spawn({position = {basePos[1]+6+mod,2,basePos[3]+5}, rotation = {0,90,180}}).setScale({1.82,1,1.82})
             elseif key=="HeroineCards" then
-                value[1]:spawn({position = {-35,3,5}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
+                value[1]:spawn({position = {-9,2,-22}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
             elseif key=="PartnerCards" then
-                value[1]:spawn({position = {-35,3,-2}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
+                value[1]:spawn({position = {-3,2,-22}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
             elseif key=="StageCards" then
-                value[1]:spawn({position = {-35,3,-9}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
+                value[1]:spawn({position = {3,2,-22}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
             elseif key=="ExCards" then
-                value[1]:spawn({position = {-30,4,-9}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
+                value[1]:spawn({position = {9,2,-22}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
             elseif key=="RevealCards" then
-                value[1]:spawn({position = {-25,4,-9}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
+                value[1]:spawn({position = {-5,2,18}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
             elseif key=="TerminalCards" then
                 local mod = getMod('TerminalCards')
-                value[1]:spawn({position = {basePos[1]-11+mod,2,basePos[3]+6}, rotation = {0,90,180}}).setScale({1.82,1,1.82})
+                value[1]:spawn({position = {basePos[1]-6+mod,2,basePos[3]+5}, rotation = {0,90,180}}).setScale({1.82,1,1.82})
             elseif key=="PrecognitionCards" then
                 local mod = getMod('PrecognitionCards')
-                value[1]:spawn({position = {basePos[1]-5+mod,2,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
-                table.insert(snapPoints, {position = {basePos[1]-5+mod,basePos[2],basePos[3]+5}, rotation = {0,180,180}, rotation_snap = true})
-                table.insert(snapPoints, {position = {basePos[1]-5+mod,basePos[2],basePos[3]-2}, rotation = {0,180,180}, rotation_snap = true})
+                value[1]:spawn({position = {basePos[1]+mod,2,basePos[3]+4}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
+                table.insert(snapPoints, {position = {basePos[1]+mod,basePos[2],basePos[3]+4}, rotation = {0,180,180}, rotation_snap = true})
+                table.insert(snapPoints, {position = {basePos[1]+mod,basePos[2],basePos[3]-2}, rotation = {0,180,180}, rotation_snap = true})
             elseif key=="NightCards" then
                 local mod = getMod('NightCards')
-                value[1]:spawn({position = {basePos[1]+10+mod,2,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
-                table.insert(snapPoints, {position = {basePos[1]+10+mod,basePos[2],basePos[3]+5}, rotation = {0,180,180}, rotation_snap = true})
-                table.insert(snapPoints, {position = {basePos[1]+10+mod,basePos[2],basePos[3]-2}, rotation = {0,180,180}, rotation_snap = true})
+                value[1]:spawn({position = {basePos[1]-6+mod,2,basePos[3]-13}, rotation = {0,90,180}}).setScale({1.82,1,1.82})
+                table.insert(snapPoints, {position = {basePos[1]+mod,basePos[2],basePos[3]-13}, rotation = {0,90,180}, rotation_snap = true})
+                table.insert(snapPoints, {position = {basePos[1]-6+mod,basePos[2],basePos[3]-13}, rotation = {0,90,180}, rotation_snap = true})
             elseif key=="TraitCards" then
                 local mod = getMod('TraitCards')
-                value[1]:spawn({position = {basePos[1]-10+mod,4,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
+                value[1]:spawn({position = {basePos[1]-5+mod,2,basePos[3]+4}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
             elseif key=="WildCards" then
                 local mod = getMod('WildCards')
-                value[1]:spawn({position = {basePos[1]-5+mod,2,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
+                value[1]:spawn({position = {basePos[1]+mod,2,basePos[3]+4}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
             elseif key=="ContractCards" then
                 local mod = getMod('ContractCards')
-                value[1]:spawn({position = {basePos[1]-5+mod,4,basePos[3]+5}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
+                value[1]:spawn({position = {basePos[1]+mod,2,basePos[3]+4}, rotation = {0,180,180}}).setScale({1.82,1,1.82})
             elseif key=="ExternalCards" then
-                value[1]:spawn({position = {-25,4,-16}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
+                value[1]:spawn({position = {5,2,18}, rotation = {0,180,0}}).setScale({1.82,1,1.82})
             elseif key=="CharacterCards" then
-                value[1]:spawn({value[1]:spawn({position = CharacterLocation, rotation = {0,90,180}}).setScale({2.61,1,2.61})})
+                value[1]:spawn({value[1]:spawn({position = CharacterLocation, rotation = {0,90,180}}).setScale({2.55,1,2.55})})
             end
         end
     end
@@ -805,7 +805,7 @@ end
 function loadExpansions(player, _, id)
     print('Loading expansions...')
     closePanel(nil,nil,nil)
-    basePos = {-2.5, 1.48, 0}
+    basePos = {-7, 1.38, 0}
     for key,value in pairs(expansions) do
         if value~=false and key~="LunaticExtra" then
             remeber = key
@@ -835,21 +835,21 @@ end
 
 function phaseTrackerPhaseChange(Playerr, isOn, id)
     on = StringToBool(isOn)
-    --print(Playerr.color)
-    --# Makes sure only active player can change phase
-    if Playerr.color ~= Turns.turn_color and Playerr.color ~= "Black" then
-        UI.setAttribute(id, "isOn", not on)
-        return
-    else
-        UI.setAttribute(id, "isOn", on)
-    end
-    --print(id)
-    --print(isOn)
-    --print(on)
-    --# Goes to next turn 
-    -- if id=="phaseTrackerButtonEnd" and on then
-    --     print(Turns.getNextTurnColor())
-    --     Turns.turn_color = Turns.getNextTurnColor()
-    --     UI.setAttribute(id, "isOn", false)
-    -- end
+    UI.setAttribute(id, "isOn", on)
+    if on then
+        local tempstring = "CALL LEATHER HE FUCKED UP SOMETHING" 
+        if id == "phaseTrackerButtonStart"
+            then tempstring = "Start of turn"
+        elseif id == "phaseTrackerButtonIncident"
+            then tempstring = "Incident Phase"
+        elseif id == "phaseTrackerButtonDraw"
+            then tempstring = "Draw Step"
+        elseif id == "phaseTrackerButtonMain"
+            then tempstring = "Main Phase"
+        elseif id == "phaseTrackerButtonDiscard"
+            then tempstring = "Discard Phase"
+        elseif id == "phaseTrackerButtonEnd"
+            then tempstring = "End of Turn"
+        end
+    broadcastToAll(tempstring, Playerr.color) end
 end
