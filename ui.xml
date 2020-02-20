@@ -81,6 +81,8 @@
                     <Image class="expansionImage" image="PC98"></Image></ToggleButton>
                 <ToggleButton class="expansionButton" id="Travel" text="Travel">
                     <Image class="expansionImage" image="Travel"></Image></ToggleButton>
+                <ToggleButton class="expansionButton" id="Distrust" text="(Dis)trust">
+                    <Image class="expansionImage" image="Distrust"></Image></ToggleButton>
                 <ToggleButton class="expansionButton" id="DumbassCards" text="Dumbass Cards">
                     <Image class="expansionImage" image="DumbassCards"></Image></ToggleButton>
         </GridLayout>
