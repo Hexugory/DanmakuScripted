@@ -829,7 +829,7 @@ function loadExpansions(player, _, id)
     for key,value in pairs(expansions) do
         if value~=false and key~="LunaticExtra" then
             remeber = key
-            WebRequest.get("http://66.70.189.147:8080/danmaku/"..key, function(a) webRequestCallback(a, key) end)
+            WebRequest.get("http://173.255.198.104:8080/danmaku/"..key, function(a) webRequestCallback(a, key) end)
         end
     end
     Wait.condition(doEverything, waitCondition)
